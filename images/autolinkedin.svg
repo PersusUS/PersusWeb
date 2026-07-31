@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="AutoLinkedIn retrieval-augmented pipeline">
+  <defs>
+    <linearGradient id="alAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c2e9fb"/>
+      <stop offset="100%" stop-color="#a1c4fd"/>
+    </linearGradient>
+    <pattern id="alGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0 L0 0 0 50" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0d0d0d"/>
+  <rect width="1600" height="900" fill="url(#alGrid)"/>
+
+  <!-- vector space: a query point and its nearest neighbours -->
+  <g transform="translate(1080 460)">
+    <circle r="300" fill="none" stroke="#ffffff" stroke-opacity="0.07"/>
+    <circle r="190" fill="none" stroke="#ffffff" stroke-opacity="0.07"/>
+    <circle r="90"  fill="none" stroke="url(#alAccent)" stroke-opacity="0.45" stroke-dasharray="5 7"/>
+    <g fill="#5f5f5f">
+      <circle cx="-250" cy="-140" r="5"/><circle cx="-180" cy="180" r="5"/>
+      <circle cx="230" cy="-210" r="5"/><circle cx="285" cy="120" r="5"/>
+      <circle cx="-290" cy="60" r="5"/><circle cx="120" cy="270" r="5"/>
+      <circle cx="60" cy="-285" r="5"/><circle cx="-120" cy="-250" r="5"/>
+      <circle cx="300" cy="-40" r="5"/><circle cx="-60" cy="290" r="5"/>
+      <circle cx="200" cy="230" r="5"/><circle cx="-230" cy="-40" r="5"/>
+    </g>
+    <g stroke="url(#alAccent)" stroke-opacity="0.5" stroke-width="1.5">
+      <path d="M0 0 L-62 -58"/><path d="M0 0 L70 -44"/>
+      <path d="M0 0 L48 62"/><path d="M0 0 L-54 52"/>
+    </g>
+    <g fill="url(#alAccent)">
+      <circle cx="-62" cy="-58" r="8"/><circle cx="70" cy="-44" r="8"/>
+      <circle cx="48" cy="62" r="8"/><circle cx="-54" cy="52" r="8"/>
+    </g>
+    <circle r="13" fill="#c2e9fb"/>
+    <text x="0" y="-116" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#8f8f8f">top-k</text>
+  </g>
+
+  <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
+    <text x="140" y="330" font-size="62" font-weight="600" letter-spacing="-1">AutoLinkedIn</text>
+    <text x="142" y="370" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">RETRIEVAL-AUGMENTED DRAFTING · PAUSED</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#8f8f8f">
+    <text x="140" y="450">embed → store in pgvector → retrieve → draft</text>
+    <text x="140" y="486">Supabase · Gemini Live · FastAPI · React TS</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">
+    <text x="140" y="820">worked end to end, then quietly stopped working</text>
+  </g>
+  <path d="M140 780 L1440 780" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+</svg>
