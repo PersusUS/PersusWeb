@@ -6,7 +6,7 @@
         About Me | Persus 
     </title>
 
-    <meta name="description" content="I was born and raised in a small town on Seville">
+    <meta name="description" content="Computer engineering student and AI/ML developer from Seville. World models, continual learning and edge AI.">
 
     <link rel="shortcut icon" href="images/persuslogowhite.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="images/persuslogowhite.png">
@@ -27,12 +27,12 @@
     <meta property="og:type" content="website">
 
     <meta property="og:title" content="About Me | Persus">
-    <meta property="og:description" content="I was born and raised in a small town on Seville">
+    <meta property="og:description" content="Computer engineering student and AI/ML developer from Seville. World models, continual learning and edge AI.">
     <meta property="og:site_name" content="About Me | Persus">
     <meta property="og:image" content="images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="I was born and raised in a small town on Seville">
+    <meta name="twitter:description" content="Computer engineering student and AI/ML developer from Seville. World models, continual learning and edge AI.">
     <meta name="twitter:title" content="About Me | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="css/master.min.css">
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
+    <link rel="stylesheet" href="css/shark.css">
 
 </head>
 
@@ -85,7 +86,7 @@
                 <div class="inner--container">
                     <div class="grid">
                         <h1 data-animation="chars" data-delay="0" data-stagger="0.03">A little about me</h1>
-                        <p class="size-20" data-animation="fade-up" data-delay="0">Passionate about artificial intelligence, with experience in designing technologies like Perseo (My AI), I always seek to break barriers through programming and technological innovation. My ambition has led me to work on prominent projects for Telefónica and NASA, as well as participate in Sputnik seminars, where I have honed my leadership and strategic thinking skills. Outside the professional realm, martial arts have taught me discipline and perseverance—values I apply to every challenge. I love exchanging ideas and opinions, generating constructive debates that drive creative solutions.</p>
+                        <p class="size-20" data-animation="fade-up" data-delay="0">I’m Jesús Pérez Bazarot, 21, born and raised near Seville and now in my third year of Computer Engineering at the Universidad de Sevilla — with a year at the Beijing Institute of Technology in between. I work on the parts of AI that break: models that forget what they learned, models too large for the hardware they need to run on, benchmarks that quietly measure the wrong thing. Most of what I know I learned by building something, watching it fail in an interesting way, and rebuilding it. Along the way I've spoken at Telefónica, competed in NASA SpaceApps, been CTO of a small startup, and co-founded another. Martial arts, three or four times a week, taught me the part that no project teaches: how to keep showing up after losing.</p>
                     </div>
                 </div>
                 <div class="video--container" data-animation="fade" data-delay="0">
@@ -97,8 +98,8 @@
                 <div class="inner--container">
                     <div class="grid">
                         <h3 data-animation="chars" data-delay="0" data-stagger="0.03">What I do</h3>
-                        <p class="big-text" data-animation="words" data-delay="0" data-stagger="0.03">I value storytelling while considering human-based design, so I’m able to explore new ways brands can connect with people. I'm constantly gathering inspiration and searching for innovative ideas using AI.</p>
-                        <p class="size-20" data-animation="fade-up" data-delay="0">I’m curious, and passionate, and strive for continuous evolution. I’ve made creativity my lifestyle. Ever since I was a kid, innovation has been what makes me tick. To this day, that is what moves me to explore and play around with new ideas and techniques to find solutions that are appealing and efficient.</p>
+                        <p class="big-text" data-animation="words" data-delay="0" data-stagger="0.03">I build benchmarks and the systems they measure. If a result can’t be reproduced bit for bit, I don’t trust it yet — including my own.</p>
+                        <p class="size-20" data-animation="fade-up" data-delay="0">My current research asks a narrow question: when a world model learns a second task, what exactly does its transition model forget, and how do we measure that honestly? Building it taught me more about experimental hygiene than about world models. Seven debugging sessions turned up twenty-one bugs, one of which — a collapsed VAE posterior — invalidated an entire round of results and every conclusion I had drawn from them. Rewriting the paper from scratch was less painful than publishing something I knew was wrong.<br><br>Outside research, I write Rust and Python, deploy models on hardware that has no business running them, and keep a small set of tools I use daily. I’m aiming for a master’s in AI at MIT, and long term for work where machine learning is pointed at something worth conserving — marine ecology, for a start.</p>
                     </div>
                 </div>
             </section>
@@ -111,10 +112,98 @@
                             <ul class="resume">
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
-                                        <span>Comunication</span>
-                                        <span>Telefonica</span>
+                                        <span>Independent AI/ML Research</span>
+                                        <span>World models, continual learning, LLM benchmarking</span>
                                     </div>
-                                    <div class="entry_col">Dec 2023 - Dec 2023</div>
+                                    <div class="entry_col">2025 — Present</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Chief Technology Officer</span>
+                                        <span>Netkey — NFC networking hardware (closed)</span>
+                                    </div>
+                                    <div class="entry_col">2023 — 2024</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Co-founder</span>
+                                        <span>Bytheway — former venture</span>
+                                    </div>
+                                    <div class="entry_col">2024 — 2025</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>AI Developer</span>
+                                        <span>OrgaAI</span>
+                                    </div>
+                                    <!-- TODO: confirm exact dates -->
+                                    <div class="entry_col"></div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Speaker — NB-IoT &amp; swarm robotics</span>
+                                        <span>Telefónica</span>
+                                    </div>
+                                    <div class="entry_col">Dec 2023</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="margin-top:80px">
+                            <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Education</h3>
+                            <ul class="resume">
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>BSc Computer Engineering</span>
+                                        <span>Universidad de Sevilla</span>
+                                    </div>
+                                    <div class="entry_col">2023 — Present</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Erasmus exchange</span>
+                                        <span>Beijing Institute of Technology</span>
+                                    </div>
+                                    <div class="entry_col">2025 — 2026</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="margin-top:80px">
+                            <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Selected work</h3>
+                            <ul class="resume">
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>WMF Benchmark</span>
+                                        <span>Catastrophic forgetting in world models — paper in preparation</span>
+                                    </div>
+                                    <div class="entry_col">2026</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>HybridMamba-11</span>
+                                        <span>OpenAI Parameter Golf — submitted April 2026</span>
+                                    </div>
+                                    <div class="entry_col">2026</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Perseo</span>
+                                        <span>Personal AI assistant — Tauri 2, Rust, Gemini Live</span>
+                                    </div>
+                                    <div class="entry_col">2023 — Present</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Agentic Reasoning Traces</span>
+                                        <span>15 annotated traces, 142 steps, 9-type error taxonomy</span>
+                                    </div>
+                                    <div class="entry_col">2026</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>ClassTranscriber</span>
+                                        <span>7-stage lecture pipeline — diarisation, Whisper large-v3, local cleanup</span>
+                                    </div>
+                                    <div class="entry_col">2025</div>
                                 </li>
                             </ul>
                         </div>
@@ -159,6 +248,7 @@
                             <img class="lazy" width="330" height="247" src="images/telefonicalg.png" alt="TELEFONICA">
                             <img class="lazy" width="330" height="247" src="images/netkeylg.png" alt="NETKEY">
                             <img class="lazy" width="330" height="247" src="images/sputniklg.png" alt="SPUTNIK">
+                        </span>
                     </div>
                 </div>
             </section>
@@ -169,7 +259,7 @@
         <div class="cta--wrapper">
             <div class="cta--container">
                 <div class="video--container">
-                    <video id="cta_video" width="100%" autoplay muted loop></video>
+                    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
                 </div>
                 <div class="text--container">
                     <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
@@ -187,7 +277,7 @@
     <div class="footer-bottom--container">
         <div class="footer-bottom--wrapper">
             <div class="footer-col">
-                N 39°54′15″ E 116°24′27″
+                N 37°23′21″ W 5°59′04″
             </div>
             <div class="footer-col">
                 <div class="social-links">
@@ -198,7 +288,7 @@
             </div>
             <div class="footer-col">
                 Designed and developed by me<br>
-                ©2024 – All Rights Reserved
+                ©2026 – All Rights Reserved
             </div>
         </div>
     </div>
@@ -256,6 +346,8 @@
 <script type="text/javascript" src="js/lazyload.min.js"></script>
 <script type="text/javascript" src="js/fancybox.min.js"></script>
 <script type="text/javascript" src="js/master.min.js"></script>
+<script type="text/javascript" src="js/shark-mesh.js"></script>
+<script type="text/javascript" src="js/shark.js"></script>
 
 
 

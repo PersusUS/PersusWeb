@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#" class="no-js"><head></head>
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#" class="no-js"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
@@ -30,6 +30,7 @@
     <meta property="og:title" content="Netkey | Persus">
     <meta property="og:description" content="A solution for your networking activities.">
     <meta property="og:site_name" content="Netkey | Persus">
+    <meta property="og:image" content="images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:description" content="A solution for your networking activities.">
@@ -41,12 +42,43 @@
     <link rel="stylesheet" href="css/master.min.css">
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
+    <link rel="stylesheet" href="css/shark.css">
 
 </head>
 
 <body>
 
-    
+    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
+
+    <header id="header">
+        <div class="header--container">
+            <a id="logo_lottie" href="index.html" class="link" aria-label="Back to the homepage">
+                <img src="images/persuslogowhite.ico" alt="Home Icon" class="logo-icon">
+            </a>
+            <nav class="main_menu--container">
+                <ul>
+                    <li class="menu-item">
+                        <a href="portfolio.html" class="">Projects</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="about.html" class="">About</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#footer" onclick="lenis.scrollTo('#footer')" class="">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile_menu--button">
+                <button class="hamburger_btn" href="javascript:void(0);" aria-label="Open mobile menu">
+                    <div class="hamburger_icon">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
     <main id="wrapper" data-barba="wrapper">
 
         <div data-barba="container">
@@ -56,11 +88,10 @@
                     <div class="grid">
                         <div class="col-intro">
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Netkey</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Netkey is an innovative technology company that specializes in enhancing networking experiences through cutting-edge solutions. Our flagship product is a 3D-printed NFC (Near Field Communication) device designed to streamline and elevate networking activities. By seamlessly integrating with Linktree, our solution allows users to share their professional profiles, portfolios, and social media links effortlessly.
-                                <br>
-                                At Netkey, we believe in the power of connectivity. Our NFC-enabled devices are not only functional but also customizable, providing users with a unique way to present their personal brand. With a simple tap, users can transfer their information to smartphones, eliminating the need for traditional business cards and enabling a more sustainable approach to networking.
-                                <br>
-                                Our commitment to innovation drives us to continually improve and expand our product offerings, ensuring that we stay at the forefront of technology in the networking space. Whether you are at a conference, a business meeting, or a casual gathering, Netkey empowers you to connect, engage, and grow your professional network with ease and efficiency.</div>
+                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Netkey was a small technology company where I served as CTO. The product was a 3D-printed NFC device that replaced the paper business card: one tap against a phone and your professional profile, portfolio and links were transferred, with Linktree handling the destination page.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">The devices were customisable, so the object itself became part of how someone presented their personal brand — and printing them ourselves meant we could iterate on the physical design as fast as on the software. It was also, by a wide margin, a more sustainable way to exchange details than reprinting a stack of cards every time a job title changed.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">As CTO I owned the technical side end to end: the NFC provisioning flow, the profile backend, and the 3D-printing pipeline that turned a design change into a physical unit the same afternoon. The company is no longer active, but it was where I first learned what it costs to ship something people hold in their hands rather than something that only runs on my machine.</p>
+                        </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
                                 <span>Services</span>
@@ -84,12 +115,12 @@
             <section class="default_row--container next-project single_project">
                 <div class="inner--container">
                     <p>Next Project</p>
-                    <p>Perseo</p>
+                    <p>Telefónica</p>
                 </div>
                 <div class="image--container">
-                    <img class="lazy" src="images/perseo.png" alt="Perseo">
+                    <img class="lazy" src="images/Telefonica.jpg" alt="Telefónica">
                 </div>
-                <a href="perseo.html" class="project_link link"></a>
+                <a href="telefonica.html" class="project_link link"></a>
             </section>
 
             <!-- Original footer with CTA -->
@@ -98,7 +129,7 @@
                     <div class="cta--wrapper">
                         <div class="cta--container">
                             <div class="video--container">
-                                <video id="cta_video" width="100%" autoplay muted loop></video>
+                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
                             </div>
                             <div class="text--container">
                                 <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
@@ -116,7 +147,7 @@
                 <div class="footer-bottom--container">
                     <div class="footer-bottom--wrapper">
                         <div class="footer-col">
-                            N 39°54′15″ E 116°24′27″
+                            N 37°23′21″ W 5°59′04″
                         </div>
                         <div class="footer-col">
                             <div class="social-links">
@@ -127,7 +158,7 @@
                         </div>
                         <div class="footer-col">
                             Designed and developed by me<br>
-                            ©2024 – All Rights Reserved
+                            ©2026 – All Rights Reserved
                         </div>
                     </div>
                 </div>
@@ -185,6 +216,8 @@
 <script type="text/javascript" src="js/lazyload.min.js"></script>
 <script type="text/javascript" src="js/fancybox.min.js"></script>
 <script type="text/javascript" src="js/master.min.js"></script>
+<script type="text/javascript" src="js/shark-mesh.js"></script>
+<script type="text/javascript" src="js/shark.js"></script>
 
 
 

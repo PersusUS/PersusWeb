@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Multilingual LLM benchmark across nine languages">
+  <defs>
+    <linearGradient id="mlAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c2e9fb"/>
+      <stop offset="100%" stop-color="#a1c4fd"/>
+    </linearGradient>
+    <pattern id="mlGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0 L0 0 0 50" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0d0d0d"/>
+  <rect width="1600" height="900" fill="url(#mlGrid)"/>
+
+  <!-- radial language graph -->
+  <g transform="translate(1120 450)">
+    <g fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1">
+      <circle r="120"/><circle r="200"/><circle r="280"/>
+    </g>
+    <g stroke="url(#mlAccent)" stroke-opacity="0.35" stroke-width="1.5">
+      <path d="M0 0 L0 -260"/><path d="M0 0 L167 -199"/><path d="M0 0 L256 -46"/>
+      <path d="M0 0 L223 133"/><path d="M0 0 L89 244"/><path d="M0 0 L-89 244"/>
+      <path d="M0 0 L-223 133"/><path d="M0 0 L-256 -46"/><path d="M0 0 L-167 -199"/>
+    </g>
+    <g font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#cfcfcf" text-anchor="middle">
+      <circle cx="0" cy="-260" r="30" fill="#161616" stroke="url(#mlAccent)" stroke-width="1.5"/><text x="0" y="-252">EN</text>
+      <circle cx="167" cy="-199" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="167" y="-191">中</text>
+      <circle cx="256" cy="-46" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="256" y="-38">日</text>
+      <circle cx="223" cy="133" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="223" y="141">한</text>
+      <circle cx="89" cy="244" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="89" y="252">ES</text>
+      <circle cx="-89" cy="244" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="-89" y="252">FR</text>
+      <circle cx="-223" cy="133" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="-223" y="141">IT</text>
+      <circle cx="-256" cy="-46" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="-256" y="-38">PT</text>
+      <circle cx="-167" cy="-199" r="30" fill="#161616" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/><text x="-167" y="-191">DE</text>
+    </g>
+    <circle r="46" fill="url(#mlAccent)" opacity="0.18"/>
+    <circle r="46" fill="none" stroke="url(#mlAccent)" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#c2e9fb">LLM</text>
+  </g>
+
+  <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
+    <text x="140" y="330" font-size="62" font-weight="600" letter-spacing="-1">Multilingual</text>
+    <text x="140" y="400" font-size="62" font-weight="600" letter-spacing="-1">LLM Benchmark</text>
+    <text x="142" y="440" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">CHINESE VS. WESTERN FRONTIER MODELS</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#8f8f8f">
+    <text x="140" y="520">9 languages · 4 task categories · LLM-as-jury</text>
+    <text x="140" y="556">accuracy · ROUGE-L · BERTScore</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">
+    <text x="140" y="820">DeepSeek · Qwen · Gemini · Mistral · Llama</text>
+  </g>
+  <path d="M140 780 L1440 780" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+</svg>

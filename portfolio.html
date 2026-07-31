@@ -6,7 +6,7 @@
         Projects | Persus
     </title>
 
-    <meta name="description" content=" -- Insert Something -- ">
+    <meta name="description" content="Research and engineering projects: world model benchmarks, LLM optimisation, edge AI and real-time assistants.">
 
     <link rel="shortcut icon" href="images/persuslogowhite.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="images/persuslogowhite.png">
@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="css/master.min.css">
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
+    <link rel="stylesheet" href="css/shark.css">
 
 </head>
 
@@ -84,7 +85,7 @@
             <section class="default_row--container projects_intro--wrapper">
                 <div class="inner--container">
                     <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Recent projects</h1>
-                    <p data-animation="words" data-delay="0.2" data-stagger="0.03">Check out some of the most recent projects I've had the pleasure of working on.</p>
+                    <p data-animation="words" data-delay="0.2" data-stagger="0.03">Research, tools and a few things I built to see whether they would work. Roughly newest first.</p>
                 </div>
             </section>
     
@@ -92,100 +93,164 @@
                 <div class="inner--container">
                     <div class="all_projects--container grid">
     
-                        <!--PERSEO-->
+                        <!--WORLD MODELS BENCHMARK-->
                         <div class="single_project" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
-                                    <li>AI/ML</li>
-                                    <li>Programing</li>
+                                    <li>Research</li>
+                                    <li>Continual Learning</li>
+                                </ul>
+                                <img class="lazy" src="images/worldmodels.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="WMF Benchmark">
+                            </div>
+                            <div class="project_info--container">
+                                <p class="project_title">WMF Benchmark</p>
+                                <p class="project_description">Measuring how world models forget — 2026, in progress</p>
+                            </div>
+                            <a href="worldmodels.html" class="project_link" aria-label="Read more about this case study"></a>
+                        </div>
+
+                        <!--PERSEO-->
+                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                            <div class="project_picture--container">
+                                <ul class="project_meta">
+                                    <li>Applied AI</li>
+                                    <li>Rust</li>
                                 </ul>
                                 <img class="lazy" src="images/perseo.png"  sizes="(max-width: 600px) 100vw, 50vw"  alt="Perseo">
                             </div>
                             <div class="project_info--container">
                                 <p class="project_title">Perseo</p>
-                                <p class="project_description">An AI Assistant developed on my own.</p>
+                                <p class="project_description">My longest-running project — a personal assistant that listens and watches</p>
                             </div>
                             <a href="perseo.html" class="project_link" aria-label="Read more about this case study"></a>
                         </div>
-    
-                        <!--TELEFONICA-->
+
+                        <!--HYBRIDMAMBA-11-->
                         <div class="single_project" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
-                                    <li>Comunication</li>
-                                    <li>Robotics</li>
+                                    <li>Research</li>
+                                    <li>Deep Learning</li>
                                 </ul>
-                                <img class="lazy" src="images/Telefonica.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Telefonica">
+                                <img class="lazy" src="images/hybridmamba.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="HybridMamba-11">
                             </div>
                             <div class="project_info--container">
-                                <p class="project_title">Telefonica</p>
-                                <p class="project_description">An innovation conference in Seville</p>
+                                <p class="project_title">HybridMamba-11</p>
+                                <p class="project_description">A language model under 16 MB — OpenAI Parameter Golf, 2026</p>
                             </div>
-                            <a href="telefonica.html" class="project_link"></a>
+                            <a href="hybridmamba.html" class="project_link" aria-label="Read more about this case study"></a>
                         </div>
-    
-                        <!--AIMOUSE-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>AI/ML</li>
-                                    <li>Programing</li>
-                                </ul>
-                                <img class="lazy" src="images/aimouse.png"  sizes="(max-width: 600px) 100vw, 50vw" alt="AI Mouse">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">AI Mouse</p>
-                                <p class="project_description">Transform your hand into a mouse</p>
-                            </div>
-                            <a href="aimouse.html" class="project_link"></a>
-                        </div>
-    
-                        <!--FACE DETECTION-->
+
+                        <!--JETSON ORIN / TFG-->
                         <div class="single_project" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
-                                    <li>AI/ML</li>
-                                    <li>Programing</li>
+                                    <li>Edge AI</li>
+                                    <li>Research</li>
                                 </ul>
-                                <img class="lazy" src="images/face.png" sizes="(max-width: 600px) 100vw, 50vw"  alt="Face detection">
+                                <img class="lazy" src="images/jetson.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Jetson Orin thesis">
                             </div>
                             <div class="project_info--container">
-                                <p class="project_title">Face Detection</p>
-                                <p class="project_description">An Ai Software to detect faces</p>
+                                <p class="project_title">Jetson Orin</p>
+                                <p class="project_description">Running an LLM in orbit, or trying to — thesis proposal</p>
                             </div>
-                            <a href="facedetection.html" class="project_link"></a>
+                            <a href="jetson.html" class="project_link" aria-label="Read more about this case study"></a>
+                        </div>
+
+                        <!--MULTILINGUAL BENCHMARK-->
+                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                            <div class="project_picture--container">
+                                <ul class="project_meta">
+                                    <li>Research</li>
+                                    <li>LLMs</li>
+                                </ul>
+                                <img class="lazy" src="images/multilingual.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Multilingual LLM Benchmark">
+                            </div>
+                            <div class="project_info--container">
+                                <p class="project_title">Multilingual Benchmark</p>
+                                <p class="project_description">Chinese vs. Western frontier models across nine languages</p>
+                            </div>
+                            <a href="multilingual.html" class="project_link" aria-label="Read more about this case study"></a>
                         </div>
 
                         <!--NETKEY-->
                         <div class="single_project" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
-                                    <li>Product Design</li>
-                                    <li>Programing</li>
+                                    <li>Product</li>
+                                    <li>Leadership</li>
                                 </ul>
                                 <img class="lazy" src="images/netkey.png" sizes="(max-width: 600px) 100vw, 50vw" alt="Netkey">
                             </div>
                             <div class="project_info--container">
                                 <p class="project_title">Netkey</p>
-                                <p class="project_description">A product to revolucionize networking</p>
+                                <p class="project_description">NFC networking startup where I was CTO</p>
                             </div>
                             <a href="netkey.html" class="project_link"></a>
                         </div>
-    
+
+                        <!--TELEFONICA-->
+                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                            <div class="project_picture--container">
+                                <ul class="project_meta">
+                                    <li>Speaking</li>
+                                    <li>Robotics</li>
+                                </ul>
+                                <img class="lazy" src="images/Telefonica.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Telefonica">
+                            </div>
+                            <div class="project_info--container">
+                                <p class="project_title">Telefónica</p>
+                                <p class="project_description">NB-IoT and swarm robotics talks in Seville</p>
+                            </div>
+                            <a href="telefonica.html" class="project_link"></a>
+                        </div>
+
                         <!--SPUTNIK-->
                         <div class="single_project" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
-                                    <li>Comunication</li>
-                                    <li>Concepting</li>
+                                    <li>Speaking</li>
+                                    <li>Strategy</li>
                                 </ul>
                                 <img class="lazy" src="images/Sputnik.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Sputnik">
                             </div>
                             <div class="project_info--container">
                                 <p class="project_title">Sputnik</p>
-                                <p class="project_description">The conference that changed my life</p>
+                                <p class="project_description">The seminar that changed how I pick problems</p>
                             </div>
                             <a href="sputnik.html" class="project_link"></a>
+                        </div>
+
+                        <!--AIMOUSE-->
+                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                            <div class="project_picture--container">
+                                <ul class="project_meta">
+                                    <li>Computer Vision</li>
+                                    <li>Early Work</li>
+                                </ul>
+                                <img class="lazy" src="images/aimouse.png"  sizes="(max-width: 600px) 100vw, 50vw" alt="AI Mouse">
+                            </div>
+                            <div class="project_info--container">
+                                <p class="project_title">AI Mouse</p>
+                                <p class="project_description">Turning a hand into a pointing device</p>
+                            </div>
+                            <a href="aimouse.html" class="project_link"></a>
+                        </div>
+
+                        <!--FACE DETECTION-->
+                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                            <div class="project_picture--container">
+                                <ul class="project_meta">
+                                    <li>Computer Vision</li>
+                                    <li>Early Work</li>
+                                </ul>
+                                <img class="lazy" src="images/face.png" sizes="(max-width: 600px) 100vw, 50vw"  alt="Face detection">
+                            </div>
+                            <div class="project_info--container">
+                                <p class="project_title">Face Detection</p>
+                                <p class="project_description">Where I learned that a working demo is not a system</p>
+                            </div>
+                            <a href="facedetection.html" class="project_link"></a>
                         </div>
                     </div>
                 </div>
@@ -197,7 +262,7 @@
         <div class="cta--wrapper">
             <div class="cta--container">
                 <div class="video--container">
-                    <video id="cta_video" width="100%" autoplay muted loop></video>
+                    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
                 </div>
                 <div class="text--container">
                     <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
@@ -215,7 +280,7 @@
     <div class="footer-bottom--container">
         <div class="footer-bottom--wrapper">
             <div class="footer-col">
-                N 39°54′15″ E 116°24′27″
+                N 37°23′21″ W 5°59′04″
             </div>
             <div class="footer-col">
                 <div class="social-links">
@@ -226,7 +291,7 @@
             </div>
             <div class="footer-col">
                 Designed and developed by me<br>
-                ©2024 – All Rights Reserved
+                ©2026 – All Rights Reserved
             </div>
         </div>
     </div>
@@ -284,6 +349,8 @@
 <script type="text/javascript" src="js/lazyload.min.js"></script>
 <script type="text/javascript" src="js/fancybox.min.js"></script>
 <script type="text/javascript" src="js/master.min.js"></script>
+<script type="text/javascript" src="js/shark-mesh.js"></script>
+<script type="text/javascript" src="js/shark.js"></script>
 
 
 

@@ -3,10 +3,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        AI Vision | Persus
+        Jetson Orin | Persus
     </title>
 
-    <meta name="description" content="Ai vision software that detects faces and emotions.">
+    <meta name="description" content="Bachelor thesis proposal: running a quantised Gemma 3 on a Jetson Orin Nano, surviving radiation-induced bit flips, and benchmarking it for astronaut assistance.">
 
 
     <link rel="shortcut icon" href="images/persuslogowhite.ico" type="image/x-icon">
@@ -27,14 +27,14 @@
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="AI Vision | Persus">
-    <meta property="og:description" content="Ai vision software that detects faces and emotions.">
-    <meta property="og:site_name" content="AI Vision | Persus">
+    <meta property="og:title" content="Jetson Orin | Persus">
+    <meta property="og:description" content="Bachelor thesis proposal: running a quantised Gemma 3 on a Jetson Orin Nano, surviving radiation-induced bit flips, and benchmarking it for astronaut assistance.">
+    <meta property="og:site_name" content="Jetson Orin | Persus">
     <meta property="og:image" content="images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="Ai vision software that detects faces and emotions.">
-    <meta name="twitter:title" content="AI Vision | Persus">
+    <meta name="twitter:description" content="Bachelor thesis proposal: running a quantised Gemma 3 on a Jetson Orin Nano, surviving radiation-induced bit flips, and benchmarking it for astronaut assistance.">
+    <meta name="twitter:title" content="Jetson Orin | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp">
@@ -87,22 +87,29 @@
                 <div class="inner--container">
                     <div class="grid">
                         <div class="col-intro">
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Face Detection</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">This innovative AI vision project is designed to enhance human-computer interaction by accurately detecting both faces and bodies while also recognizing emotional states. Leveraging advanced computer vision algorithms, the system utilizes cutting-edge techniques for real-time detection and analysis, ensuring high precision and responsiveness.
-                                <br>
-                                The face detection component identifies and localizes human faces in various environments, while the body detection feature recognizes full-body poses and movements. Together, these capabilities allow for a comprehensive understanding of human presence and behavior.
-                                <br>
-                                In addition to physical detection, the project incorporates emotion recognition, enabling the AI to interpret facial expressions and body language. By analyzing features such as facial movements and posture, the system can identify a range of emotions—including happiness, sadness, anger, and surprise. This emotional intelligence enhances the AI's ability to respond appropriately in interactive applications, making it ideal for fields like customer service, mental health, and user experience design.
-                                <br>
-                                Overall, this AI vision project aims to bridge the gap between technology and human emotion, creating smarter, more empathetic systems that can adapt to users' feelings and needs in real-time. With its potential applications in various industries, it stands to revolutionize how we interact with machines and improve user engagement across platforms.</div>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Jetson Orin</h1>
+                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Spacecraft cannot phone home for inference. Latency to Mars is minutes each way, bandwidth is scarce, and the hardware that survives launch is a decade behind whatever is in your laptop. If you want a language model helping an astronaut, it has to run locally on a low-power board and it has to keep working while cosmic rays flip bits in its weights.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">My thesis proposal takes that seriously across three pillars. The first is hardware-constrained optimisation: getting Gemma 3 onto a Jetson Orin Nano through AWQ and GPTQ quantisation, structured pruning, domain distillation, KV-cache management and retrieval instead of parameters.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The second is fault tolerance. Single event upsets are not hypothetical in orbit — they are a design constraint. I want to characterise which bit flips actually degrade model output (spoiler: not all of them matter equally), then evaluate ECC, triple modular redundancy and watchdog timers against a software bit-flip injection harness.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">The third pillar is the one I care about most: an original benchmark for astronaut assistance with asymmetric, safety-weighted scoring. A model that says “I don't know” during a depressurisation event is behaving correctly; a model that confidently invents a procedure is not. Standard accuracy metrics score both the same. That's the gap.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">Each pillar is designed to stand alone as an arXiv paper. Horizon: two years.</p>
+                        </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
                                 <span>Services</span>
-                                <span class="size-20">AI/ML, Software Development</span>
+                                <span class="size-20">Research, Edge AI, Thesis</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.2">
+                                <span>Stack</span>
+                                <span class="size-20">Jetson Orin Nano, Gemma 3, AWQ/GPTQ, TensorRT</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.3">
+                                <span>Status</span>
+                                <span class="size-20">Proposal · in definition</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
                                 <span>Year</span>
-                                <span class="size-20">2023</span>
+                                <span class="size-20">2026 — 2028</span>
                             </div>
                         </div>
                     </div>
@@ -110,7 +117,7 @@
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
                         <div class="mask"></div>
-                        <img class="lazy" src="images/face.png" alt="Face">
+                        <img class="lazy" src="images/jetson.svg" alt="Jetson Orin">
                     </div>
                 </div>
             </section>
@@ -118,12 +125,12 @@
             <section class="default_row--container next-project single_project">
                 <div class="inner--container">
                     <p>Next Project</p>
-                    <p>WMF Benchmark</p>
+                    <p>Multilingual Benchmark</p>
                 </div>
                 <div class="image--container">
-                    <img class="lazy" src="images/worldmodels.svg" alt="WMF Benchmark">
+                    <img class="lazy" src="images/multilingual.svg" alt="Multilingual Benchmark">
                 </div>
-                <a href="worldmodels.html" class="project_link link"></a>
+                <a href="multilingual.html" class="project_link link"></a>
             </section>
 
             <!-- Original footer with CTA -->
@@ -144,7 +151,7 @@
                     </div>
                 </section>
             </footer>
-            
+
             <!-- New footer specifically for socials, copyright, and coordinates -->
             <footer id="footer-bottom">
                 <div class="footer-bottom--container">
@@ -154,8 +161,8 @@
                         </div>
                         <div class="footer-col">
                             <div class="social-links">
-                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> / 
-                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> / 
+                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
+                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
                                 <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a>
                             </div>
                         </div>
@@ -165,9 +172,9 @@
                         </div>
                     </div>
                 </div>
-            </footer>  
+            </footer>
             <div class="cursor__pointer"><img src="images/arrow_up.png" width="100"></div>
-    
+
             <div class="mobile_menu--wrapper">
     <div class="overlay"></div>
     <div class="mobile_menu--container">

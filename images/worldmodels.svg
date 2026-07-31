@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="World Models Forgetting Benchmark">
+  <defs>
+    <linearGradient id="wmAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c2e9fb"/>
+      <stop offset="100%" stop-color="#a1c4fd"/>
+    </linearGradient>
+    <linearGradient id="wmFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a1c4fd" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#a1c4fd" stop-opacity="0.05"/>
+    </linearGradient>
+    <pattern id="wmGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0 L0 0 0 50" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0d0d0d"/>
+  <rect width="1600" height="900" fill="url(#wmGrid)"/>
+
+  <!-- benchmark matrix: 3 environment families x 3 task distances -->
+  <g transform="translate(150 210)">
+    <g fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5">
+      <rect x="0" y="0" width="150" height="150"/>
+      <rect x="170" y="0" width="150" height="150"/>
+      <rect x="340" y="0" width="150" height="150"/>
+      <rect x="0" y="170" width="150" height="150"/>
+      <rect x="170" y="170" width="150" height="150"/>
+      <rect x="340" y="170" width="150" height="150"/>
+      <rect x="0" y="340" width="150" height="150"/>
+      <rect x="170" y="340" width="150" height="150"/>
+      <rect x="340" y="340" width="150" height="150"/>
+    </g>
+    <g fill="url(#wmAccent)">
+      <rect x="0" y="0" width="150" height="150" opacity="0.14"/>
+      <rect x="170" y="0" width="150" height="150" opacity="0.30"/>
+      <rect x="340" y="0" width="150" height="150" opacity="0.62"/>
+      <rect x="0" y="170" width="150" height="150" opacity="0.10"/>
+      <rect x="170" y="170" width="150" height="150" opacity="0.38"/>
+      <rect x="340" y="170" width="150" height="150" opacity="0.80"/>
+      <rect x="0" y="340" width="150" height="150" opacity="0.18"/>
+      <rect x="170" y="340" width="150" height="150" opacity="0.46"/>
+      <rect x="340" y="340" width="150" height="150" opacity="0.55"/>
+    </g>
+    <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="19" fill="#8f8f8f" letter-spacing="1">
+      <text x="-24" y="82" text-anchor="end">minigrid</text>
+      <text x="-24" y="252" text-anchor="end">gymnasium</text>
+      <text x="-24" y="422" text-anchor="end">dmcontrol</text>
+      <text x="75" y="520" text-anchor="middle">d_min</text>
+      <text x="245" y="520" text-anchor="middle">d_mid</text>
+      <text x="415" y="520" text-anchor="middle">d_max</text>
+    </g>
+  </g>
+
+  <!-- forgetting curve -->
+  <g transform="translate(760 250)">
+    <path d="M0 60 L620 60" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1" stroke-dasharray="4 6"/>
+    <path d="M0 300 L620 300" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1" stroke-dasharray="4 6"/>
+    <path d="M0 62 C 120 62, 150 250, 260 288 S 470 316, 620 322"
+          fill="none" stroke="url(#wmFade)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M0 62 C 120 62, 150 190, 260 214 S 470 246, 620 252"
+          fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 8"/>
+    <circle cx="0" cy="62" r="6" fill="#c2e9fb"/>
+    <circle cx="620" cy="322" r="6" fill="#a1c4fd"/>
+    <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#8f8f8f">
+      <text x="14" y="46">task A learned</text>
+      <text x="620" y="356" text-anchor="end">after task B</text>
+    </g>
+  </g>
+
+  <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
+    <text x="150" y="112" font-size="62" font-weight="600" letter-spacing="-1">WMF Benchmark</text>
+    <text x="152" y="152" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">CATASTROPHIC FORGETTING IN WORLD MODELS</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">
+    <text x="150" y="820">225 runs · 5 methods · 5 seeds</text>
+    <text x="1450" y="820" text-anchor="end">PyTorch · MuJoCo · dm_control</text>
+  </g>
+  <path d="M150 780 L1450 780" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+</svg>

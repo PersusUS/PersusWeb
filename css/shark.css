@@ -1,0 +1,20 @@
+/* Canvas that carries the tiger shark in the contact footer. */
+
+.cta_footer--container .cta--container .video--container {
+    position: relative;
+    z-index: 1;
+}
+
+#shark_canvas {
+    display: block;
+    width: 100%;
+    height: clamp(340px, 58vh, 640px);
+    /* The big CTA headline sits on top of this. */
+    pointer-events: none;
+}
+
+@media screen and (max-width: 800px) {
+    #shark_canvas {
+        height: clamp(240px, 42vh, 400px);
+    }
+}

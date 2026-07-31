@@ -6,7 +6,7 @@
         Persus
     </title>
 
-    <meta name="description" content="I’m a multi-disciplinary Software developer with a focus on AI/ML, Programing, and Robotics.">
+    <meta name="description" content="AI/ML researcher and software engineer from Seville. World models, continual learning, LLMs on constrained hardware and real-time AI systems.">
 
     <link rel="shortcut icon" href="images/persuslogowhite.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="images/persuslogowhite.png">
@@ -27,11 +27,12 @@
     <meta property="og:type" content="website">
 
     <meta property="og:title" content="Persus">
-    <meta property="og:description" content="I’m a multi-disciplinary Software developer with a focus on AI/ML, Programing, and Robotics.">
+    <meta property="og:description" content="AI/ML researcher and software engineer from Seville. World models, continual learning, LLMs on constrained hardware and real-time AI systems.">
     <meta property="og:site_name" content="Persus">
+    <meta property="og:image" content="images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="I’m a multi-disciplinary Software developer with a focus on AI/ML, Programing, and Robotics.">
+    <meta name="twitter:description" content="AI/ML researcher and software engineer from Seville. World models, continual learning, LLMs on constrained hardware and real-time AI systems.">
     <meta name="twitter:title" content="Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +41,7 @@
     <link rel="stylesheet" href="css/master.min.css">
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
+    <link rel="stylesheet" href="css/shark.css">
     
 </head>
 
@@ -136,7 +138,7 @@
                     </div>
     
                     <div class="hero_text--container">
-                        <p data-animation="chars" data-delay="4" data-stagger="0.02"><span data-animation="fade" data-delay="0.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" xmlns:v="https://vecta.io/nano"><g transform="matrix(0 1 -1 0 13 1)" stroke="#fff" fill="none" stroke-width="1.5"><path d="M2.769 0H12v9.231"></path><path d="M12 0L0 12"></path></g></svg></span>Software Engineer and<br>AI/ML Developer</p>
+                        <p data-animation="chars" data-delay="4" data-stagger="0.02"><span data-animation="fade" data-delay="0.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" xmlns:v="https://vecta.io/nano"><g transform="matrix(0 1 -1 0 13 1)" stroke="#fff" fill="none" stroke-width="1.5"><path d="M2.769 0H12v9.231"></path><path d="M12 0L0 12"></path></g></svg></span>AI/ML Researcher and<br>Software Engineer</p>
                     </div>
                 </div>
                 <div class="circular_text--container"></div>
@@ -146,21 +148,21 @@
                 <div class="inner--container">
                     <div class="intro_text--container">
                         <p data-animation="chars" data-delay="0" data-stagger="0.01">
-                            I’m a multi-disciplinary Software developer with a focus on AI/ML, Programing, and Robotics. I've been delivering creative and engaging solutions across brand identity, website, Python, and digital media for almost 2 years. <br><br>I’m currently developing my personal AI, and in the future I want to go to the MIT.
+                            I’m a computer engineering student and AI/ML developer from Seville, now in my third year at the Universidad de Sevilla after an Erasmus year at the Beijing Institute of Technology. My work sits between research and engineering: measuring how world models forget, fitting language models onto hardware that shouldn’t be able to run them, and building real-time AI tools I use every day. <br><br>Right now I’m closing a benchmark on catastrophic forgetting in world models, and I’m working towards a master’s in AI at MIT.
                         </p>
-                        <a data-animation="fade-up" class="lovely_button link" href="/about" target="_self" data-delay="0"><span class="text">More about me</span></a>
+                        <a data-animation="fade-up" class="lovely_button link" href="about.html" target="_self" data-delay="0"><span class="text">More about me</span></a>
                     </div>
                     <div class="about_services--container">
                         <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Expertises</h3>
                         <ul data-animation="animated-list" data-delay="0" data-stagger="0.06">
-                            <li>AI/ML</li>
-                            <li>Digital Design</li>
-                            <li>Programing</li>
-                            <li>UI / UX Design</li>
-                            <li>Product Design</li>
+                            <li>AI/ML Research</li>
+                            <li>Deep Learning</li>
+                            <li>Continual Learning</li>
+                            <li>LLM Optimisation</li>
+                            <li>Edge &amp; Embedded AI</li>
+                            <li>Rust &amp; Systems</li>
+                            <li>Full-Stack Development</li>
                             <li>Robotics</li>
-                            <li>Concepting</li>
-                            <li>Comunication</li>
                         </ul>
                     </div>
                 </div>
@@ -172,10 +174,23 @@
                         <div class="featured_projects">
                             <div class="single_project">
                                 <div class="project_info--container">
+                                    <p class="project_title">WMF Benchmark</p>
+                                    <ul class="project_meta">
+                                    <li>Research</li>
+                                    <li>Continual Learning</li>
+                                    </ul>
+                                </div>
+                                <div class="project_picture--container">
+                                    <img class="lazy" src="images/worldmodels.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="WMF Benchmark">
+                                </div>
+                                <a href="worldmodels.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
+                            <div class="single_project">
+                                <div class="project_info--container">
                                     <p class="project_title">Perseo</p>
                                     <ul class="project_meta">
-                                    <li>AI/ML</li>
-                                    <li>Programing</li>
+                                    <li>Applied AI</li>
+                                    <li>Rust</li>
                                     </ul>
                                 </div>
                                 <div class="project_picture--container">
@@ -185,66 +200,53 @@
                             </div>
                             <div class="single_project">
                                 <div class="project_info--container">
-                                    <p class="project_title">Telefonica</p>
+                                    <p class="project_title">HybridMamba-11</p>
                                     <ul class="project_meta">
-                                    <li>Comunication</li>
-                                    <li>Robotics</li>
+                                    <li>Research</li>
+                                    <li>Deep Learning</li>
                                     </ul>
                                 </div>
                                 <div class="project_picture--container">
-                                    <img class="lazy" src="images/Telefonica.jpg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="Telefonica">
+                                    <img class="lazy" src="images/hybridmamba.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="HybridMamba-11">
                                 </div>
-                                <a href="telefonica.html" class="project_link" aria-label="Read more about this case study"></a>
+                                <a href="hybridmamba.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
                             <div class="single_project">
                                 <div class="project_info--container">
-                                    <p class="project_title">AI Mouse</p>
+                                    <p class="project_title">Jetson Orin</p>
                                     <ul class="project_meta">
-                                    <li>AI/ML</li>
-                                    <li>Programing</li>
+                                    <li>Edge AI</li>
+                                    <li>Research</li>
                                     </ul>
                                 </div>
                                 <div class="project_picture--container">
-                                    <img class="lazy" src="images/aimouse.png" sizes="(max-width: 600px) 100vw, 50vw"  alt="AI Mouse">
+                                    <img class="lazy" src="images/jetson.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Jetson Orin thesis">
                                 </div>
-                                <a href="aimouse.html" class="project_link" aria-label="Read more about this case study"></a>
+                                <a href="jetson.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
                             <div class="single_project">
                                 <div class="project_info--container">
-                                    <p class="project_title">Face Recognition</p>
+                                    <p class="project_title">Multilingual Benchmark</p>
                                     <ul class="project_meta">
-                                    <li>AI/ML</li>
-                                    <li>Programing</li>
+                                    <li>Research</li>
+                                    <li>LLMs</li>
                                     </ul>
                                 </div>
                                 <div class="project_picture--container">
-                                    <img class="lazy" src="images/face.png" sizes="(max-width: 600px) 100vw, 50vw" alt="Face Recognition">
+                                    <img class="lazy" src="images/multilingual.svg"  sizes="(max-width: 600px) 100vw, 50vw" alt="Multilingual LLM Benchmark">
                                 </div>
-                                <a href="facedetection.html" class="project_link" aria-label="Read more about this case study"></a>
-                            </div>
-                            <div class="single_project">
-                                <div class="project_info--container">
-                                    <p class="project_title">Sputnik</p>
-                                    <ul class="project_meta">
-                                    <li>Comunication</li>
-                                    <li>Concepting</li>
-                                    </ul>
-                                </div>
-                                <div class="project_picture--container">
-                                    <img class="lazy" src="images/Sputnik.jpg"  sizes="(max-width: 600px) 100vw, 50vw" alt="Sputnik">
-                                </div>
-                                <a href="sputnik.html" class="project_link" aria-label="Read more about this case study"></a>
+                                <a href="multilingual.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
                             <div class="single_project">
                                 <div class="project_info--container">
                                     <p class="project_title">Netkey</p>
                                     <ul class="project_meta">
-                                    <li>Programing</li>
-                                    <li>Product Design</li>
+                                    <li>Product</li>
+                                    <li>Leadership</li>
                                     </ul>
                                 </div>
                                 <div class="project_picture--container">
-                                    <img class="lazy" src="images/Netkey.png"  sizes="(max-width: 600px) 100vw, 50vw" alt="Netkey">
+                                    <img class="lazy" src="images/netkey.png"  sizes="(max-width: 600px) 100vw, 50vw" alt="Netkey">
                                 </div>
                                 <a href="netkey.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
@@ -274,7 +276,7 @@
         <div class="cta--wrapper">
             <div class="cta--container">
                 <div class="video--container">
-                    <video id="cta_video" width="100%" autoplay muted loop></video>
+                    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
                 </div>
                 <div class="text--container">
                     <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
@@ -292,7 +294,7 @@
     <div class="footer-bottom--container">
         <div class="footer-bottom--wrapper">
             <div class="footer-col">
-                N 39°54′15″ E 116°24′27″
+                N 37°23′21″ W 5°59′04″
             </div>
             <div class="footer-col">
                 <div class="social-links">
@@ -303,7 +305,7 @@
             </div>
             <div class="footer-col">
                 Designed and developed by me<br>
-                ©2024 – All Rights Reserved
+                ©2026 – All Rights Reserved
             </div>
         </div>
     </div>
@@ -374,6 +376,8 @@
 <script type="text/javascript" src="js/lazyload.min.js"></script>
 <script type="text/javascript" src="js/fancybox.min.js"></script>
 <script type="text/javascript" src="js/master.min.js"></script>
+<script type="text/javascript" src="js/shark-mesh.js"></script>
+<script type="text/javascript" src="js/shark.js"></script>
 
 
 
