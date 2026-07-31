@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
     <link rel="stylesheet" href="css/shark.css">
+    <link rel="stylesheet" href="css/about.css">
 
 </head>
 
@@ -49,34 +50,7 @@
 
     <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
 
-    <header id="header">
-        <div class="header--container">
-            <a id="logo_lottie" href="index.html" class="link" aria-label="Back to the homepage">
-                <img src="images/persuslogowhite.ico" alt="Home Icon" class="logo-icon">
-            </a>
-            <nav class="main_menu--container">
-                <ul>
-                    <li class="menu-item">
-                        <a href="portfolio.html" class="">Projects</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="about.html" class="">About</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#footer" onclick="lenis.scrollTo('#footer')" class="">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="mobile_menu--button">
-                <button class="hamburger_btn" href="javascript:void(0);" aria-label="Open mobile menu">
-                    <div class="hamburger_icon">
-                        <div></div>
-                        <div></div>
-                    </div>
-                </button>
-            </div>
-        </div>
-    </header>
+    <script src="js/header.js"></script>
 
     <main id="wrapper" data-barba="wrapper">
 
@@ -103,7 +77,31 @@
                     </div>
                 </div>
             </section>
-    
+
+            <section class="default_row--container about_gallery--wrapper">
+                <div class="inner--container">
+                    <div class="grid">
+                        <h3 class="gallery_intro" data-animation="chars" data-delay="0" data-stagger="0.03">Off the screen</h3>
+                        <div class="photo reveal_effect" data-delay="0">
+                            <div class="mask"></div>
+                            <img src="images/about/me-01.jpg" alt="Jesús Pérez Bazarot">
+                        </div>
+                        <div class="photo reveal_effect" data-delay="0.1">
+                            <div class="mask"></div>
+                            <img src="images/about/me-02.jpg" alt="Jesús Pérez Bazarot">
+                        </div>
+                        <div class="photo reveal_effect" data-delay="0">
+                            <div class="mask"></div>
+                            <img src="images/about/me-03.jpg" alt="Jesús Pérez Bazarot">
+                        </div>
+                        <div class="photo reveal_effect" data-delay="0.1">
+                            <div class="mask"></div>
+                            <img src="images/about/me-04.jpg" alt="Jesús Pérez Bazarot">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="default_row--container about_resume--wrapper">
                 <div class="inner--container">
                     <div class="grid">
@@ -120,9 +118,9 @@
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
                                         <span>AI/ML Developer</span>
-                                        <span>OrgaAI — conversational AI, audio &amp; transcription (under NDA)</span>
+                                        <span>OrgaAI — conversational AI, audio &amp; transcription </span>
                                     </div>
-                                    <div class="entry_col">Jun 2025 — Sep 2025</div>
+                                    <div class="entry_col">(under NDA)</div>
                                 </li>
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
@@ -362,7 +360,7 @@
             <a href="portfolio.html" class="">Projects</a>
         </li>
         <li>
-            <a href="about.html" class="">About</a>
+            <a href="about.html" class="">About Me</a>
         </li>
         <li>
             <a href="#footer" onclick="lenis.scrollTo('#footer')" class="">Contact</a>
