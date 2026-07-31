@@ -88,11 +88,10 @@
                     <div class="grid">
                         <div class="col-intro">
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">AI Mouse</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">AI Mouse is an innovative artificial intelligence project that utilizes computer vision to simulate a mouse, allowing users to control their computers through the movement of their hands. This contactless approach provides an intuitive and ergonomic user experience, eliminating the need for a physical mouse.
-                                <br>
-                                With the capability to detect and track hand movements, AI Mouse translates gestures into mouse actions such as clicks and scrolling. This enables fluid and natural interactions, making it ideal for design applications, gaming, and presentations. Users can also customize specific gestures to execute commands and functions, enhancing efficiency and comfort.
-                                <br>
-                                AI Mouse is universally compatible with any device that supports mouse input, making it versatile across different operating systems and applications. The project's aim is to transform how we interact with computers, offering an accessible, innovative, and user-friendly alternative for everyday tasks and digital experiences.</p>
+                                                        <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">A real-time human-computer interaction experiment: control the cursor and click using nothing but hand gestures in front of a webcam.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">It runs on MediaPipe's Hand Landmarker, tracking up to two hands with landmark rendering for debugging, and drives the actual cursor through pynput. Gesture logic covers relative movement, left and right click, and pinch-state detection.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The thing nobody tells you is that raw landmark coordinates are far too noisy to point with — the cursor jitters constantly, and naive smoothing trades that jitter for lag, which feels even worse. The fix was a <strong>One Euro Filter</strong>, which adapts its cutoff to how fast you are moving: heavy smoothing when your hand is nearly still, almost none when you move quickly. That single component is the difference between a demo and something usable.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">Built in 2023, early in my degree. It is where I learned that a working demo is not a system, and that most of the perceived quality of an interactive tool lives in the filtering and the feedback loop rather than in the model.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
@@ -155,7 +154,8 @@
                             <div class="social-links">
                                 <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> / 
                                 <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> / 
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a>
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
                         <div class="footer-col">
@@ -196,6 +196,9 @@
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
                 </li>
             </ul>
         </div>

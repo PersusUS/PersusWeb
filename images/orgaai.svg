@@ -41,11 +41,11 @@
 
   <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
     <text x="240" y="230" font-size="62" font-weight="600" letter-spacing="-1">OrgaAI</text>
-    <text x="242" y="270" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">AI DEVELOPER</text>
+    <text x="242" y="270" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">AI/ML DEVELOPER · JUN–SEP 2025 · NDA</text>
   </g>
 
   <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">
-    <text x="240" y="820">early applied AI work</text>
+    <text x="240" y="820">confidential conversational AI · 10x faster audio pipeline</text>
   </g>
   <path d="M240 780 L1400 780" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
 </svg>

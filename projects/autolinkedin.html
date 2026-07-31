@@ -5,7 +5,7 @@
     <title>
         AutoLinkedIn | Persus</title>
 
-    <meta name="description" content="A retrieval-augmented drafting tool built on Supabase pgvector, Gemini Live, FastAPI and React. Functional, then quietly broken. Paused.">
+    <meta name="description" content="A web app that interviews you by voice in real time and writes LinkedIn posts from the conversation, grounded in everything you have published before.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -27,12 +27,12 @@
     <meta property="og:type" content="website">
 
     <meta property="og:title" content="AutoLinkedIn | Persus">
-    <meta property="og:description" content="A retrieval-augmented drafting tool built on Supabase pgvector, Gemini Live, FastAPI and React. Functional, then quietly broken. Paused.">
+    <meta property="og:description" content="A web app that interviews you by voice in real time and writes LinkedIn posts from the conversation, grounded in everything you have published before.">
     <meta property="og:site_name" content="AutoLinkedIn | Persus">
     <meta property="og:image" content="../images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="A retrieval-augmented drafting tool built on Supabase pgvector, Gemini Live, FastAPI and React. Functional, then quietly broken. Paused.">
+    <meta name="twitter:description" content="A web app that interviews you by voice in real time and writes LinkedIn posts from the conversation, grounded in everything you have published before.">
     <meta name="twitter:title" content="AutoLinkedIn | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,9 +87,11 @@
                     <div class="grid">
                         <div class="col-intro">
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">AutoLinkedIn</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">The idea was straightforward: writing about your own work is tedious, and most of the raw material already exists in things you have written before. So embed all of it, store the vectors in Supabase pgvector, retrieve the passages closest to whatever you are drafting now, and let a model assemble a first version from your own material rather than from nothing.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">A FastAPI backend handled ingestion and retrieval, Gemini Live did the generation, and a React TypeScript front end wrapped it. End to end it worked, and the retrieval step was genuinely the part that made the output sound like me instead of like a language model imitating a professional.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">It is currently broken, and I have not fixed it. Some of that is API surfaces moving underneath it; some of it is that I never wrote the tests that would have told me which part gave way. I am listing it because the retrieval design was sound and I would build it the same way again — with a test suite this time.</p>
+                                                        <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Writing about your own work is tedious, and the usual fix — asking a model to do it — produces posts that sound like a model. AutoLinkedIn takes a different route: it <strong>interviews you out loud</strong>, in real time, and writes from what you actually said.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">The conversation runs as a genuine bidirectional voice session. Low-latency PCM16 audio streams from the browser through WebSockets and AudioWorklet-based processing into the Gemini Live API, so it interrupts, follows up and changes direction the way an interviewer does. Getting that to feel like a conversation rather than a walkie-talkie was most of the engineering.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">Behind it sits a RAG layer: FastAPI, Supabase with pgvector, and Gemini embeddings over everything you have published before. That is what keeps the voice consistent across posts instead of resetting every session — the model is drafting in the context of your own back catalogue.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">Generation is constrained to strict JSON structured outputs, which is what makes the result programmable rather than a blob of prose, and posts come out adapted for Spanish, English and Mandarin markets. LinkedIn OAuth 2.0 closes the loop: review, edit and publish in one click from a React dashboard. Database interactions and AI edge cases are covered by pytest and pytest-asyncio.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">It is currently paused, with parts of it broken — API surfaces moved underneath it and I never wrote enough tests around the integration boundaries to tell me exactly where it gave way. The retrieval and voice-loop design were sound, though, and I would build both the same way again.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
@@ -98,7 +100,7 @@
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Stack</span>
-                                <span class="size-20">FastAPI, Supabase pgvector, Gemini Live, React TypeScript</span>
+                                <span class="size-20">React, TypeScript, FastAPI, WebSockets, AudioWorklet, Supabase pgvector, Gemini Live</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
                                 <span>Status</span>
@@ -110,7 +112,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
@@ -161,7 +162,8 @@
                             <div class="social-links">
                                 <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
                                 <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a>
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
                         <div class="footer-col">
@@ -202,6 +204,9 @@
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
                 </li>
             </ul>
         </div>

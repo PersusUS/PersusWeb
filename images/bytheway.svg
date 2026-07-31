@@ -33,12 +33,12 @@
   </g>
 
   <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
-    <text x="200" y="250" font-size="62" font-weight="600" letter-spacing="-1">Bytheway</text>
-    <text x="202" y="290" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">CO-FOUNDER · 2024 — 2025</text>
+    <text x="200" y="250" font-size="62" font-weight="600" letter-spacing="-1">ByTheWay</text>
+    <text x="202" y="290" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">CO-FOUNDER &amp; CO-CTO · 2024 — 2025</text>
   </g>
 
   <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">
-    <text x="200" y="820">an early venture</text>
+    <text x="200" y="820">carpooling · a two-sided marketplace</text>
   </g>
   <path d="M200 780 L1400 780" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
 </svg>

@@ -90,6 +90,7 @@
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Perseo</h1>
                             <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Perseo is the longest-running thing I've built. It started as an attempt to have my own AI assistant back when that meant doing it yourself: I trained and tuned it on a machine with 16&nbsp;GB of RAM, fighting for every gigabyte, optimising relentlessly and leaning on data quality because I had no compute to spare. Getting something that could hold a genuinely competent conversation out of that hardware remains one of the results I'm proudest of, precisely because the constraint was absurd.</p>
                             <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">From the beginning it was never meant to be a search box with a voice. Perseo was designed to have a personality — empathy, humour, curiosity, preferences of its own — because I wanted a companion I would actually talk to rather than a command line that answers. It has an elegant, slightly formal register, opinions about music and books, and a memory of the things we've worked on together. That design decision has outlived every implementation underneath it.</p>
+                            <p data-animation="words" data-delay="0.35" data-stagger="0.03" class="size-20">The middle years were a Python and Docker system built around local, open-source models and retrieval-augmented workflows — a JARVIS-shaped thing aimed squarely at privacy-aware local execution and the small daily automations I actually needed. That era is where the retrieval habits came from: an assistant that remembers what we worked on is far more useful than one with a bigger model behind it.</p>
                             <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">Because the implementation has been rewritten more than once. The current Perseo is a native desktop application built on Tauri&nbsp;2 and Rust, streaming audio to the Gemini Live API and capturing the screen through xcap, so I can ask about whatever is actually in front of me instead of describing it first. Most voice assistants fall apart in the same place: you start talking and they keep talking over you. Perseo runs two separate AudioContexts, one for capture and one for playback, with voice activity detection driving barge-in — start speaking and it stops mid-sentence, the way a person would. Getting that working without feedback loops, clipped syllables or runaway latency took longer than everything else combined.</p>
                             <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">That version came together between April and June 2026 in Beijing. Today it's the tool I open most: a research companion while reading, and increasingly a dictation front-end for writing — the next step is a direct voice-to-markdown pipeline into my notes, so that drafting a paper section becomes a conversation rather than a typing session.</p>
                             <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">Years in, the thing I keep relearning is that the personality was not decoration. A tool you enjoy opening is a tool you keep using, and that compounds far more than any benchmark score.</p>
@@ -101,7 +102,7 @@
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Stack</span>
-                                <span class="size-20">Tauri 2, Rust, Gemini Live API, xcap</span>
+                                <span class="size-20">Tauri 2, Rust, Gemini Live API, xcap · previously Python, Docker, local LLMs, RAG</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
                                 <span>Status</span>
@@ -163,7 +164,8 @@
                             <div class="social-links">
                                 <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> / 
                                 <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> / 
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a>
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
                         <div class="footer-col">
@@ -204,6 +206,9 @@
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
                 </li>
             </ul>
         </div>

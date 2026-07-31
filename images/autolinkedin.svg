@@ -39,12 +39,12 @@
 
   <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
     <text x="140" y="330" font-size="62" font-weight="600" letter-spacing="-1">AutoLinkedIn</text>
-    <text x="142" y="370" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">RETRIEVAL-AUGMENTED DRAFTING · PAUSED</text>
+    <text x="142" y="370" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">REAL-TIME VOICE INTERVIEWS → POSTS · PAUSED</text>
   </g>
 
   <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#8f8f8f">
-    <text x="140" y="450">embed → store in pgvector → retrieve → draft</text>
-    <text x="140" y="486">Supabase · Gemini Live · FastAPI · React TS</text>
+    <text x="140" y="450">speak → transcribe → retrieve your voice → draft → publish</text>
+    <text x="140" y="486">Gemini Live · AudioWorklet · pgvector · OAuth 2.0</text>
   </g>
 
   <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">

@@ -6,7 +6,7 @@
         HybridMamba-11 | Persus
     </title>
 
-    <meta name="description" content="A language model under 16 MB: alternating Mamba and Transformer layers with U-Net skips, 4096-token context, int6 quantised. Built for OpenAI's Parameter Golf.">
+    <meta name="description" content="The first State Space Model submission to OpenAI's Parameter Golf: 31.8M parameters in 13.6 MB, with a 48x speedup from a hand-written parallel scan.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -28,12 +28,12 @@
     <meta property="og:type" content="website">
 
     <meta property="og:title" content="HybridMamba-11 | Persus">
-    <meta property="og:description" content="A language model under 16 MB: alternating Mamba and Transformer layers with U-Net skips, 4096-token context, int6 quantised. Built for OpenAI's Parameter Golf.">
+    <meta property="og:description" content="The first State Space Model submission to OpenAI's Parameter Golf: 31.8M parameters in 13.6 MB, with a 48x speedup from a hand-written parallel scan.">
     <meta property="og:site_name" content="HybridMamba-11 | Persus">
     <meta property="og:image" content="../images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="A language model under 16 MB: alternating Mamba and Transformer layers with U-Net skips, 4096-token context, int6 quantised. Built for OpenAI's Parameter Golf.">
+    <meta name="twitter:description" content="The first State Space Model submission to OpenAI's Parameter Golf: 31.8M parameters in 13.6 MB, with a 48x speedup from a hand-written parallel scan.">
     <meta name="twitter:title" content="HybridMamba-11 | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,9 +89,11 @@
                         <div class="col-intro">
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">HybridMamba-11</h1>
                             <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Parameter Golf is a simple, brutal constraint: build the most capable language model you can under a hard size budget. Every architectural choice becomes a trade you have to justify in bytes.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">HybridMamba-11 alternates Mamba state-space blocks with Transformer attention blocks, wired together with U-Net-style skip connections between the early and late layers. The reasoning: state-space layers give you long context almost for free, attention gives you the precise token-to-token recall that pure SSMs are weak at, and the skips let the deep layers reuse early representations instead of re-learning them. Final configuration: 4096-token sequences, int6 quantisation, under 16 MB.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The hardest problem was not the architecture. Mamba's reference CUDA kernels refused to cooperate with torch.compile, which meant either giving up compilation or giving up Mamba. I did neither — I reimplemented the selective scan as a Hillis–Steele parallel scan in pure PyTorch. Slightly more FLOPs on paper, fully compilable in practice, and fast enough that the trade paid for itself several times over.</p>
-                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">Submitted 30 April 2026. It also ended my RunPod credits, which is its own kind of result.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">HybridMamba-11 alternates Mamba state-space blocks with Transformer attention blocks across eleven layers, wired together with U-Net-style skip connections between the early and late layers. The reasoning: state-space layers give you long context almost for free, attention gives you the precise token-to-token recall that pure SSMs are weak at, and the skips let the deep layers reuse early representations instead of re-learning them. It was the first State Space Model-based submission in the competition.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The hardest problem was not the architecture. Mamba's reference CUDA kernels were not traceable in torch.compile's fullgraph mode, which cost roughly <strong>10× the throughput</strong> of the leading entries — enough to make the whole approach uncompetitive. The choice looked like giving up compilation or giving up Mamba.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">I did neither. I reimplemented the selective scan as a Hillis–Steele parallel associative scan in pure PyTorch, replacing the sequential O(L) recurrence with O(log&nbsp;L) depth and making the whole graph compilable. More FLOPs on paper, far fewer in wall-clock: the optimised path measured a <strong>48× speedup</strong>.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">Getting from there to a submittable artifact meant clearing four integration problems — compile compatibility, a CUDA dtype mismatch, state-dict compatibility, and 12.5M dead parameters that were costing budget while contributing nothing. The result: <strong>31.8M parameters, 13.6&nbsp;MB compressed</strong>, comfortably under the 16&nbsp;MB cap.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">Submitted 30 April 2026 as <a href="https://github.com/openai/parameter-golf/pull/1365" target="_blank" rel="noopener" class="link">PR&nbsp;#1365</a>. It also ended my RunPod credits, which is its own kind of result.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
@@ -100,11 +102,11 @@
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Stack</span>
-                                <span class="size-20">PyTorch, CUDA, torch.compile, RunPod</span>
+                                <span class="size-20">PyTorch, CUDA, torch.compile, Triton, BF16, int6, DDP</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
-                                <span>Status</span>
-                                <span class="size-20">Submitted · April 2026</span>
+                                <span>Result</span>
+                                <span class="size-20">31.8M params · 13.6 MB · 48× speedup</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
                                 <span>Year</span>
@@ -162,7 +164,8 @@
                             <div class="social-links">
                                 <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
                                 <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a>
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
                         <div class="footer-col">
@@ -203,6 +206,9 @@
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
                 </li>
             </ul>
         </div>

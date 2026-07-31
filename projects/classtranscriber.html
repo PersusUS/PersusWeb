@@ -87,10 +87,11 @@
                     <div class="grid">
                         <div class="col-intro">
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">ClassTranscriber</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Lecture recordings are close to useless in their raw form: an hour of audio, several people talking, room noise, and no way to find the one explanation you actually wanted. ClassTranscriber turns that into readable, speaker-separated notes.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">It runs as seven stages. Capture with sounddevice, denoise with noisereduce, separate speakers with pyannote diarisation, transcribe with faster-whisper large-v3, then hand the raw transcript to a local gemma3:4b through Ollama to fix punctuation, strip filler and structure it into sections.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The design constraint I set myself was that nothing leaves the machine. Every stage runs locally, which rules out the easy API calls and means the whole thing has to fit in 6&nbsp;GB of VRAM alongside whatever else is running. That constraint is the interesting part of the project — it forced real decisions about model size and staging rather than letting me throw a hosted endpoint at each problem.</p>
-                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">It works. I stopped using it, which is the honest ending to a lot of tools: the thing that made it valuable was building it, and by the time it was finished my note-taking had moved somewhere else. Perseo now covers most of what I wanted from it.</p>
+                                                        <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Lecture recordings are close to useless in their raw form: an hour of audio, several people talking, room noise, and no way to find the one explanation you actually wanted. ClassTranscriber is a local CLI tool that turns that into a clean <code>[Speaker] → [Text]</code> transcript.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">It is a modular seven-stage pipeline — Recorder, Preprocessor, Diarizer, Transcriber, Merger, Cleaner, Exporter. Capture and preprocessing handle spectral noise reduction with noisereduce and amplitude normalisation with NumPy; pyannote.audio separates the speakers; faster-whisper does the transcription; and a local Gemma through Ollama cleans up grammar, filler words and accent artifacts.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The stage I underestimated was the Merger. Diarisation and transcription produce two independent sets of timestamps that do not line up, and reconciling them into one coherent speaker-labelled transcript is a fiddly alignment problem rather than a model problem. Most of the perceived quality of the output comes from getting that right.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">The architecture is privacy-first by design: <strong>100% on-device</strong>, CUDA-accelerated, no cloud APIs anywhere in the chain. That constraint is the interesting part — it rules out the easy hosted endpoint at every stage and forces real decisions about model size and staging. Backed by 30+ pytest unit tests with mocking for the external integrations.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">It works. I stopped using it, which is the honest ending to a lot of tools: the value was in building it, and by the time it was finished my note-taking had moved to Perseo.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
@@ -99,7 +100,7 @@
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Stack</span>
-                                <span class="size-20">sounddevice, noisereduce, pyannote, faster-whisper, Ollama</span>
+                                <span class="size-20">Python, PyTorch, CUDA, faster-whisper, pyannote.audio, Ollama, pytest</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
                                 <span>Status</span>
@@ -111,7 +112,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
@@ -162,7 +162,8 @@
                             <div class="social-links">
                                 <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
                                 <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a>
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
                         <div class="footer-col">
@@ -203,6 +204,9 @@
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
                 </li>
             </ul>
         </div>
