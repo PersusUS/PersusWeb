@@ -1,0 +1,267 @@
+/* Contact modal, opened by the "Drop me an email!" button. */
+
+.contact_modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .35s cubic-bezier(.455, .03, .515, .955), visibility 0s linear .35s;
+}
+
+.contact_modal.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .35s cubic-bezier(.455, .03, .515, .955), visibility 0s;
+}
+
+.contact_modal .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .7);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.contact_modal .panel {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    background-color: #171717;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    padding: 45px 45px 40px;
+    transform: translateY(20px);
+    transition: transform .35s cubic-bezier(.455, .03, .515, .955);
+}
+
+.contact_modal.is-open .panel {
+    transform: translateY(0);
+}
+
+.contact_modal .panel h2 {
+    font-family: 'Coign', sans-serif;
+    font-size: 55px;
+    line-height: .9;
+    margin-bottom: 10px;
+}
+
+.contact_modal .panel .intro {
+    color: #bcbcbc;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.contact_modal .close_btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    border-radius: 99px;
+    background-color: rgba(255, 255, 255, .07);
+    color: #fff;
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color .35s ease;
+}
+
+.contact_modal .close_btn:hover {
+    background-color: rgba(255, 255, 255, .16);
+}
+
+/* Fields */
+.contact_modal .field {
+    margin-bottom: 20px;
+}
+
+.contact_modal label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #8f8f8f;
+    margin-bottom: 9px;
+}
+
+.contact_modal input,
+.contact_modal textarea {
+    width: 100%;
+    font-family: "Mulish", sans-serif;
+    font-size: 16px;
+    color: #fff;
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 8px;
+    padding: 14px 16px;
+    transition: border-color .3s ease;
+}
+
+.contact_modal textarea {
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.55;
+}
+
+.contact_modal input:focus,
+.contact_modal textarea:focus {
+    outline: none;
+    border-color: #c2e9fb;
+}
+
+.contact_modal input::placeholder,
+.contact_modal textarea::placeholder {
+    color: #5a5a5a;
+}
+
+.contact_modal .field.has-error input,
+.contact_modal .field.has-error textarea {
+    border-color: #ff8f6b;
+}
+
+.contact_modal .error_text {
+    display: none;
+    color: #ff8f6b;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.contact_modal .field.has-error .error_text {
+    display: block;
+}
+
+/* The honeypot is for bots only; never show it, never focus it. */
+.contact_modal .honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.contact_modal .submit_row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.contact_modal .submit_btn {
+    font-family: "Mulish", sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #111;
+    background-color: #c2e9fb;
+    border-radius: 99px;
+    padding: 16px 34px;
+    cursor: pointer;
+    transition: opacity .3s ease, transform .3s cubic-bezier(.455, .03, .515, .955);
+}
+
+.contact_modal .submit_btn:hover {
+    transform: translateY(-2px);
+}
+
+.contact_modal .submit_btn[disabled] {
+    opacity: .45;
+    cursor: default;
+    transform: none;
+}
+
+.contact_modal .fallback {
+    font-size: 14px;
+    color: #7d7d7d;
+}
+
+.contact_modal .fallback a {
+    color: #bcbcbc;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
+}
+
+.contact_modal .form_error {
+    display: none;
+    margin-top: 18px;
+    color: #ff8f6b;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+/* Sent state replaces the form in place. */
+.contact_modal .sent {
+    display: none;
+    text-align: center;
+    padding: 30px 0 10px;
+}
+
+.contact_modal.is-sent .form_view {
+    display: none;
+}
+
+.contact_modal.is-sent .sent {
+    display: block;
+}
+
+.contact_modal .sent .tick {
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 22px;
+    border-radius: 99px;
+    border: 2px solid #c2e9fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c2e9fb;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.contact_modal .sent p {
+    color: #bcbcbc;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 600px) {
+    .contact_modal {
+        padding: 14px;
+    }
+
+    .contact_modal .panel {
+        padding: 38px 24px 30px;
+        max-height: calc(100vh - 28px);
+    }
+
+    .contact_modal .panel h2 {
+        font-size: 42px;
+    }
+
+    .contact_modal .submit_row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .contact_modal .submit_btn {
+        width: 100%;
+    }
+
+    .contact_modal .fallback {
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact_modal,
+    .contact_modal .panel,
+    .contact_modal .submit_btn {
+        transition: none;
+    }
+}
