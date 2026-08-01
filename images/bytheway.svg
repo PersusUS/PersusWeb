@@ -1,44 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Bytheway">
-  <defs>
-    <linearGradient id="bwAccent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c2e9fb"/>
-      <stop offset="100%" stop-color="#a1c4fd"/>
-    </linearGradient>
-    <pattern id="bwGrid" width="50" height="50" patternUnits="userSpaceOnUse">
-      <path d="M50 0 L0 0 0 50" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
-    </pattern>
-  </defs>
-
-  <rect width="1600" height="900" fill="#0d0d0d"/>
-  <rect width="1600" height="900" fill="url(#bwGrid)"/>
-
-  <!-- two routes from the same start to the same end -->
-  <g transform="translate(200 470)">
-    <path d="M0 0 C 260 -230, 700 -230, 960 0"
-          fill="none" stroke="url(#bwAccent)" stroke-width="3" stroke-linecap="round"/>
-    <path d="M0 0 C 300 190, 660 190, 960 0"
-          fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="2.5"
-          stroke-linecap="round" stroke-dasharray="10 10"/>
-    <circle cx="0" cy="0" r="16" fill="#0d0d0d" stroke="url(#bwAccent)" stroke-width="3"/>
-    <circle cx="960" cy="0" r="16" fill="url(#bwAccent)"/>
-    <g fill="#c2e9fb" opacity="0.85">
-      <circle cx="292" cy="-138" r="7"/>
-      <circle cx="480" cy="-166" r="7"/>
-      <circle cx="668" cy="-138" r="7"/>
-    </g>
-    <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#7d7d7d">
-      <text x="0" y="52" text-anchor="middle">start</text>
-      <text x="960" y="52" text-anchor="middle">there</text>
-    </g>
-  </g>
-
-  <g font-family="Helvetica, Arial, sans-serif" fill="#f4f4f4">
-    <text x="200" y="250" font-size="62" font-weight="600" letter-spacing="-1">ByTheWay</text>
-    <text x="202" y="290" font-size="22" fill="#9a9a9a" letter-spacing="2" font-family="ui-monospace, Menlo, Consolas, monospace">CO-FOUNDER &amp; CO-CTO · 2024 — 2025</text>
-  </g>
-
-  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="18" fill="#6f6f6f" letter-spacing="1">
-    <text x="200" y="820">carpooling · a two-sided marketplace</text>
-  </g>
-  <path d="M200 780 L1400 780" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="ByTheWay — separate journeys merging into shared rides">
+<defs>
+<linearGradient id="bwFlow" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="45%" stop-color="#6b5a48"/><stop offset="78%" stop-color="#F2A65A"/><stop offset="100%" stop-color="#FFD9A8"/></linearGradient>
+<linearGradient id="bwLane" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F2A65A" stop-opacity="0"/><stop offset="35%" stop-color="#F2A65A" stop-opacity="0.9"/><stop offset="100%" stop-color="#FFD9A8"/></linearGradient>
+<radialGradient id="bwGlow"><stop offset="0%" stop-color="#F2A65A" stop-opacity="0.160"/><stop offset="30%" stop-color="#F2A65A" stop-opacity="0.083"/><stop offset="55%" stop-color="#F2A65A" stop-opacity="0.035"/><stop offset="78%" stop-color="#F2A65A" stop-opacity="0.010"/><stop offset="100%" stop-color="#F2A65A" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1600" height="900" fill="#0d0d0d"/>
+<ellipse cx="1160" cy="450" rx="620" ry="430" fill="url(#bwGlow)"/>
+<g fill="none" stroke="url(#bwFlow)" stroke-linecap="round">
+<path d="M -60 40 C 430 40, 610 315, 1040 315 C 1280 315, 1420 315, 1660 315" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 95 C 430 95, 610 315, 1040 315 C 1280 315, 1420 315, 1660 315" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 149 C 430 149, 610 315, 1040 315 C 1280 315, 1420 315, 1660 315" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 204 C 430 204, 610 315, 1040 315 C 1280 315, 1420 315, 1660 315" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 259 C 430 259, 610 405, 1040 405 C 1280 405, 1420 405, 1660 405" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 313 C 430 313, 610 405, 1040 405 C 1280 405, 1420 405, 1660 405" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 368 C 430 368, 610 405, 1040 405 C 1280 405, 1420 405, 1660 405" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 423 C 430 423, 610 405, 1040 405 C 1280 405, 1420 405, 1660 405" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 477 C 430 477, 610 495, 1040 495 C 1280 495, 1420 495, 1660 495" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 532 C 430 532, 610 495, 1040 495 C 1280 495, 1420 495, 1660 495" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 587 C 430 587, 610 495, 1040 495 C 1280 495, 1420 495, 1660 495" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 641 C 430 641, 610 495, 1040 495 C 1280 495, 1420 495, 1660 495" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 696 C 430 696, 610 585, 1040 585 C 1280 585, 1420 585, 1660 585" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 751 C 430 751, 610 585, 1040 585 C 1280 585, 1420 585, 1660 585" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 805 C 430 805, 610 585, 1040 585 C 1280 585, 1420 585, 1660 585" stroke-width="2.4" opacity="0.5"/>
+<path d="M -60 860 C 430 860, 610 585, 1040 585 C 1280 585, 1420 585, 1660 585" stroke-width="2.4" opacity="0.5"/>
+</g>
+<g fill="none" stroke="url(#bwLane)" stroke-linecap="round">
+<path d="M 720 315 C 980 315, 1240 315, 1660 315" stroke-width="7"/>
+<path d="M 720 405 C 980 405, 1240 405, 1660 405" stroke-width="7"/>
+<path d="M 720 495 C 980 495, 1240 495, 1660 495" stroke-width="7"/>
+<path d="M 720 585 C 980 585, 1240 585, 1660 585" stroke-width="7"/>
+</g>
+<g fill="#0d0d0d" stroke="#5a5a5a" stroke-width="2.5">
+<circle cx="86" cy="40" r="6"/>
+<circle cx="86" cy="95" r="6"/>
+<circle cx="86" cy="149" r="6"/>
+<circle cx="86" cy="204" r="6"/>
+<circle cx="86" cy="259" r="6"/>
+<circle cx="86" cy="313" r="6"/>
+<circle cx="86" cy="368" r="6"/>
+<circle cx="86" cy="423" r="6"/>
+<circle cx="86" cy="477" r="6"/>
+<circle cx="86" cy="532" r="6"/>
+<circle cx="86" cy="587" r="6"/>
+<circle cx="86" cy="641" r="6"/>
+<circle cx="86" cy="696" r="6"/>
+<circle cx="86" cy="751" r="6"/>
+<circle cx="86" cy="805" r="6"/>
+<circle cx="86" cy="860" r="6"/>
+</g>
+<circle cx="1340" cy="315" r="17" fill="#0d0d0d" stroke="#FFD9A8" stroke-width="4"/>
+<circle cx="1340" cy="315" r="6" fill="#FFD9A8"/>
+<circle cx="1340" cy="405" r="17" fill="#0d0d0d" stroke="#FFD9A8" stroke-width="4"/>
+<circle cx="1340" cy="405" r="6" fill="#FFD9A8"/>
+<circle cx="1340" cy="495" r="17" fill="#0d0d0d" stroke="#FFD9A8" stroke-width="4"/>
+<circle cx="1340" cy="495" r="6" fill="#FFD9A8"/>
+<circle cx="1340" cy="585" r="17" fill="#0d0d0d" stroke="#FFD9A8" stroke-width="4"/>
+<circle cx="1340" cy="585" r="6" fill="#FFD9A8"/>
 </svg>
