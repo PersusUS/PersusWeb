@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="../css/normalize.min.css">
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/shark.css">
+    <link rel="stylesheet" href="../css/case.css">
 
 </head>
 
@@ -60,10 +61,10 @@
                     <div class="grid">
                         <div class="col-intro">
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">OrgaAI</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">I spent the summer of 2025 at OrgaAI working on a confidential state-of-the-art conversational AI programme. The work is covered by an NDA, so what follows is deliberately general — the specifics of the product, the models and the results are not mine to publish.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">My focus was the audio processing and transcription pipeline: the stage that turns raw speech into something the rest of the system can reason over. Get it wrong and every downstream component inherits the mistake, which makes it an unglamorous but load-bearing part of any voice product.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The result I can point to is a throughput one. The pipeline was running full WhisperX transcription passes over material for which the dataset already contained transcripts — paying twice for information we already had. Restructuring the pipeline to use those existing transcripts strategically instead made it roughly <strong>ten times faster</strong>, with no loss of quality downstream. Most of that win came from questioning an assumption rather than from optimising code.</p>
-                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">I also researched and prototyped a Slot Attention integration for architectural improvements. That strand stayed exploratory, and under the NDA it stays described exactly that way.</p>
+                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Most of this one I can't tell you. OrgaAI is a conversational AI programme under NDA: the product, the models, the numbers and the people stay inside. What's left is the shape of the work.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">I worked on the audio and transcription pipeline — the stage that turns raw speech into something the rest of the system can reason over. Unglamorous, and load-bearing: whatever mistake it makes, everything downstream inherits.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The one figure I'm cleared to give is a ratio. The pipeline was transcribing audio it already held transcripts for; removing that duplication made it roughly <strong>ten times faster</strong>, with nothing lost downstream. It came from questioning an assumption rather than from optimising code. Which assumption, and what it was costing, stays inside.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">There was also a Slot Attention prototype. That is the entire sentence I'm allowed.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
@@ -72,15 +73,15 @@
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Focus</span>
-                                <span class="size-20">Audio processing &amp; transcription pipeline</span>
+                                <span class="size-20">Audio &amp; transcription pipeline</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
-                                <span>Status</span>
-                                <span class="size-20">Under NDA — details withheld</span>
+                                <span>Result</span>
+                                <span class="size-20">~10× faster pipeline</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
-                                <span>Year</span>
-                                <span class="size-20">Jun 2025 — Sep 2025 (under NDA)</span>
+                                <span>Disclosure</span>
+                                <span class="size-20">Under NDA — specifics withheld</span>
                             </div>
                         </div>
                     </div>

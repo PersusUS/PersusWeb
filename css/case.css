@@ -1,0 +1,21 @@
+/* Case-study pages (projects/*.html). */
+
+/*
+ * The reset zeroes the margin on every <p> and nothing puts it back, so the
+ * intro paragraphs of a case study run together into a single wall of text.
+ */
+.single_case_hero--row .col-intro p + p {
+    margin-top: 28px;
+}
+
+/* The one figure a page is willing to state should carry. */
+.single_case_hero--row .col-intro strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+    .single_case_hero--row .col-intro p + p {
+        margin-top: 22px;
+    }
+}
