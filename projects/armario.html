@@ -3,10 +3,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        Multilingual Benchmark | Persus
-    </title>
+        Armario | Persus</title>
 
-    <meta name="description" content="Comparing Chinese and Western frontier models across nine languages and four task categories, judged by a panel of models rather than a single grader.">
+    <meta name="description" content="A local wardrobe app that photographs my clothes and proposes outfits from the real forecast — a deterministic rules engine, no LLM anywhere.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -27,14 +26,14 @@
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="Multilingual Benchmark | Persus">
-    <meta property="og:description" content="Comparing Chinese and Western frontier models across nine languages and four task categories, judged by a panel of models rather than a single grader.">
-    <meta property="og:site_name" content="Multilingual Benchmark | Persus">
+    <meta property="og:title" content="Armario | Persus">
+    <meta property="og:description" content="A local wardrobe app that photographs my clothes and proposes outfits from the real forecast — a deterministic rules engine, no LLM anywhere.">
+    <meta property="og:site_name" content="Armario | Persus">
     <meta property="og:image" content="../images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="Comparing Chinese and Western frontier models across nine languages and four task categories, judged by a panel of models rather than a single grader.">
-    <meta name="twitter:title" content="Multilingual Benchmark | Persus">
+    <meta name="twitter:description" content="A local wardrobe app that photographs my clothes and proposes outfits from the real forecast — a deterministic rules engine, no LLM anywhere.">
+    <meta name="twitter:title" content="Armario | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp">
@@ -62,23 +61,26 @@
                 <div class="inner--container">
                     <div class="grid">
                         <div class="col-intro">
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Multilingual Benchmark</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Spending a year in Beijing made an obvious question hard to ignore: do Chinese and Western frontier models actually differ in capability, or only in the languages their evaluations happen to be written in? Most published benchmarks are English-first, with other languages bolted on as translations — which measures translation quality as much as it measures reasoning.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">The design covers nine languages — English as control, the CJK group, and a Romance group — across four task categories. Models under test: DeepSeek V3, Qwen-Max, Gemini 2.5 Pro, Mistral Large and Llama 3.3 70B via Groq. Closed-ended tasks are scored on accuracy; open-ended tasks on ROUGE-L and BERTScore, plus a jury of three models (Gemini 2.5 Pro, DeepSeek V3, Mistral Large) so that no single model's preferences dominate the grading.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The methodology is finished. The blocker is money: adding Claude and GPT-4o to the comparison requires research API credits, and running nine languages across five models is not a hobby budget. Applications are in. Until then it stays a well-specified experiment waiting for its tokens — which, honestly, is a more common state for research than anyone admits.</p>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Armario</h1>
+                                                        <p data-animation="fade-up" data-delay="0.2" class="size-20">I own enough clothes to dress well and I still wear the same four things. Armario is a local web app that holds a photographed catalogue of my wardrobe and proposes outfits for the day from the real forecast and the occasion — and, unlike almost everything else in this portfolio, it deliberately contains <strong>no model at all</strong>.</p>
+                            <p data-animation="fade-up" data-delay="0.3" class="size-20">The first version was going to call an LLM with a prompt and a few examples. I threw it away. A deterministic rules engine costs nothing per query, needs no API key, runs on a tablet with no signal, and — the part that actually matters — <em>can explain itself</em>. Every proposal carries the reasons that produced it. A model that says "this looks good together" is not something I can argue with; a score I can read is.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">Each garment is scored on six weighted signals: how well its temperature range overlaps today's real forecast from Open-Meteo (×3), how it fits the occasion (×2), whether it fits me and whether I like it (×1.5 each), a star rating, and a penalty that decays over a week if I wore it recently. The outfit score is the mean of its pieces plus a colour-harmony term — neutrals are free, two strong families cost you, three sink the proposal. Anything in the laundry basket is filtered out before scoring, and wearing an outfit throws its pieces in the basket automatically. Watches, belts and shoes are exempt: they don't get washed every time.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Cataloguing is the part I automated hardest, because it's the part that decides whether the project survives. rembg (u2net) cuts the background out of every photo; the dominant colour is inferred from the cut-out's alpha channel and resolved against a 28-colour vocabulary — the same vocabulary the harmony rule speaks, so detection feeds the engine directly. Ten out of ten on synthetic samples. Anything I type by hand always wins.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">The detour worth reporting is the camera. I wanted the phone as a webcam so I could shoot garments from across the room: the virtual-camera app showed a perfect live picture in its own window and handed OpenCV nothing but black frames. I stopped fighting drivers and inverted the problem — the phone opens the web app over the LAN and shoots with its own camera, while the PC keeps doing the background removal and the colour. I lost the framing guide; I gained a workflow I'll actually use for fifty garments. Cheap answers beat clever ones when the clever one is a driver.</p>
+                            <p data-animation="fade-up" data-delay="0.7" class="size-20">One FastAPI process serves a four-screen front end written in plain HTML, CSS and JavaScript — no npm, no build step — over SQLite. The same Python runs unchanged on a rooted Android tablet under Termux, which is where it lives day to day. The honest status: the code is done and the wardrobe isn't. The engine is only as good as the garments and the ratings I feed it, and that part is manual labour no architecture removes.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
                                 <span>Services</span>
-                                <span class="size-20">Research, Evaluation Design</span>
+                                <span class="size-20">Personal Tools, Full-Stack</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Stack</span>
-                                <span class="size-20">DeepSeek V3, Qwen-Max, Gemini 2.5 Pro, Mistral Large, Llama 3.3 70B</span>
+                                <span class="size-20">Python, FastAPI, SQLite, OpenCV, rembg (u2net), Open-Meteo, vanilla JS, Termux</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
                                 <span>Status</span>
-                                <span class="size-20">Designed · blocked on API credits</span>
+                                <span class="size-20">In use · wardrobe still being catalogued</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
                                 <span>Year</span>
@@ -90,7 +92,7 @@
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
                         <div class="mask"></div>
-                        <img class="lazy" src="../images/multilingual.svg" alt="Multilingual Benchmark">
+                        <img class="lazy" src="../images/armario.svg" alt="Armario">
                     </div>
                 </div>
             </section>
@@ -98,12 +100,12 @@
             <section class="default_row--container next-project single_project">
                 <div class="inner--container">
                     <p>Other Project</p>
-                    <p>Armario</p>
+                    <p>Netkey</p>
                 </div>
                 <div class="image--container">
-                    <img class="lazy" src="../images/armario.svg" alt="Armario">
+                    <img class="lazy" src="../images/netkey.png" alt="Netkey">
                 </div>
-                <a href="armario.html" class="project_link link"></a>
+                <a href="netkey.html" class="project_link link"></a>
             </section>
 
             <!-- Original footer with CTA -->
@@ -136,7 +138,7 @@
                             <div class="social-links">
                                 <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
                                 <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
                                 <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
