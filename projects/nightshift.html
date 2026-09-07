@@ -3,10 +3,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        Perseo | Persus
+        NightShift | Persus
     </title>
 
-    <meta name="description" content="My longest-running project: a personal AI assistant with a personality of its own, now a native voice and screen app built on Tauri 2, Rust and the Gemini Live API.">
+    <meta name="description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine — the model never decides the state.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -27,14 +27,14 @@
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="Perseo | Persus">
-    <meta property="og:description" content="My longest-running project: a personal AI assistant with a personality of its own, now a native voice and screen app built on Tauri 2, Rust and the Gemini Live API.">
-    <meta property="og:site_name" content="Perseo | Persus">
+    <meta property="og:title" content="NightShift | Persus">
+    <meta property="og:description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine — the model never decides the state.">
+    <meta property="og:site_name" content="NightShift | Persus">
     <meta property="og:image" content="../images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="My longest-running project: a personal AI assistant with a personality of its own, now a native voice and screen app built on Tauri 2, Rust and the Gemini Live API.">
-    <meta name="twitter:title" content="Perseo | Persus">
+    <meta name="twitter:description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine — the model never decides the state.">
+    <meta name="twitter:title" content="NightShift | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp">
@@ -62,30 +62,29 @@
                 <div class="inner--container">
                     <div class="grid">
                         <div class="col-intro">
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Perseo</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Perseo is the longest-running thing I've built. It started as an attempt to have my own AI assistant back when that meant doing it yourself: I trained and tuned it on a machine with 16&nbsp;GB of RAM, fighting for every gigabyte, leaning on data quality because I had no compute to spare. Getting something that could hold a genuinely competent conversation out of that hardware is still one of the results I'm proudest of, precisely because the constraint was absurd.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">It was never meant to be a search box with a voice. Perseo was designed to have a personality — empathy, humour, curiosity, opinions about music and books — because I wanted a companion I would actually talk to rather than a command line that answers. That decision has outlived every implementation underneath it.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">It is now on its second architecture: an always-on core with a queue, a memory, a policy layer and eight agents, and four faces that don't think — a native voice app on Tauri&nbsp;2 and Rust, a desktop panel, a phone PWA and a Telegram bot. The rule is that the faces stay dumb, so the core can move to a Raspberry Pi without rewriting anything. The Rust-to-Python bridge runs over pipes rather than a local HTTP server, because a local server is reachable by any process on the machine and one of the tools the core exposes controls the PC.</p>
-                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">The core does real work. It reads mail and calendar and triages them with a local model over Ollama, writes memories into my Obsidian vault without ever overwriting, drives the PC through a whitelist, commissions code from sub-agents, and reads and writes my task board while keeping exactly one writer — the core enqueues an order and the window applies it, so there is never a second board to reconcile. Its project rail opens and runs the other projects on this list.</p>
-                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">Where it stands: 770 tests green with CI across three languages, in daily use as a research companion while reading and increasingly as a voice-to-markdown front-end for writing, so that drafting a paper section becomes a conversation rather than a typing session. The first version came together between April and June 2026 in Beijing and was rebuilt in August.</p>
-                            <p data-animation="words" data-delay="0.7" data-stagger="0.03" class="size-20">Years in, the thing I keep relearning is that the personality was not decoration. A tool you enjoy opening is a tool you keep using, and that compounds far more than any benchmark score.</p>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">NightShift</h1>
+                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">NightShift exists to make the laptop work while I sleep. It is not a chatbot with a cron entry: it is a real state machine where the model never decides the state. A round ends only when the agent deletes the handoff file by calling <code>complete</code> — never because a model announces it is done. That one rule is the whole design, and everything else is built to keep it true.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">A night runs like this. Task Scheduler fires every hour from 00:00 to 06:00. Each round first wipes every API key from the environment, leaving only the subscription login, then calls <code>queue.py claim</code>, which writes <code>current.json</code> and a lock. A headless driver takes over the coding agent's terminal UI over a pseudo-terminal, types the prompt, and waits for <code>current.json</code> to disappear — that absence is the end signal, not any string the agent prints. A reaper always runs afterwards and either re-queues the task or marks it failed.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">There are three modes, tried in order: <em>execute</em> when a project is pending, <em>curate</em> when there are raw ideas to score and promote, <em>ideate</em> when there is nothing left and it has to generate its own. The round is sized to the real session budget — the driver reads the countdown line from the agent's UI and cuts the run short, reserving a few minutes at the end for the agent to write its log and call <code>complete</code>. Before that fix it believed it had forty minutes that did not exist.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">Over about six weeks the queue went from four projects done to twenty-seven, and then the machine ran out of things to do. Most of that was hardening its own harness: a pre-flight <code>doctor.py</code>, log rotation, a watchdog for inactivity, per-round transcripts kept whole instead of one file overwritten each night. Some of it was work on other projects entirely — it cleaned up my assistant's codebase, extended my job scraper to fifty-six sources across two jobs, and prepared an arXiv submission checklist and a model-release watch for my World Models paper. One job, continuing a cryptanalysis project, it tried and failed.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">The honest state today: the queue is empty and the ideation mode — the only one that can refill it without me — crashes on start, so for now the machine depends on being fed by hand. The silent hang that once burned a whole night is gone, because there is no longer a single truncated transcript that each round overwrites; when something breaks now, there is evidence. The repository has been under git since the first night it went to production.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
                                 <span>Services</span>
-                                <span class="size-20">Applied AI, Software Development</span>
+                                <span class="size-20">Automation, Agent Infrastructure</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.2">
                                 <span>Stack</span>
-                                <span class="size-20">Rust, Tauri 2, React, Python, Ollama, Gemini Live API · always-on core + four faces</span>
+                                <span class="size-20">Python, Windows Task Scheduler, ConPTY, Telegram Bot API</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.3">
                                 <span>Status</span>
-                                <span class="size-20">In daily use · 770 tests, CI in three languages</span>
+                                <span class="size-20">In production since Aug 2026 · 27 shipped</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
                                 <span>Year</span>
-                                <span class="size-20">2023 — Present</span>
+                                <span class="size-20">2026</span>
                             </div>
                         </div>
                     </div>
@@ -93,7 +92,7 @@
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
                         <div class="mask"></div>
-                        <img class="lazy" src="../images/perseo.png" alt="Perseo">
+                        <img class="lazy" src="../images/nightshift.svg" alt="NightShift">
                     </div>
                 </div>
             </section>
@@ -101,12 +100,12 @@
             <section class="default_row--container next-project single_project">
                 <div class="inner--container">
                     <p>Other Project</p>
-                    <p>HybridMamba-11</p>
+                    <p>Perseo</p>
                 </div>
                 <div class="image--container">
-                    <img class="lazy" src="../images/hybridmamba.svg" alt="HybridMamba-11">
+                    <img class="lazy" src="../images/perseo.png" alt="Perseo">
                 </div>
-                <a href="hybridmamba.html" class="project_link link"></a>
+                <a href="perseo.html" class="project_link link"></a>
             </section>
 
             <!-- Original footer with CTA -->
@@ -127,7 +126,7 @@
                     </div>
                 </section>
             </footer>
-            
+
             <!-- New footer specifically for socials, copyright, and coordinates -->
             <footer id="footer-bottom">
                 <div class="footer-bottom--container">
@@ -137,9 +136,9 @@
                         </div>
                         <div class="footer-col">
                             <div class="social-links">
-                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> / 
-                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> / 
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
+                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
                                 <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
@@ -149,9 +148,9 @@
                         </div>
                     </div>
                 </div>
-            </footer>  
+            </footer>
             <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100"></div>
-    
+
             <div class="mobile_menu--wrapper">
     <div class="overlay"></div>
     <div class="mobile_menu--container">
