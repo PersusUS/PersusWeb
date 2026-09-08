@@ -1,11 +1,13 @@
 Photos for the "Off the screen" collage on about.html.
 
-Drop four JPEGs here with exactly these names:
+Drop three JPEGs here with exactly these names:
 
   me-01.jpg   portrait  (tall, ~4:5)      — left column, top
-  me-02.jpg   portrait  (tall, ~3:4)      — right column, offset down
-  me-03.jpg   square    (~1:1)            — left column, bottom
-  me-04.jpg   landscape (wide, ~3:2)      — right column, bottom
+                                            (awards ceremony, on stage with the mic)
+  me-02.jpg   landscape (wide, ~5:3)      — right column, offset down
+                                            (Sputnik cohort group photo)
+  me-03.jpg   landscape (wide, ~3:2)      — centred, bottom
+                                            (Telefónica stand, presenting the project)
 
 The frames are fixed-ratio and images are cropped with object-fit: cover,
 so the ratios above are a guide, not a requirement — anything roughly that
