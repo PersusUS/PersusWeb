@@ -9,7 +9,7 @@
  */
 (function () {
     var SELECTOR = "[data-animation='words']";
-    var lastWidth = window.innerWidth;
+    var lastWidth = Math.round(document.documentElement.clientWidth);
     var timer = null;
 
     function snapshot() {
@@ -102,16 +102,28 @@
         document.fonts.ready.then(reflow);
     }
 
-    window.addEventListener('resize', function () {
+    function onWidthChange(width) {
         // Mobile browsers fire resize when the URL bar hides; only the width
         // can change how the text wraps.
-        if (window.innerWidth === lastWidth) {
+        if (width === lastWidth) {
             return;
         }
-        lastWidth = window.innerWidth;
+        lastWidth = width;
         clearTimeout(timer);
         timer = setTimeout(reflow, 200);
+    }
+
+    window.addEventListener('resize', function () {
+        onWidthChange(Math.round(document.documentElement.clientWidth));
     });
+
+    // Catches the width changes no resize event reports: page zoom, a
+    // scrollbar appearing, devtools opening beside the page.
+    if (window.ResizeObserver) {
+        new ResizeObserver(function (entries) {
+            onWidthChange(Math.round(entries[0].contentRect.width));
+        }).observe(document.documentElement);
+    }
 
     if (window.barba && window.barba.hooks) {
         window.barba.hooks.afterEnter(function () {
