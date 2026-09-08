@@ -3,10 +3,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        AI Vision | Persus
+        MAGI | Persus
     </title>
 
-    <meta name="description" content="Ai vision software that detects faces and emotions.">
+    <meta name="description" content="Three LLM personas argue a question in parallel and one veto sinks the verdict — an Evangelion MAGI console where the consensus rule, not the vote, is the design.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -27,14 +27,14 @@
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="AI Vision | Persus">
-    <meta property="og:description" content="Ai vision software that detects faces and emotions.">
-    <meta property="og:site_name" content="AI Vision | Persus">
+    <meta property="og:title" content="MAGI | Persus">
+    <meta property="og:description" content="Three LLM personas argue a question in parallel and one veto sinks the verdict — an Evangelion MAGI console where the consensus rule, not the vote, is the design.">
+    <meta property="og:site_name" content="MAGI | Persus">
     <meta property="og:image" content="../images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="Ai vision software that detects faces and emotions.">
-    <meta name="twitter:title" content="AI Vision | Persus">
+    <meta name="twitter:description" content="Three LLM personas argue a question in parallel and one veto sinks the verdict — an Evangelion MAGI console where the consensus rule, not the vote, is the design.">
+    <meta name="twitter:title" content="MAGI | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp">
@@ -62,23 +62,31 @@
                 <div class="inner--container">
                     <div class="grid">
                         <div class="col-intro">
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Face Detection</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">This innovative AI vision project is designed to enhance human-computer interaction by accurately detecting both faces and bodies while also recognizing emotional states. Leveraging advanced computer vision algorithms, the system utilizes cutting-edge techniques for real-time detection and analysis, ensuring high precision and responsiveness.
-                                <br>
-                                The face detection component identifies and localizes human faces in various environments, while the body detection feature recognizes full-body poses and movements. Together, these capabilities allow for a comprehensive understanding of human presence and behavior.
-                                <br>
-                                In addition to physical detection, the project incorporates emotion recognition, enabling the AI to interpret facial expressions and body language. By analyzing features such as facial movements and posture, the system can identify a range of emotions—including happiness, sadness, anger, and surprise. This emotional intelligence enhances the AI's ability to respond appropriately in interactive applications, making it ideal for fields like customer service, mental health, and user experience design.
-                                <br>
-                                Overall, this AI vision project aims to bridge the gap between technology and human emotion, creating smarter, more empathetic systems that can adapt to users' feelings and needs in real-time. With its potential applications in various industries, it stands to revolutionize how we interact with machines and improve user engagement across platforms.</p>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">MAGI</h1>
+                            <p data-animation="fade-up" data-delay="0.2" class="size-20">MAGI is a console that answers a question three times at once. It is modelled on the supercomputers of the same name in <em>Neon Genesis Evangelion</em> — Naoko Akagi split her own mind into three machines and let them disagree — so the three agents here are not three assistants. <strong>MELCHIOR</strong> is the scientist, <strong>BALTHASAR</strong> is the mother, <strong>CASPER</strong> is the woman: empirical truth, protection of life, and personal desire, each given the question at the same moment and each told, in the system prompt, that it may not hedge and may not break character.</p>
+                            <p data-animation="fade-up" data-delay="0.3" class="size-20">The interesting part is not the three answers. It is what the machine is allowed to do with them. There is no vote and no averaging. The verdict is resolved by severity: any subsystem error makes the whole result an error, then a single <em>no</em> makes it a refusal, then a single <em>conditional</em> makes it conditional, and only a clean sweep of three affirmatives returns <em>agreement</em>. One veto sinks it. That is the rule from the show and it is also the honest one — averaging three personas would produce a number that no agent actually believes.</p>
+                            <p data-animation="fade-up" data-delay="0.4" class="size-20">Getting a persona to a yes or a no takes two calls, not one, and they are deliberately separate. A classifier first decides whether the question is a yes/no question at all, from a purely linguistic standpoint — <em>should I buy new shoes?</em> is one, <em>what is the meaning of life?</em> is not. Only then does each agent answer in character; a second call hands that same agent its own answer back and asks it to compress it to a single word, or, if it cannot, to list the conditions under which the answer would be yes. Open questions skip the whole classification path and return as information. The reason to split it is that a persona told to be decisive will force a yes onto a question that has no yes, and the classifier is the only thing standing in the way.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Every agent can run a different model. Each one resolves its own environment variable through OpenRouter, as do the classifier and the verdict step, so the scientist can be a reasoning model while the other two are cheap and fast. That flexibility is also the failure mode: free endpoints rate-limit and go down, so every completion falls back twice — the assigned model, then the configured default, then a known-good paid model — rather than surfacing a provider outage as a MAGI subsystem fault. Reasoning models needed their own handling too: <code>&lt;think&gt;</code> blocks are stripped, an empty content field falls back to the model's reasoning field, and lines that merely echo the prompt back are filtered out before anything reaches the screen.</p>
+                            <p data-animation="fade-up" data-delay="0.6" class="size-20">The interface is the point as much as the engine, and the discipline I set myself was that nothing on it may be a lie. The status panel looks like set dressing, and mostly is — CODE:473, FILE:MAGI_SYS, PRIORITY:AAA are constants — but the extension field is live state: 7312 when the classifier has ruled the question binary, 3023 when it has not, and <code>????</code> for exactly as long as the answer lags the question it belongs to. Staleness is tracked by question id, so a verdict can never be attributed to the wrong question. The sound is synthesised in the browser through the Web Audio API rather than shipped as files: a processing hum while the panels flicker, a different resolution tone per outcome.</p>
+                            <p data-animation="words" data-delay="0.7" data-stagger="0.03" class="size-20">Two things I would call fixed rather than finished. Voice input is hybrid — the browser's own recogniser, or Whisper through a small Flask route — and it refuses to try when it cannot work: an OpenRouter key is rejected outright for transcription, because that provider has no transcription endpoint and the key would only fail slowly somewhere else, and anything that still looks like a placeholder is never sent at all. And it runs on an Android tablet as a PWA through a Termux launcher that kills the previous instance, waits for the port to actually answer before opening the browser, and traps its own exit so the server never outlives the window.</p>
+                            <p data-animation="fade-up" data-delay="0.8" class="size-20">What it is not: three independent opinions. The agents share a provider, often a base model, and always the same question — so a unanimous <em>agreement</em> measures how three framings of one model behave, not whether something is true. It is a decision theatre with an honest resolution rule, which is a different and smaller claim than verification. The concept belongs to Hideaki Anno and Gainax; the consensus engine, the interface and the code are mine, MIT licensed.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
                                 <span>Services</span>
-                                <span class="size-20">AI/ML, Software Development</span>
+                                <span class="size-20">Applied AI, Interface</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.2">
+                                <span>Stack</span>
+                                <span class="size-20">Python, Dash &amp; React, OpenRouter, Web Audio API, Whisper</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.3">
+                                <span>Status</span>
+                                <span class="size-20">Running locally · MIT on GitHub</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
                                 <span>Year</span>
-                                <span class="size-20">2023</span>
+                                <span class="size-20">2026</span>
                             </div>
                         </div>
                     </div>
@@ -86,7 +94,7 @@
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
                         <div class="mask"></div>
-                        <img class="lazy" src="../images/face.png" alt="Face">
+                        <img class="lazy" src="../images/magi.webp" alt="MAGI">
                     </div>
                 </div>
             </section>
@@ -94,12 +102,12 @@
             <section class="default_row--container next-project single_project">
                 <div class="inner--container">
                     <p>Other Project</p>
-                    <p>ClassTranscriber</p>
+                    <p>HybridMamba-11</p>
                 </div>
                 <div class="image--container">
-                    <img class="lazy" src="../images/classtranscriber.webp" alt="ClassTranscriber">
+                    <img class="lazy" src="../images/hybridmamba.svg" alt="HybridMamba-11">
                 </div>
-                <a href="classtranscriber.html" class="project_link link"></a>
+                <a href="hybridmamba.html" class="project_link link"></a>
             </section>
 
             <!-- Original footer with CTA -->
@@ -120,7 +128,7 @@
                     </div>
                 </section>
             </footer>
-            
+
             <!-- New footer specifically for socials, copyright, and coordinates -->
             <footer id="footer-bottom">
                 <div class="footer-bottom--container">
@@ -130,9 +138,9 @@
                         </div>
                         <div class="footer-col">
                             <div class="social-links">
-                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> / 
-                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> / 
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
+                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
+                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
                                 <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
                             </div>
                         </div>
@@ -142,9 +150,9 @@
                         </div>
                     </div>
                 </div>
-            </footer>  
+            </footer>
             <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100"></div>
-    
+
             <div class="mobile_menu--wrapper">
     <div class="overlay"></div>
     <div class="mobile_menu--container">
