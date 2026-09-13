@@ -151,18 +151,6 @@
 }
 
 /* ------------------------------------------------------------------
- * Home hero tagline.
- * ------------------------------------------------------------------ */
-
-.hero_tagline {
-    max-width: 430px;
-    margin-top: 26px;
-    font-size: 15px;
-    line-height: 1.7;
-    color: #bcbcbc;
-}
-
-/* ------------------------------------------------------------------
  * The "scroll to discover" dial is the only affordance on a screen that
  * otherwise does nothing until you scroll. Make it do what it says.
  * ------------------------------------------------------------------ */
@@ -199,11 +187,5 @@
     .filter_chip {
         padding: 10px 16px;
         font-size: 13px;
-    }
-
-    .hero_tagline {
-        max-width: 300px;
-        margin-top: 20px;
-        font-size: 14px;
     }
 }
