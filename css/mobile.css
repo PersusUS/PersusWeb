@@ -1,0 +1,395 @@
+/*
+ * Phone layer.
+ *
+ * The site was laid out for a wide desktop canvas: 300px section padding,
+ * 110-200px display type, and project cards that crop a wide image into a
+ * 70vh portrait box with the title painted on top. All three read as designed
+ * at 1440px and as broken at 375px, so everything below is scoped to phones
+ * and only ever overrides — no desktop rule is touched.
+ *
+ * Loaded last, after master/about/case/contact, so it wins on specificity ties.
+ */
+
+@media screen and (max-width: 767px) {
+
+    /* ---------------------------------------------------------------
+     * Typography
+     *
+     * Fixed pixel display sizes were tuned for a 1440px canvas. Every
+     * heading below is fluid instead, so it fills a 320px phone and a
+     * 767px tablet without a breakpoint for each one.
+     * --------------------------------------------------------------- */
+
+    .default_row--container.intro .inner--container .intro_text--container p {
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 32px;
+    }
+
+    .big-text {
+        font-size: 21px;
+        line-height: 1.45;
+    }
+
+    .size-20 {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    h3 {
+        letter-spacing: 5px;
+        margin-bottom: 28px;
+        font-size: 14px;
+    }
+
+    /* ---------------------------------------------------------------
+     * Vertical rhythm
+     *
+     * 300px of padding above and below a section is 1.5 phone screens of
+     * empty black between one sentence and the next.
+     * --------------------------------------------------------------- */
+
+    .default_row--container.intro {
+        padding: 110px 0;
+    }
+
+    .sub_portfolio {
+        padding: 40px 0 110px;
+    }
+
+    .default_row--container.intro .inner--container .about_services--container {
+        padding-top: 70px;
+    }
+
+    .default_row--container.intro .inner--container .about_services--container ul {
+        columns: 1;
+    }
+
+    .default_row--container.intro .inner--container .about_services--container ul li {
+        font-size: 1rem;
+        padding: .6rem 0 .6rem 1.5rem;
+    }
+
+    /* ---------------------------------------------------------------
+     * Home hero
+     *
+     * The name is an SVG that scales with its box, so it only needs the
+     * container to stop reserving a full desktop screen of air around it.
+     * --------------------------------------------------------------- */
+
+    .home_hero--wrapper .hero_text--container p {
+        max-width: 280px;
+        font-size: 15px;
+    }
+
+    /* ---------------------------------------------------------------
+     * Featured projects (home)
+     *
+     * On desktop these are 70vh sticky cards that stack as you scroll,
+     * with the title and tags painted over the image. On a phone the
+     * image is cropped to a portrait sliver — a wide research figure
+     * becomes unreadable — and the title, the tags and whatever text is
+     * inside the image all pile up in the same corner.
+     *
+     * So on phones the card stops being an overlay: image on top, title
+     * and tags underneath on the page background. The image also keeps
+     * its own aspect ratio rather than being cropped into a fixed box —
+     * half of these are wide research figures that a crop destroys.
+     * --------------------------------------------------------------- */
+
+    .home_portfolio--wrapper {
+        min-height: 0;
+    }
+
+    .home_portfolio--wrapper .featured_projects--container .featured_projects {
+        grid-row-gap: 0;
+        row-gap: 0;
+    }
+
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project {
+        position: relative;
+        top: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        border-radius: 0;
+        margin-bottom: 55px;
+    }
+
+    /* The picture comes after the info in the markup, because on desktop
+       it is absolutely positioned behind it. In flow that order is wrong. */
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project .project_picture--container {
+        order: 1;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #1a1a1a;
+    }
+
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project .project_picture--container img {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        max-height: 65vh;
+        object-fit: contain;
+        transform: none;
+        display: block;
+    }
+
+    /* The scrim existed to keep white text legible over the image; the
+       text no longer sits on the image. */
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project .project_picture--container::after {
+        display: none;
+    }
+
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project .project_info--container {
+        order: 2;
+        position: relative;
+        display: block;
+        padding: 18px 0 0;
+    }
+
+    /* Coign is a heavily condensed face, so it needs more points than a
+       normal sans to read at the same optical size. */
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project .project_info--container .project_title {
+        font-size: clamp(40px, 12vw, 58px);
+        line-height: .9;
+        margin-bottom: 14px;
+    }
+
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project .project_info--container .project_meta li {
+        margin: 0 8px 8px 0;
+        padding: 8px 14px;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, .08);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    /* ---------------------------------------------------------------
+     * All projects (portfolio.html)
+     *
+     * Same overlap: the tags float over the top-left of the image and
+     * land on whatever the image has there.
+     * --------------------------------------------------------------- */
+
+    .main_portfolio--wrapper {
+        padding-bottom: 110px;
+    }
+
+    /* Same reasoning as the home cards: let the figure keep its ratio
+       instead of cropping it into a 3:2 box. */
+    .main_portfolio--wrapper .all_projects--container .single_project .project_picture--container {
+        padding-top: 0;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .main_portfolio--wrapper .all_projects--container .single_project .project_picture--container img {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        max-height: 65vh;
+        object-fit: contain;
+        transform: none;
+        display: block;
+        border-radius: 10px;
+        background-color: #1a1a1a;
+    }
+
+    /* The tags are absolutely positioned over the top-left of the image,
+       where they land on whatever that image happens to have there. */
+    .main_portfolio--wrapper .all_projects--container .single_project .project_picture--container .project_meta {
+        position: static;
+        margin-bottom: 12px;
+    }
+
+    .main_portfolio--wrapper .all_projects--container .single_project .project_picture--container .project_meta li {
+        margin: 0 8px 8px 0;
+        padding: 8px 14px;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, .08);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .main_portfolio--wrapper .all_projects--container .single_project .project_info--container {
+        padding: 14px 0 0;
+    }
+
+    .main_portfolio--wrapper .all_projects--container .single_project .project_info--container .project_title {
+        font-size: 22px;
+    }
+
+    .projects_intro--wrapper {
+        padding-top: 40px;
+    }
+
+    .projects_intro--wrapper .inner--container {
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+
+    .projects_intro--wrapper .inner--container h1 {
+        font-size: clamp(64px, 22vw, 110px);
+        margin-top: 40px;
+    }
+
+    /* ---------------------------------------------------------------
+     * About page
+     * --------------------------------------------------------------- */
+
+    .about_intro--wrapper {
+        padding-top: 30px;
+    }
+
+    .about_intro--wrapper .inner--container .grid {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .about_intro--wrapper .inner--container .grid h1 {
+        font-size: clamp(52px, 15vw, 86px);
+        line-height: .9;
+    }
+
+    .about_text--wrapper .inner--container .grid {
+        padding-bottom: 80px;
+    }
+
+    .about_gallery--wrapper .inner--container .grid {
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    .logos_marquee--wrapper.spacing_bottom {
+        padding-bottom: 110px;
+    }
+
+    /* ---------------------------------------------------------------
+     * Case studies (projects/*.html)
+     *
+     * The hero figure is forced into a 62.5% box at height:110% with
+     * object-fit:cover, which crops a wide chart down to an unreadable
+     * band. On a phone the figure is the point, so let it keep its own
+     * aspect ratio instead.
+     * --------------------------------------------------------------- */
+
+    .single_case_hero--row {
+        padding: 130px 0 60px;
+    }
+
+    .single_case_hero--row .grid h1 {
+        font-size: clamp(52px, 15vw, 86px);
+        line-height: .85;
+    }
+
+    .single_case_hero--row .grid .col-intro {
+        margin-bottom: 45px;
+    }
+
+    .single_case_hero--row .grid .col-summary .entry {
+        padding-bottom: 26px;
+    }
+
+    .single_case_hero--row .hero_img--container {
+        padding: 0 25px;
+        margin-bottom: 50px;
+    }
+
+    .single_case_hero--row .hero_img--container .hero_img {
+        padding-top: 0;
+        height: auto;
+    }
+
+    .single_case_hero--row .hero_img--container .hero_img img {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .single_case {
+        padding: 70px 0;
+    }
+
+    .case_section_title {
+        font-size: 15px;
+        letter-spacing: 5px;
+        padding: 18px 0;
+        margin-bottom: 26px;
+    }
+
+    .next-project {
+        padding: 80px 0;
+    }
+
+    .next-project .inner--container p:last-child {
+        font-size: clamp(44px, 13vw, 74px);
+    }
+
+    /* ---------------------------------------------------------------
+     * Contact footer
+     * --------------------------------------------------------------- */
+
+    .cta_footer--container {
+        min-height: 0;
+        padding: 90px 0;
+    }
+
+    .cta_footer--container .cta--container .text--container .title {
+        font-size: clamp(46px, 13vw, 76px);
+        line-height: .85;
+        margin-bottom: 26px;
+    }
+
+    .footer-bottom--wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        text-align: left;
+    }
+
+    /* ---------------------------------------------------------------
+     * Touch targets
+     *
+     * Every interactive element here was sized for a cursor. 44px is the
+     * smallest reliable thumb target.
+     * --------------------------------------------------------------- */
+
+    .lovely_button {
+        padding: 16px 26px;
+        font-size: 15px;
+    }
+
+    .mobile_menu--container nav ul li a,
+    .mobile_menu--container .social_menu li a {
+        display: inline-block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* A tap fires :hover on touch and then leaves it stuck until the next
+       tap elsewhere, so the card-zoom and button-fill transitions strobe
+       while scrolling. Neutralise the ones that move layout. */
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project:hover .project_info--container {
+        padding: 18px 0 0;
+    }
+
+    .main_portfolio--wrapper .all_projects--container .single_project:hover .project_picture--container img {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
