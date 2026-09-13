@@ -40,7 +40,7 @@
         '            </ul>',
         '        </nav>',
         '        <div class="mobile_menu--button">',
-        '            <button class="hamburger_btn" href="javascript:void(0);" aria-label="Open mobile menu">',
+        '            <button class="hamburger_btn" type="button" aria-expanded="false" aria-controls="mobile_menu" aria-label="Open menu">',
         '                <div class="hamburger_icon">',
         '                    <div></div>',
         '                    <div></div>',
@@ -50,4 +50,42 @@
         '    </div>',
         '</header>'
     ].join('\n'));
+
+    // master.min.js toggles body.nav-active on click but never tells assistive
+    // tech anything changed: the button stayed aria-expanded="false" and
+    // labelled "Open mobile menu" the whole time the menu was open.
+    var button = document.querySelector('.hamburger_btn');
+
+    // This script runs where the header goes, near the top of <body>, so the
+    // menu it points aria-controls at has not been parsed yet.
+    document.addEventListener('DOMContentLoaded', function () {
+        var menu = document.querySelector('.mobile_menu--container');
+        if (menu && !menu.id) {
+            menu.id = 'mobile_menu';
+        }
+    });
+
+    if (button) {
+        var sync = function () {
+            var open = document.body.classList.contains('nav-active');
+            button.setAttribute('aria-expanded', open ? 'true' : 'false');
+            button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        };
+
+        // The menu closes from three places — the button, a menu link and the
+        // overlay — and all three go through this one class on <body>.
+        new MutationObserver(sync).observe(document.body, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        // Escape is the expected way out of an open overlay menu.
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && document.body.classList.contains('nav-active')) {
+                document.body.classList.remove('nav-active');
+                button.classList.remove('open');
+                button.focus();
+            }
+        });
+    }
 })();
