@@ -3,10 +3,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        Sputnik | Persus
+        The Capacity Wall | Persus
     </title>
 
-    <meta name="description" content="The conference that changed my life.">
+    <meta name="description" content="Serving video vision-language models is limited by KV cache capacity, not memory bandwidth. An analytical model, and a 113x collapse in concurrent users.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -27,14 +27,14 @@
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="Sputnik | Persus">
-    <meta property="og:description" content="The conference that changed my life.">
-    <meta property="og:site_name" content="Sputnik | Persus">
+    <meta property="og:title" content="The Capacity Wall | Persus">
+    <meta property="og:description" content="Serving video vision-language models is limited by KV cache capacity, not memory bandwidth. An analytical model, and a 113x collapse in concurrent users.">
+    <meta property="og:site_name" content="The Capacity Wall | Persus">
     <meta property="og:image" content="../images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:description" content="The conference that changed my life.">
-    <meta name="twitter:title" content="Sputnik | Persus">
+    <meta name="twitter:description" content="Serving video vision-language models is limited by KV cache capacity, not memory bandwidth. An analytical model, and a 113x collapse in concurrent users.">
+    <meta name="twitter:title" content="The Capacity Wall | Persus">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp">
@@ -74,19 +74,32 @@
                         <div class="case_back--container">
                             <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
                         </div>
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Sputnik</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">The Sputnik Conference, held in Seville and created by Juan Martínez Barea, is a transformative event designed to inspire and empower young entrepreneurs. Taking place annually, it targets individuals aged 16 to 30, encouraging them to develop their leadership potential through exposure to exponential technologies like AI, biotechnology, and robotics. This intensive program, supported by the Fundación El Mundo Que Viene, aims to shape the next generation of leaders by fostering ambition, vision, and entrepreneurial spirit.
-                                <br>
-                                In 2023, I had the opportunity to attend, which significantly influenced my personal and professional growth. The event features a series of seminars and talks by successful entrepreneurs, scientists, and innovators, offering participants the chance to engage with cutting-edge technologies and global leaders. The conference serves as a gateway for young talents to network with investors and start-ups, equipping them with the tools to create the future’s most impactful companies.</p>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">The Capacity Wall</h1>
+                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">Serving a video vision-language model is not slow because the GPU runs out of bandwidth. It is slow because the same memory holds far less useful work. A GPU amortises the cost of reading model weights across everyone in the batch; it cannot do that for the KV cache, because the cache is private to each sequence. In text serving that only bites at large batch sizes. In video serving it bites immediately, because one request arrives carrying an enormous visual prefix.</p>
+                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">On Qwen2.5-VL-72B geometry, an hour of video at one frame per second is 460,800 visual tokens — <strong>140 GB of KV cache against 72 GB of weights, before a second user shows up</strong>. Work it through on an 8×H100 node and the shape of the problem is clear: step time is 25.6 ms in every scenario and each user still sees about 39 tokens per second. Nothing got slower. Only aggregate throughput collapses, by 113×, because the node is holding four conversations where it used to hold 454. That is a capacity limit, not a bandwidth limit, and the difference matters: adding bandwidth does not help, while adding capacity multiplies useful work directly.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The limitations are worth stating before anyone else does. This is an analytical model derived from model geometry and token counts, not a measurement against instrumented inference. It does not model KV compression by default, and compression is the serious counterargument — under an aggressive scheme that one-hour video falls to roughly 7 GB and fits comfortably. The argument survives in a narrower regime: high resolution, real frame rates, continuous streaming, multi-tenant serving, where compression reduces less than concurrency multiplies. Prefill is out of scope; this concerns decode.</p>
+                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">What makes it interesting rather than merely inconvenient is that the visual KV cache is largely a static prefix. Its size is known the moment prefill finishes, it does not grow, and it is reusable across requests about the same video. That removes most of the dynamic-mapping problem that makes text models awkward for processing-in-memory — which suggests video serving is a better fit for a dedicated near-memory KV tier than text serving ever was.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
                                 <span>Services</span>
-                                <span class="size-20">Comunication, Concepting</span>
+                                <span class="size-20">Research, Performance Modelling</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.2">
+                                <span>Stack</span>
+                                <span class="size-20">Python, no dependencies</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.3">
+                                <span>Status</span>
+                                <span class="size-20">Analytical model, open for scrutiny</span>
                             </div>
                             <div class="entry" data-animation="fade-up" data-delay="0.4">
                                 <span>Year</span>
-                                <span class="size-20">2023</span>
+                                <span class="size-20">2026</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.5">
+                                <span>Code</span>
+                                <a class="repo_link" href="https://github.com/PersusUS/vlm-kv-capacity" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>vlm-kv-capacity</span><span class="arrow" aria-hidden="true">↗</span></a>
                             </div>
                         </div>
                     </div>
@@ -94,20 +107,19 @@
                 <div class="hero_img--container">
                     <div class="hero_img parallax reveal_effect">
                         <div class="mask"></div>
-                        <img class="lazy" src="../images/sputnik.jpg" alt="Sputnik">
+                        <img class="lazy" src="../images/vlm-capacity.svg" alt="Batch size at which the KV cache outgrows the model weights. An hour of video crosses below a batch of one.">
                     </div>
                 </div>
             </section>
-
             <section class="default_row--container next-project single_project">
                 <div class="inner--container">
                     <p>Other Project</p>
-                    <p>AI Mouse</p>
+                    <p>WMF Benchmark</p>
                 </div>
                 <div class="image--container">
-                    <img class="lazy" src="../images/aimouse.png" alt="AI Mouse">
+                    <img class="lazy" src="../images/worldmodels.webp" alt="WMF Benchmark">
                 </div>
-                <a href="aimouse.html" class="project_link link"></a>
+                <a href="worldmodels.html" class="project_link link"></a>
             </section>
 
             <!-- Original footer with CTA -->

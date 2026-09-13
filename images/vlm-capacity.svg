@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Batch size at which KV cache exceeds model weights, by workload. Video at one hour crosses below a batch of one.">
+  <defs>
+    <linearGradient id="vlmAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c2e9fb"/>
+      <stop offset="100%" stop-color="#a1c4fd"/>
+    </linearGradient>
+    <pattern id="vlmGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0 L0 0 0 50" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0d0d0d"/>
+  <rect width="1600" height="900" fill="url(#vlmGrid)"/>
+
+  <!-- title -->
+  <text x="90" y="110" fill="#ffffff" font-family="Mulish, sans-serif" font-size="40" font-weight="700">The capacity wall</text>
+  <text x="90" y="158" fill="#ffffff" fill-opacity="0.55" font-family="Mulish, sans-serif" font-size="23">Batch size at which the KV cache outgrows the model weights &#183; Qwen2.5-VL-72B</text>
+
+  <!-- log decade gridlines: 0.1 / 1 / 10 / 100 / 1000 -->
+  <g stroke="#ffffff" stroke-opacity="0.08" stroke-width="1">
+    <line x1="420" y1="230" x2="420" y2="720"/>
+    <line x1="920" y1="230" x2="920" y2="720"/>
+    <line x1="1170" y1="230" x2="1170" y2="720"/>
+    <line x1="1420" y1="230" x2="1420" y2="720"/>
+  </g>
+
+  <g fill="#ffffff" fill-opacity="0.4" font-family="Mulish, sans-serif" font-size="19" text-anchor="middle">
+    <text x="420" y="756">0.1</text>
+    <text x="670" y="756">1</text>
+    <text x="920" y="756">10</text>
+    <text x="1170" y="756">100</text>
+    <text x="1420" y="756">1000</text>
+  </g>
+  <text x="920" y="800" fill="#ffffff" fill-opacity="0.4" font-family="Mulish, sans-serif" font-size="19" text-anchor="middle">concurrent sequences</text>
+
+  <!-- the wall: batch = 1 -->
+  <line x1="670" y1="212" x2="670" y2="720" stroke="#c2e9fb" stroke-opacity="0.65" stroke-width="2" stroke-dasharray="7 7"/>
+  <text x="682" y="205" fill="#c2e9fb" fill-opacity="0.85" font-family="Mulish, sans-serif" font-size="19" font-weight="700">one request</text>
+
+  <g font-family="Mulish, sans-serif" font-size="22">
+
+    <!-- Video, 1 h @ 1 fps : crosses at 0.5, left of the wall -->
+    <text x="392" y="282" fill="#ffffff" text-anchor="end">Video, 1 h @ 1 fps</text>
+    <rect x="420" y="258" width="175" height="32" rx="6" fill="url(#vlmAccent)"/>
+    <text x="611" y="282" fill="#c2e9fb" font-weight="700">0.5</text>
+
+    <!-- Video, 10 min @ 1 fps : 3.1 -->
+    <text x="392" y="372" fill="#ffffff" text-anchor="end">Video, 10 min @ 1 fps</text>
+    <rect x="420" y="348" width="373" height="32" rx="6" fill="url(#vlmAccent)"/>
+    <text x="809" y="372" fill="#c2e9fb" font-weight="700">3.1</text>
+
+    <!-- Video, 1 min @ 1 fps : 30.7 -->
+    <text x="392" y="462" fill="#ffffff" text-anchor="end">Video, 1 min @ 1 fps</text>
+    <rect x="420" y="438" width="622" height="32" rx="6" fill="url(#vlmAccent)"/>
+    <text x="1058" y="462" fill="#c2e9fb" font-weight="700">30.7</text>
+
+    <!-- Text, 4K context : 57.6 -->
+    <text x="392" y="552" fill="#ffffff" fill-opacity="0.6" text-anchor="end">Text, 4K context</text>
+    <rect x="420" y="528" width="690" height="32" rx="6" fill="#ffffff" fill-opacity="0.22"/>
+    <text x="1126" y="552" fill="#ffffff" fill-opacity="0.6">57.6</text>
+
+    <!-- High-res image : 184.3 -->
+    <text x="392" y="642" fill="#ffffff" fill-opacity="0.6" text-anchor="end">Image, 4 tiles</text>
+    <rect x="420" y="618" width="816" height="32" rx="6" fill="#ffffff" fill-opacity="0.22"/>
+    <text x="1252" y="642" fill="#ffffff" fill-opacity="0.6">184.3</text>
+  </g>
+
+  <!-- read-out -->
+  <text x="90" y="862" fill="#ffffff" fill-opacity="0.45" font-family="Mulish, sans-serif" font-size="21">An hour of video at 1 fps carries 460,800 visual tokens &#8212; 140 GB of KV against 72 GB of weights, before the second user arrives.</text>
+</svg>

@@ -1,0 +1,209 @@
+/*
+ * Wayfinding components.
+ *
+ * The site reads as one long choreographed scroll, which is the point, but it
+ * left a visitor with no map: no way back to the index from a case study, no
+ * way to narrow eighteen projects down to the ones they came for, and no link
+ * from a project to the code it describes. These are the pieces that answer
+ * "where am I" and "where is the rest", built out of the type and the pill
+ * shapes the site already uses so they read as part of it.
+ */
+
+/* ------------------------------------------------------------------
+ * Small uppercase label, the site's existing voice for section meta.
+ * ------------------------------------------------------------------ */
+
+.eyebrow_link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    opacity: .6;
+    transition: opacity .35s cubic-bezier(.455, .03, .515, .955);
+}
+
+.eyebrow_link:hover,
+.eyebrow_link:focus-visible {
+    opacity: 1;
+}
+
+.eyebrow_link .arrow {
+    display: inline-block;
+    transition: transform .35s cubic-bezier(.455, .03, .515, .955);
+}
+
+.eyebrow_link:hover .arrow {
+    transform: translateX(-4px);
+}
+
+/* Back to the index, above the case-study title. */
+.case_back--container {
+    margin-bottom: 40px;
+}
+
+/* ------------------------------------------------------------------
+ * Repo link in the case-study summary column.
+ *
+ * Sits in the same stack as Services / Stack / Year, so it inherits that
+ * rhythm; only the value becomes a pill you can click.
+ * ------------------------------------------------------------------ */
+
+.repo_link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background-color: rgba(255, 255, 255, .04);
+    font-size: 15px;
+    line-height: 1;
+    color: #fff;
+    transition: .35s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.repo_link svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.repo_link .arrow {
+    opacity: .5;
+    transition: transform .35s cubic-bezier(.455, .03, .515, .955);
+}
+
+.repo_link:hover,
+.repo_link:focus-visible {
+    background-color: #c2e9fb;
+    border-color: #c2e9fb;
+    color: #111;
+}
+
+.repo_link:hover .arrow {
+    transform: translate(2px, -2px);
+}
+
+/* ------------------------------------------------------------------
+ * Portfolio filters.
+ *
+ * Eighteen cards in a single column with no grouping. Every project already
+ * carries tags, so the vocabulary exists; this just makes it operable.
+ * ------------------------------------------------------------------ */
+
+.project_filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 0 70px;
+}
+
+.filter_chip {
+    padding: 11px 20px;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background-color: transparent;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    color: #fff;
+    opacity: .7;
+    cursor: pointer;
+    transition: .35s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.filter_chip:hover {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, .5);
+}
+
+.filter_chip[aria-pressed="true"] {
+    background-color: #c2e9fb;
+    border-color: #c2e9fb;
+    color: #111;
+    opacity: 1;
+}
+
+.filter_chip .count {
+    opacity: .5;
+    margin-left: 7px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Hidden by a filter. The grid keeps its own layout rules; this only has to
+   take the card out of flow and out of the tab order. */
+.single_project[hidden] {
+    display: none !important;
+}
+
+.filter_status {
+    text-align: center;
+    font-size: 14px;
+    opacity: .5;
+    padding-bottom: 30px;
+}
+
+/* ------------------------------------------------------------------
+ * Home hero tagline.
+ * ------------------------------------------------------------------ */
+
+.hero_tagline {
+    max-width: 430px;
+    margin-top: 26px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #bcbcbc;
+}
+
+/* ------------------------------------------------------------------
+ * The "scroll to discover" dial is the only affordance on a screen that
+ * otherwise does nothing until you scroll. Make it do what it says.
+ * ------------------------------------------------------------------ */
+
+/* The dial itself is a background-image on the container, so the button is a
+   transparent hit area laid over it rather than a wrapper around anything. */
+.circular_text--container button.scroll_cue {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+@media screen and (max-width: 767px) {
+    .case_back--container {
+        margin-bottom: 26px;
+    }
+
+    .eyebrow_link {
+        font-size: 12px;
+        letter-spacing: 4px;
+    }
+
+    .project_filters {
+        justify-content: flex-start;
+        gap: 8px;
+        padding-bottom: 45px;
+    }
+
+    .filter_chip {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .hero_tagline {
+        max-width: 300px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+}

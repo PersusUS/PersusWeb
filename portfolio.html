@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="css/shark.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/nav.css">
 
     <noscript>
         <style>
@@ -75,8 +76,24 @@
                 <div class="inner--container">
                     <div class="all_projects--container grid">
     
+                        <!--VLM CAPACITY WALL-->
+                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
+                            <div class="project_picture--container">
+                                <ul class="project_meta">
+                                    <li>Research</li>
+                                    <li>Systems</li>
+                                </ul>
+                                <img class="lazy" src="images/vlm-capacity.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="The Capacity Wall">
+                            </div>
+                            <div class="project_info--container">
+                                <p class="project_title">The Capacity Wall</p>
+                                <p class="project_description">Video VLM serving is bound by KV cache capacity, not bandwidth — 113× fewer users</p>
+                            </div>
+                            <a href="projects/vlm-capacity.html" class="project_link" aria-label="Read more about this case study"></a>
+                        </div>
+
                         <!--WORLD MODELS BENCHMARK-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Research</li>
@@ -92,7 +109,7 @@
                         </div>
 
                         <!--PERSEO-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Applied AI</li>
@@ -108,7 +125,7 @@
                         </div>
 
                         <!--KOTOBA-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Personal Tools</li>
@@ -124,7 +141,7 @@
                         </div>
 
                         <!--NIGHTSHIFT-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Agents</li>
@@ -140,11 +157,11 @@
                         </div>
 
                         <!--MAGI-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Applied AI</li>
-                                    <li>LLM</li>
+                                    <li>LLMs</li>
                                 </ul>
                                 <img class="lazy" src="images/magi.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="MAGI">
                             </div>
@@ -156,7 +173,7 @@
                         </div>
 
                         <!--HYBRIDMAMBA-11-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Research</li>
@@ -172,7 +189,7 @@
                         </div>
 
                         <!--MULTILINGUAL BENCHMARK-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Research</li>
@@ -188,7 +205,7 @@
                         </div>
 
                         <!--ARMARIO-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Personal Tools</li>
@@ -204,7 +221,7 @@
                         </div>
 
                         <!--NETKEY-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Product" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Product</li>
@@ -220,7 +237,7 @@
                         </div>
 
                         <!--TELEFONICA-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Speaking" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Speaking</li>
@@ -236,7 +253,7 @@
                         </div>
 
                         <!--SPUTNIK-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Speaking" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Speaking</li>
@@ -252,7 +269,7 @@
                         </div>
 
                         <!--AIMOUSE-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Computer Vision</li>
@@ -268,7 +285,7 @@
                         </div>
 
                         <!--FACE DETECTION-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Computer Vision</li>
@@ -284,7 +301,7 @@
                         </div>
 
                         <!--CLASSTRANSCRIBER-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Applied AI</li>
@@ -300,7 +317,7 @@
                         </div>
 
                         <!--AUTOLINKEDIN-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Applied AI</li>
@@ -316,7 +333,7 @@
                         </div>
 
                         <!--AGENTIC TRACES-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Dataset</li>
@@ -332,7 +349,7 @@
                         </div>
 
                         <!--BYTHEWAY-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0.2">
+                        <div class="single_project" data-category="Product" data-animation="fade-up" data-delay="0.2">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Venture</li>
@@ -348,7 +365,7 @@
                         </div>
 
                         <!--ORGAAI-->
-                        <div class="single_project" data-animation="fade-up" data-delay="0">
+                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
                             <div class="project_picture--container">
                                 <ul class="project_meta">
                                     <li>Applied AI</li>
@@ -463,6 +480,7 @@
 <script type="text/javascript" src="js/fancybox.min.js"></script>
 <script type="text/javascript" src="js/text-reflow.js"></script>
 <script type="text/javascript" src="js/master.min.js"></script>
+<script type="text/javascript" src="js/site-nav.js"></script>
 <script type="text/javascript" src="js/contact.js"></script>
 <script type="text/javascript" src="js/shark-mesh.js"></script>
 <script type="text/javascript" src="js/shark.js"></script>
