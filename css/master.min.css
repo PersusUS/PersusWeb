@@ -165,3 +165,40 @@ body {
         transition: none !important;
     }
 }
+
+/*
+ * Keyboard focus.
+ *
+ * The only thing the site used to draw around a focused element was whatever
+ * the browser's own outline happened to be, and on a near-black background
+ * against white text that is close to invisible. Anyone navigating by Tab —
+ * or by switch, or by voice — needs to see where they are. The dark ring
+ * around the white one keeps it visible over pale photographs too.
+ */
+:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, .85);
+    border-radius: 2px;
+}
+
+/* Elements we focus in script — a heading after a page transition, the footer
+   after a "Contact" click — are landing points, not controls: they should be
+   announced and scrolled to, but not painted with a ring nobody asked for. */
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+/*
+ * The call to action above the shark.
+ *
+ * "Interested in working together?" was set in white on the pale blue panel:
+ * a contrast ratio of about 1.3:1, which is a headline you have to already
+ * know is there to read. Deep navy on the same blue clears 8:1 and leaves the
+ * shark, the panel and the layout exactly as they were.
+ */
+.cta_footer--container .cta--container .text--container .title {
+    color: #10233f;
+}

@@ -35,7 +35,7 @@
         '                    <a href="' + base + 'about.html"' + active('about') + '>About Me</a>',
         '                </li>',
         '                <li class="menu-item">',
-        '                    <a href="#footer" onclick="lenis.scrollTo(\'#footer\')" class="">Contact</a>',
+        '                    <a href="#footer" class="">Contact</a>',
         '                </li>',
         '            </ul>',
         '        </nav>',

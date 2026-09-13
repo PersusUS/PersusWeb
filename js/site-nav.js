@@ -27,9 +27,16 @@
      * Portfolio filters
      * -------------------------------------------------------------- */
 
-    function initFilters() {
-        var grid = document.querySelector('.all_projects--container');
+    function initFilters(scope) {
+        var grid = (scope || document).querySelector('.all_projects--container');
         if (!grid) {
+            return;
+        }
+
+        // Page transitions call init() again on the new container. If a filter
+        // bar is already sitting above this grid, it belongs to this grid and
+        // there is nothing to build.
+        if (grid.parentNode.querySelector('.project_filters')) {
             return;
         }
 
@@ -121,9 +128,10 @@
      * SVG into an empty container, so wrap whatever landed there.
      * -------------------------------------------------------------- */
 
-    function initScrollCue() {
-        var dial = document.querySelector('.circular_text--container');
-        var target = document.querySelector('.default_row--container.intro');
+    function initScrollCue(scope) {
+        var root = scope || document;
+        var dial = root.querySelector('.circular_text--container');
+        var target = root.querySelector('.default_row--container.intro');
         if (!dial || !target || dial.querySelector('.scroll_cue')) {
             return false;
         }
@@ -143,23 +151,134 @@
         return true;
     }
 
-    function init() {
-        initFilters();
+    function init(scope) {
+        // Called from an event listener as well as from the transition hook,
+        // so anything that is not an element is nobody's container.
+        scope = (scope && scope.querySelector) ? scope : document;
+        initFilters(scope);
 
         // The dial's SVG arrives on master.min.js's schedule, so poll briefly
         // rather than guess a delay. Gives up after about eight seconds.
         var tries = 0;
         var timer = window.setInterval(function () {
             tries++;
-            if (initScrollCue() || tries > 40) {
+            if (initScrollCue(scope) || tries > 40) {
                 window.clearInterval(timer);
             }
         }, 200);
     }
 
+    /* --------------------------------------------------------------
+     * In-page links
+     *
+     * "Contact" in both menus pointed at #footer and called lenis.scrollTo().
+     * There is no global lenis object on these pages, so every click threw and
+     * the page sat exactly where it was — the one link a first-time visitor is
+     * most likely to try did nothing at all. The plain #footer jump does not
+     * survive the scroll machinery either, so do it here, instantly, and put
+     * focus in the footer so a keyboard lands where the eye does.
+     * -------------------------------------------------------------- */
+
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+        if (!link) {
+            return;
+        }
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+            return;
+        }
+
+        var id = link.getAttribute('href').slice(1);
+        if (!id) {
+            return;
+        }
+        var target = document.getElementById(id);
+        if (!target) {
+            return;
+        }
+
+        e.preventDefault();
+
+        // The mobile menu covers the page it is scrolling; master.min.js
+        // closes it on its own click handler, which may not have run yet.
+        document.body.classList.remove('nav-active');
+        var button = document.querySelector('.hamburger_btn');
+        if (button) {
+            button.setAttribute('aria-expanded', 'false');
+        }
+
+        scrollTo(target);
+
+        if (!target.hasAttribute('tabindex')) {
+            target.setAttribute('tabindex', '-1');
+        }
+        target.focus({ preventScroll: true });
+    });
+
+    /* --------------------------------------------------------------
+     * Page transitions
+     *
+     * Barba swaps the container without reloading any script, so everything
+     * built here has to be built again for the page that just arrived, and
+     * the reader has to be told they are somewhere new: a screen reader and
+     * a keyboard both stay exactly where they were otherwise, which on a
+     * link-driven site reads as "nothing happened".
+     * -------------------------------------------------------------- */
+
+    function focusNewPage(container, trigger) {
+        var scope = (container && container.querySelector) ? container : document;
+        var heading = scope.querySelector('h1')
+            || scope.querySelector('h2')
+            || document.getElementById('wrapper');
+        if (!heading) {
+            return;
+        }
+        if (!heading.hasAttribute('tabindex')) {
+            heading.setAttribute('tabindex', '-1');
+        }
+
+        // The heading is still visibility:hidden while its letters wait to be
+        // revealed, and focus() on a hidden element is a no-op, so try again
+        // until it takes. Four seconds covers the slowest reveal measured
+        // (project page into About) and then gives up rather than fighting
+        // someone who has already clicked something else.
+        var tries = 0;
+        var timer = window.setInterval(function () {
+            tries++;
+            // Only ever take focus away from nothing. Once the old link is
+            // gone the page focuses <body>; if anything else holds focus it
+            // is because the reader moved on, and it is not ours to take.
+            // The header is not replaced between pages, so a link clicked
+            // there still holds focus and is exactly what should move.
+            var idle = document.activeElement === document.body
+                || document.activeElement === null
+                || document.activeElement === heading
+                || (trigger && trigger.nodeType === 1 && document.activeElement === trigger);
+            if (idle) {
+                heading.focus({ preventScroll: true });
+            }
+            if (!idle || document.activeElement === heading || tries > 40) {
+                window.clearInterval(timer);
+            }
+        }, 100);
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', function () {
+            init();
+        });
     } else {
         init();
+    }
+
+    // afterEnter, and everything scoped to data.next.container: this runs in
+    // sync mode, so the page that is leaving is still in the document and an
+    // unscoped lookup finds its markup first. (`after` never fires here.)
+    if (window.barba && window.barba.hooks) {
+        window.barba.hooks.afterEnter(function (data) {
+            var container = data && data.next && data.next.container;
+            init(container);
+            focusNewPage(container, data && data.trigger);
+        });
     }
 })();
