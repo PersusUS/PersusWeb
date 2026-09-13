@@ -192,13 +192,48 @@ body {
 }
 
 /*
- * The call to action above the shark.
- *
- * "Interested in working together?" was set in white on the pale blue panel:
- * a contrast ratio of about 1.3:1, which is a headline you have to already
- * know is there to read. Deep navy on the same blue clears 8:1 and leaves the
- * shark, the panel and the layout exactly as they were.
+ * .accessibility un-clips itself on :focus so the skip link can appear. That
+ * is right for a link and wrong for everything else: the home page's <h1> is
+ * a screen-reader-only line, and anything that focuses it paints it across
+ * the hero. Only links come back into view.
  */
-.cta_footer--container .cta--container .text--container .title {
-    color: #10233f;
+.accessibility:not(a):focus,
+.accessibility:not(a):active {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+/*
+ * The mobile menu sat under the header.
+ *
+ * The panel centres its links in the full height of the screen while the
+ * header stays fixed on top of it at z-index 110 — so on a phone the first
+ * two entries, Home and Projects, were covered by the header box and every
+ * tap on them hit nothing at all. The menu looked fine and did not work.
+ * Reserve the header's height, and let the list scroll on short screens.
+ */
+.mobile_menu--wrapper .mobile_menu--container .inner {
+    padding-top: 150px;
+    padding-bottom: 40px;
+    overflow-y: auto;
+}
+
+/*
+ * And the header itself only catches what it draws.
+ *
+ * It is a fixed, transparent bar 133px tall across the full width, so every
+ * click in that band — on the menu beneath it, on anything at the top of the
+ * page — landed on the header's empty box instead of what the reader aimed
+ * at. Only the logo, the links and the button take clicks now.
+ */
+#header {
+    pointer-events: none;
+}
+
+#header a,
+#header button {
+    pointer-events: auto;
 }

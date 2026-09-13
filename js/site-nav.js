@@ -226,10 +226,14 @@
      * -------------------------------------------------------------- */
 
     function focusNewPage(container, trigger) {
-        var scope = (container && container.querySelector) ? container : document;
-        var heading = scope.querySelector('h1')
-            || scope.querySelector('h2')
-            || document.getElementById('wrapper');
+        // The container itself, never a heading. The home page's <h1> carries
+        // class="accessibility" — it is clipped out of sight for sighted
+        // readers, and the stylesheet un-clips it on :focus, which painted the
+        // whole line across the hero. The container is announced just as well
+        // and has nothing to show.
+        var heading = (container && container.querySelector)
+            ? container
+            : document.getElementById('wrapper');
         if (!heading) {
             return;
         }
@@ -237,11 +241,10 @@
             heading.setAttribute('tabindex', '-1');
         }
 
-        // The heading is still visibility:hidden while its letters wait to be
-        // revealed, and focus() on a hidden element is a no-op, so try again
-        // until it takes. Four seconds covers the slowest reveal measured
-        // (project page into About) and then gives up rather than fighting
-        // someone who has already clicked something else.
+        // The container may still be mid-transition, and focus() on something
+        // hidden is a no-op, so try again until it takes. Four seconds covers
+        // the slowest transition measured and then gives up rather than
+        // fighting someone who has already clicked something else.
         var tries = 0;
         var timer = window.setInterval(function () {
             tries++;
