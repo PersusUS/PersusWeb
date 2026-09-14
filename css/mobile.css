@@ -770,3 +770,31 @@ html {
         margin-top: 8px;
     }
 }
+
+/* ===================================================================
+ * Round six.
+ * =================================================================== */
+
+/* The loader is supposed to be the only thing on screen, and it was not.
+   Its stripes sit at z-index 1 and the "J" at 5, while #header is 110
+   and the section bar is 108 — so the logo and "SECTION 1 OF 4" were
+   painted on top of the blue for the whole three seconds. Nothing is
+   above the loader while the loader is up. */
+.loader_wrapper .stripe {
+    z-index: 200;
+}
+
+.loader_wrapper #loading_animation {
+    z-index: 201;
+}
+
+@media screen and (max-width: 767px) {
+
+    /* The "scroll to discover" dial is anchored 35px off the bottom-left
+       of the hero. The section bar is fixed 22px off the bottom of the
+       viewport and stands 59px tall, so on a phone it parks squarely on
+       top of the dial. Lift the dial clear of it. */
+    .home_hero--wrapper .circular_text--container {
+        bottom: 120px;
+    }
+}

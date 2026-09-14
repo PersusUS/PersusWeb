@@ -162,37 +162,21 @@
     }
 
     /* ---------------------------------------------------------------
-     * The browser chrome kept the loader's colour
+     * Why theme-color is a constant
      *
-     * Every page opens with .loader_wrapper: four fixed #7e9fdb stripes
-     * covering the viewport for three seconds behind a rotating "J".
-     * iOS Safari decides what to tint its own toolbars with while the
-     * page is loading, which is exactly when the screen is that blue,
-     * and it does not go back and reconsider once the stripes slide
-     * away. So the phone kept a pale blue bar top and bottom over a
-     * black page for the rest of the visit.
+     * It was worth one attempt: declare theme-color as the loader's
+     * blue so iOS Safari tints its toolbars to match the loading
+     * screen, then swap it for the page background once the stripes
+     * leave. The swap runs — the deployed page reports #111111 in the
+     * tag after load — and Safari's bars stay blue anyway. It reads
+     * that tag once, when it parses the document, and never looks
+     * again.
      *
-     * theme-color is declared as the loader's blue, so the chrome
-     * matches the screen while the animation runs, and is swapped for
-     * the page background the moment the stripes leave. Which is what
-     * it should have looked like all along: blue, then the background,
-     * and nothing else.
+     * So the only value that can be declared is the one that should be
+     * true for the whole visit, and that is the page background. The
+     * three seconds of loader are the exception, and an exception you
+     * cannot express is not worth a permanently wrong toolbar.
      * --------------------------------------------------------------- */
-
-    var PAGE_COLOUR = '#111111';
-
-    function settleThemeColour() {
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (!meta || meta.getAttribute('content') === PAGE_COLOUR) {
-            return;
-        }
-        meta.setAttribute('content', PAGE_COLOUR);
-        // Safari only re-reads the tag when it changes, and it does not
-        // always notice an attribute edit in place.
-        var parent = meta.parentNode;
-        parent.removeChild(meta);
-        parent.appendChild(meta);
-    }
 
     /*
      * The loader never actually left.
@@ -220,7 +204,6 @@
     }
 
     function finish(loader) {
-        settleThemeColour();
         if (loader) {
             retireLoader(loader);
         }
@@ -229,7 +212,6 @@
     function watchLoader() {
         var loader = document.querySelector('.loader_wrapper');
         if (!loader) {
-            settleThemeColour();
             return;
         }
         if (loader.classList.contains('loaded')) {
