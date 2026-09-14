@@ -25,6 +25,25 @@
     }
 
     /* ---------------------------------------------------------------
+     * The pin, and the address bar
+     *
+     * The hero is pinned for 80% of the viewport height, and the very
+     * first flick of a finger is also what makes iOS Safari collapse
+     * its address bar. That collapse is a resize, a resize refreshes
+     * every ScrollTrigger, and a refresh in the middle of a pin
+     * recalculates the pin's start against a viewport that is 60-odd
+     * pixels taller than the one it was measured in — so the page jumps
+     * under the thumb.
+     *
+     * ignoreMobileResize tells ScrollTrigger to sit out a resize that
+     * only changes the height on a touch device, which is exactly the
+     * toolbar case and nothing else. Rotation still refreshes.
+     * --------------------------------------------------------------- */
+    if (window.ScrollTrigger && ScrollTrigger.config) {
+        ScrollTrigger.config({ ignoreMobileResize: true });
+    }
+
+    /* ---------------------------------------------------------------
      * Home hero
      *
      * masterInit builds this:
@@ -35,94 +54,24 @@
      *                        end: '+=80%', scrub: .3, pin: true, id: 'letters' }
      *   })
      *
-     * You scroll, the wordmark is pinned and zoomed 70x, and the camera
-     * flies through the aperture of a letter. At 1440px the aperture is
-     * where `x: 87%` puts it. At 375px the same 87% of a much narrower box
-     * lands outside the glyph entirely, so the whole pin — about 650px of
-     * scrolling — is flat black with nothing in it.
+     * You scroll, the wordmark is pinned and the camera drives into the
+     * black between two letters until it fills the screen and hands over
+     * to the section below.
      *
-     * On phones the pin is replaced with a plain scrubbed fade over the
-     * hero's own height: the wordmark still leaves deliberately, but it
-     * never holds the viewport hostage.
+     * An earlier pass here replaced that with a plain fade on phones, on
+     * the theory that `x: 87%` aimed the camera somewhere else on a
+     * narrow screen. It does not: 87% is a share of the element's own
+     * width and the element is the full width of the viewport, so the
+     * camera lands 0.87/70 = 1.24% of the screen left of centre at every
+     * size. Measured against the wordmark's own geometry that is user
+     * unit 868 at 1440px and 874 at 390px — both inside the same gap
+     * between the S and the P, which is solid from 810 to 928.
+     *
+     * So the effect was never aimed wrong on a phone; it was only ever
+     * missing. The bundle's own trigger is left alone at every width,
+     * and the fade — which is what actually made the name smear across
+     * the logo on the way out — is gone.
      * --------------------------------------------------------------- */
-
-    var DESKTOP_ID = 'letters';
-    var PHONE_ID = 'letters-phone';
-
-    function dropTrigger(id) {
-        var st = ScrollTrigger.getById(id);
-        if (!st) {
-            return false;
-        }
-        var tween = st.animation;
-        st.kill(true);
-        if (tween) {
-            tween.kill();
-        }
-        return true;
-    }
-
-    function applyHeroZoom() {
-        if (!ready()) {
-            return;
-        }
-        var el = document.querySelector('.hero_heading--container');
-        if (!el) {
-            return;
-        }
-
-        var changed = false;
-
-        if (isPhone()) {
-            changed = dropTrigger(DESKTOP_ID);
-            if (ScrollTrigger.getById(PHONE_ID)) {
-                return;
-            }
-            gsap.set(el, { clearProps: 'all' });
-            gsap.to(el, {
-                scale: 1.35,
-                opacity: 0,
-                ease: 'none',
-                transformOrigin: 'center center',
-                scrollTrigger: {
-                    trigger: '.home_hero--wrapper',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.3,
-                    id: PHONE_ID
-                }
-            });
-            changed = true;
-        } else {
-            // Back above the breakpoint. masterInit only builds the zoom on
-            // its own next run, so rebuild it here with the bundle's values.
-            if (dropTrigger(PHONE_ID)) {
-                gsap.set(el, { clearProps: 'all' });
-                changed = true;
-            }
-            if (!ScrollTrigger.getById(DESKTOP_ID)) {
-                gsap.to(el, {
-                    scale: 70,
-                    force3D: false,
-                    x: '87%',
-                    transformOrigin: 'center center',
-                    scrollTrigger: {
-                        trigger: '.home_hero--wrapper',
-                        start: 'top top',
-                        end: '+=80%',
-                        scrub: 0.3,
-                        pin: true,
-                        id: DESKTOP_ID
-                    }
-                });
-                changed = true;
-            }
-        }
-
-        if (changed) {
-            ScrollTrigger.refresh(true);
-        }
-    }
 
     /* ---------------------------------------------------------------
      * The contact footer's 250px entrance
@@ -144,6 +93,20 @@
      * GSAP writes the transform inline, so a stylesheet cannot override
      * it. The trigger has to go, and the transform with it.
      * --------------------------------------------------------------- */
+
+    // Kill a ScrollTrigger the bundle built, and the tween hanging off it.
+    function dropTrigger(id) {
+        var st = ScrollTrigger.getById(id);
+        if (!st) {
+            return false;
+        }
+        var tween = st.animation;
+        st.kill(true);
+        if (tween) {
+            tween.kill();
+        }
+        return true;
+    }
 
     var CTA_ID = 'cta reveal';
 
@@ -172,10 +135,10 @@
      * that tag once, when it parses the document, and never looks
      * again.
      *
-     * So the only value that can be declared is the one that should be
-     * true for the whole visit, and that is the page background. The
-     * three seconds of loader are the exception, and an exception you
-     * cannot express is not worth a permanently wrong toolbar.
+     * The tag is therefore pinned to the page background, and the
+     * loader has been repainted in that same colour (master.css), so
+     * there is no longer a moment in the visit when the screen and the
+     * toolbars are meant to disagree.
      * --------------------------------------------------------------- */
 
     /*
@@ -189,11 +152,11 @@
      * The rule is in the stylesheet, the wrapper has the class, and the
      * stripe matches the selector — and the computed transform is still
      * the identity matrix. Whatever is eating it, the result is four
-     * fixed, full-height, #7e9fdb panels parked at z-index 1 for the
-     * whole visit. Page sections sit at z-index 2 and cover them, so it
-     * reads as correct until something does not paint: the overscroll
-     * at either end, a gap between sections, and the strip of page iOS
-     * Safari samples to colour its toolbars.
+     * fixed, full-height panels parked over the page for the whole
+     * visit. Page sections cover them, so it reads as correct until
+     * something does not paint: the overscroll at either end, a gap
+     * between sections, and the strip of page iOS Safari samples to
+     * colour its toolbars.
      *
      * Taking the wrapper out of the document once the animation has had
      * its time is not subtle, but it does not depend on working out why
@@ -201,6 +164,9 @@
      */
     function retireLoader(loader) {
         loader.style.display = 'none';
+        if (loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+        }
     }
 
     function finish(loader) {
@@ -236,7 +202,6 @@
     }
 
     function apply() {
-        applyHeroZoom();
         applyCtaSlide();
     }
 

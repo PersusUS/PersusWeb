@@ -14,9 +14,16 @@
     transition: 0.35s all cubic-bezier(.455, .03, .515, .955);
 }
 
+/* The stripes are the first thing a visitor sees, and on iOS they are also
+   the last word on what colour Safari paints its toolbars: Safari samples the
+   page once, at first paint, and at first paint the page is nothing but these
+   four panels. A #7e9fdb screen therefore bought a periwinkle toolbar for the
+   whole visit, no matter what <meta name="theme-color"> said afterwards. The
+   loader wipe now runs in the site's own background colour, so the sample and
+   the page agree. */
 .loader_wrapper .stripe {
     position: fixed;
-    background-color: #7e9fdb;
+    background-color: #111111;
     height: 100%;
     width: 25%;
     top: 0;

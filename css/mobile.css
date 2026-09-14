@@ -356,11 +356,39 @@
         margin-bottom: 26px;
     }
 
+    /* Three centred columns stacked into one. The column keeps the
+       centring — .footer-col is text-align:center and was never
+       overridden, so aligning the flex items left only put the short
+       lines hard against the gutter while the long ones stayed centred
+       inside their own full-width box, which is the ragged left edge in
+       the screenshots. */
     .footer-bottom--wrapper {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-        text-align: left;
+        align-items: center;
+        gap: 22px;
+        text-align: center;
+    }
+
+    .footer-bottom--wrapper .footer-col {
+        margin: 0;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* Instagram / Twitter / Linkedin / GitHub is 4 words and 3 slashes.
+       At 16px with 10px either side of every link it needs 420px and a
+       phone has 340 of usable width, so the last name wrapped onto a
+       line of its own. */
+    .footer-bottom--wrapper .social-links {
+        font-size: clamp(12px, 3.4vw, 14px);
+    }
+
+    .footer-bottom--wrapper .social-links a {
+        margin: 0 3px;
+        font-size: inherit;
+        display: inline-block;
+        padding: 6px 0;
     }
 
     /* ---------------------------------------------------------------
@@ -601,9 +629,9 @@
      *
      * On desktop this is three equal flex columns, each centred inside
      * its own third, so nothing ever reaches the edge and no padding was
-     * needed. The phone layer stacks them into one left-aligned column,
-     * which put every line hard against x=0 with the long ones running
-     * off the right. It needs the same 25px gutter as .inner--container.
+     * needed. Stacked into one column on a phone, the long lines run to
+     * both edges of the screen. It needs the same 25px gutter as
+     * .inner--container.
      * --------------------------------------------------------------- */
 
     .footer-bottom--wrapper {
@@ -630,8 +658,11 @@
         margin-top: 26px;
     }
 
+    /* The headline is white everywhere else on the site and it is white
+       here too; it was darkened only while it still sat on top of the
+       shark, and it has not sat there since the block was put in flow. */
     .cta_footer--container .cta--container .text--container .title {
-        color: #111;
+        color: #fff;
     }
 
     .cta_footer--container .cta--container .text--container .lovely_button {
