@@ -638,3 +638,111 @@
         margin-top: 4px;
     }
 }
+
+/* ===================================================================
+ * Round four, from screenshots taken on an iPhone.
+ * =================================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* ---------------------------------------------------------------
+     * The header had nothing behind it
+     *
+     * #header is fixed at z-index 110 with no background, so every
+     * project title, chart and figure scrolls straight underneath the
+     * circular logo. On a 1440px desktop the logo sits in a wide empty
+     * margin and the header hides itself on the way down, so the two
+     * rarely meet. On a 375px phone they share the same column and the
+     * collision is constant: a white wordmark on top of a white paper
+     * figure, or "PERSEO" printed through the middle of the dial.
+     *
+     * A hard bar would cut the page in two, so this is a fade — opaque
+     * under the logo, gone by the bottom of the header.
+     * --------------------------------------------------------------- */
+
+    #header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 132px;
+        pointer-events: none;
+        z-index: -1;
+        background: linear-gradient(
+            to bottom,
+            #111 0%,
+            rgba(17, 17, 17, .96) 45%,
+            rgba(17, 17, 17, .75) 72%,
+            rgba(17, 17, 17, 0) 100%
+        );
+    }
+
+    /* ---------------------------------------------------------------
+     * "WMF BENCHMARK" was white on white
+     *
+     * Lifting the curtain off the next-project thumbnail uncovered the
+     * other half of the problem: these thumbnails are research figures,
+     * and half of them are black ink on white paper. The card paints a
+     * white title straight onto that, over a scrim that is only 50%
+     * black. Darkening the scrim does not fix it — anything heavy
+     * enough to carry white type turns the figure into a grey smear,
+     * and the figure is the reason the card is there.
+     *
+     * So the card stops being an overlay, exactly like the home and
+     * portfolio cards already do on a phone: figure first, at its own
+     * size, then the label and the title underneath on the page's own
+     * background. Nothing is printed on top of anything.
+     * --------------------------------------------------------------- */
+
+    .next-project {
+        display: flex;
+        flex-direction: column;
+        padding: 56px 0 64px;
+    }
+
+    .next-project .image--container {
+        order: 1;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: calc(100% - 50px);
+        height: auto;
+        aspect-ratio: 16 / 10;
+        margin: 0 auto 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #1a1a1a;
+    }
+
+    .next-project .image--container img {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Both of these existed to make white type legible on top of the
+       image. Nothing sits on top of the image any more. */
+    .next-project .image--container::before,
+    .next-project .image--container::after {
+        display: none;
+    }
+
+    .next-project .inner--container {
+        order: 2;
+    }
+}
+
+/* The overscroll area at the top and bottom of the document, and the
+   colour iOS Safari tints its own toolbars with when it decides to
+   sample the page instead of honouring <meta name="theme-color">.
+   Without this, html has no background of its own and the nearest
+   thing to sample is the pale blue of the contact block. */
+html {
+    background-color: #111111;
+}
