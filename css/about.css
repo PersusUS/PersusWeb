@@ -2,7 +2,7 @@
 
 .about_gallery--wrapper .inner--container .grid {
     padding-top: 60px;
-    padding-bottom: 200px;
+    padding-bottom: 120px;
     row-gap: 40px;
     align-items: start;
 }
@@ -56,7 +56,7 @@
 
 @media screen and (max-width: 1050px) {
     .about_gallery--wrapper .inner--container .grid {
-        padding-bottom: 140px;
+        padding-bottom: 100px;
     }
 
     .about_gallery--wrapper .photo:nth-of-type(2) {

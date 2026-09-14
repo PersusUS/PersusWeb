@@ -1,18 +1,28 @@
 /*
- * Tiger shark for the contact footer.
+ * Tiger shark, rendered wherever a canvas asks for one.
  *
  * Renders the model in js/shark-mesh.js with a small hand-written WebGL
  * renderer — no three.js, no external dependencies. The mesh ships in its
  * bind pose; the swimming motion is a travelling sine wave applied in the
  * vertex shader, and the yaw follows the scroll position so the animal turns
- * as the footer comes into view.
+ * as you read past it.
+ *
+ * Any canvas carrying [data-shark] gets one, and the four numbers that decide
+ * how it behaves are read off the element:
+ *
+ *   data-shark-yaw    heading at rest, radians (default -0.35, facing right)
+ *   data-shark-span   radians of yaw swept across a full scroll pass (1.05)
+ *   data-shark-roll   radians of bank across the same pass (0.18)
+ *   data-shark-fill   share of the visible width the body should take (0.62)
+ *
+ * The footer canvas keeps the defaults, so it renders exactly as before.
  *
  * Model: "Shark" by Quaternius (poly.pizza), CC0 1.0 — public domain, no
  * attribution required. The rig and animation clips were stripped when baking;
  * material base colours were baked to vertex colours.
  *
- * Replaces the old <video id="cta_video">, whose source (/assets/videos/…)
- * has never existed in this repository.
+ * In the footer it replaces the old <video id="cta_video">, whose source
+ * (/assets/videos/…) has never existed in this repository.
  */
 (function () {
     'use strict';
@@ -20,7 +30,19 @@
     var CANVAS_ID = 'shark_canvas';
     var HEAD_X = 1.10;      // snout sits at +x, the animal faces right
     var BODY_LEN = 2.20;
-    var instance = null;
+    var instances = [];
+
+    var DEFAULTS = { yaw: -0.35, span: 1.05, roll: 0.18, fill: 0.62 };
+
+    function options(canvas) {
+        var o = {}, k;
+        for (k in DEFAULTS) {
+            if (!DEFAULTS.hasOwnProperty(k)) continue;
+            var raw = parseFloat(canvas.getAttribute('data-shark-' + k));
+            o[k] = isNaN(raw) ? DEFAULTS[k] : raw;
+        }
+        return o;
+    }
 
     /* ---------------------------------------------------------------- maths */
 
@@ -157,7 +179,7 @@
         return s;
     }
 
-    function create(canvas) {
+    function create(canvas, opt) {
         var mesh = loadMesh();
         if (!mesh) return null;
 
@@ -206,7 +228,8 @@
             uModel: gl.getUniformLocation(prog, 'uModel'),
             uTime: gl.getUniformLocation(prog, 'uTime'),
             uSway: gl.getUniformLocation(prog, 'uSway'),
-            yaw: -0.35, roll: 0, aspect: 1, scale: 1,
+            opt: opt,
+            yaw: opt.yaw, roll: 0, aspect: 1, scale: 1,
             raf: 0, start: 0,
             reduced: !!(window.matchMedia &&
                 window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -224,7 +247,7 @@
         }
         s.aspect = w / h;
         var visibleW = 2 * 3.6 * Math.tan(0.28) * s.aspect;
-        s.scale = Math.max(0.7, Math.min(2.0, 0.62 * visibleW / BODY_LEN));
+        s.scale = Math.max(0.7, Math.min(2.4, s.opt.fill * visibleW / BODY_LEN));
     }
 
     // 0 when the footer first appears at the bottom of the screen, 1 once it
@@ -243,8 +266,11 @@
         resize(s);
 
         var p = scrollProgress(s.canvas);
-        s.yaw += ((-0.35 + (p - 0.5) * 1.05) - s.yaw) * 0.075;
-        s.roll += (((p - 0.5) * 0.18 + Math.sin(t * 0.27) * 0.05) - s.roll) * 0.06;
+        // The idle drift is what keeps the animal alive on a page nobody is
+        // scrolling; the scroll term is what turns it while they read.
+        var idle = Math.sin(t * 0.21) * 0.06;
+        s.yaw += ((s.opt.yaw + idle + (p - 0.5) * s.opt.span) - s.yaw) * 0.075;
+        s.roll += (((p - 0.5) * s.opt.roll + Math.sin(t * 0.27) * 0.05) - s.roll) * 0.06;
         var pitch = -0.08 + Math.sin(t * 0.36) * 0.035;
 
         var gl = s.gl;
@@ -262,26 +288,24 @@
     /* ------------------------------------------------------------------ init */
 
     function stop() {
-        if (instance) {
-            cancelAnimationFrame(instance.raf);
-            if (instance.observer) instance.observer.disconnect();
-            instance = null;
-        }
+        instances.forEach(function (s) {
+            cancelAnimationFrame(s.raf);
+            if (s.observer) s.observer.disconnect();
+        });
+        instances = [];
     }
 
-    function init() {
-        stop();
-        var canvas = document.getElementById(CANVAS_ID);
-        if (!canvas) return;
-
-        var s = create(canvas);
+    function mount(canvas) {
+        var s = create(canvas, options(canvas));
         if (!s) return;
-        instance = s;
+        instances.push(s);
 
         resize(s);
         s.raf = requestAnimationFrame(function (n) { frame(s, n); });
 
-        // Stop drawing while the footer is off screen.
+        // Stop drawing while this one is off screen. Two canvases on a page
+        // are two WebGL contexts, and only the one being looked at should be
+        // spending frames.
         if (window.IntersectionObserver) {
             s.observer = new IntersectionObserver(function (entries) {
                 var on = entries[0].isIntersecting;
@@ -295,6 +319,17 @@
             }, { rootMargin: '150px' });
             s.observer.observe(canvas);
         }
+    }
+
+    function init() {
+        stop();
+        var seen = [];
+        var footer = document.getElementById(CANVAS_ID);
+        if (footer) seen.push(footer);
+        Array.prototype.forEach.call(document.querySelectorAll('canvas[data-shark]'), function (c) {
+            if (seen.indexOf(c) === -1) seen.push(c);
+        });
+        seen.forEach(mount);
     }
 
     function hookBarba() {
