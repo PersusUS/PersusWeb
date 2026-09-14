@@ -189,3 +189,397 @@
         font-size: 13px;
     }
 }
+
+/* ==================================================================
+ * Telling the reader that the page scrolls, and where they are in it.
+ *
+ * Every page here is one long choreographed scroll on a near-black
+ * background, with deliberate empty space between sections. A reader who
+ * does not spend their life on the web reads that empty space as "the
+ * page has ended" and leaves — the About page is five sections deep and
+ * nothing on screen said so. Three pieces, answering the two questions
+ * such a reader actually has, "is there more?" and "how much more?":
+ *
+ *   - a progress bar along the top;
+ *   - a bar of named sections along the bottom, marking the one being
+ *     read, and on a phone shrinking to "section 3 of 6" with a pair of
+ *     arrows;
+ *   - a "next: <section>" button sitting in each gap, so the gap reads
+ *     as a door rather than an ending.
+ *
+ * The bar is docked to the bottom rather than to the side because the
+ * content on these pages runs to both edges — a rail down the right
+ * lands on top of the résumé dates and the project cards — and because
+ * a strip that is read left to right needs no explaining.
+ *
+ * All of it is built by js/site-nav.js except the hero's arrow, which is
+ * in index.html so that it, at least, survives with no JavaScript.
+ * ================================================================== */
+
+/* ------------------------------------------------------------------
+ * 1. Reading progress, along the very top of every page.
+ * ------------------------------------------------------------------ */
+
+.scroll_progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 108;
+    pointer-events: none;
+    background: rgba(255, 255, 255, .08);
+}
+
+.scroll_progress .bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #fff;
+}
+
+/* ------------------------------------------------------------------
+ * 2. The hero cue: the one thing on the first screen that says "scroll".
+ *
+ * The circular dial in the corner already said "scroll to discover", in
+ * 9px letters bent around a circle, which nobody read. This says it in a
+ * straight line under a moving arrow, in the middle of the screen.
+ * ------------------------------------------------------------------ */
+
+.scroll_hint {
+    position: absolute;
+    left: 50%;
+    bottom: 42px;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 18px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: scroll_hint_in .8s cubic-bezier(.455, .03, .515, .955) 3.4s forwards;
+}
+
+.scroll_hint--label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: .7;
+    transition: opacity .35s cubic-bezier(.455, .03, .515, .955);
+}
+
+.scroll_hint--arrow {
+    display: block;
+    animation: scroll_hint_bounce 1.8s cubic-bezier(.455, .03, .515, .955) infinite;
+}
+
+.scroll_hint:hover .scroll_hint--label,
+.scroll_hint:focus-visible .scroll_hint--label {
+    opacity: 1;
+}
+
+/* Once the reader has started scrolling the cue has done its job. */
+.scroll_hint.is-hidden {
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s cubic-bezier(.455, .03, .515, .955);
+}
+
+@keyframes scroll_hint_in {
+    from { opacity: 0; transform: translate(-50%, 14px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes scroll_hint_bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(7px); }
+}
+
+/* ------------------------------------------------------------------
+ * 3. The section bar: a contents list docked to the bottom of the page.
+ *
+ * Named sections, in page order, with the one being read marked. It is
+ * the map the site never had, and every name is a button, so it doubles
+ * as a way out of a section somebody does not care about.
+ * ------------------------------------------------------------------ */
+
+.section_status {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    z-index: 108;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    max-width: calc(100% - 32px);
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 99px;
+    background: rgba(17, 17, 17, .93);
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 14px);
+    transition: .35s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.section_status.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.section_status .list {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.section_status .list button {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 99px;
+    background: none;
+    cursor: pointer;
+    color: #fff;
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: .45;
+    transition: .3s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.section_status .list button:hover,
+.section_status .list button:focus-visible {
+    opacity: .85;
+}
+
+.section_status .list button[aria-current="true"] {
+    opacity: 1;
+    background: rgba(255, 255, 255, .14);
+}
+
+/* The phone version of the same thing: where you are, and two arrows. */
+.section_status .where {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0 4px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.section_status .where .count {
+    display: block;
+    opacity: .5;
+    letter-spacing: 3px;
+}
+
+.section_status .nav_btn {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    color: #fff;
+    transition: .35s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.section_status .nav_btn:hover:not([disabled]),
+.section_status .nav_btn:focus-visible {
+    border-color: #fff;
+    background: rgba(255, 255, 255, .12);
+}
+
+.section_status .nav_btn[disabled] {
+    opacity: .25;
+    cursor: default;
+}
+
+/* Wide enough for the names: show them, and drop the arrows. */
+@media screen and (min-width: 1200px) {
+    .section_status .where,
+    .section_status .nav_btn {
+        display: none;
+    }
+}
+
+/* ------------------------------------------------------------------
+ * 4. The button at the end of a section.
+ *
+ * The empty space between sections is the part that reads as the end of
+ * the page. This sits in it and says, in words, what comes next.
+ * ------------------------------------------------------------------ */
+
+.next_section--container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    padding: 10px 25px 70px;
+    text-align: center;
+}
+
+.next_section {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 28px;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 99px;
+    background: none;
+    cursor: pointer;
+    color: #fff;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: .35s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.next_section:hover,
+.next_section:focus-visible {
+    border-color: #fff;
+    background: rgba(255, 255, 255, .08);
+}
+
+.next_section .arrow {
+    display: block;
+    transition: transform .35s cubic-bezier(.455, .03, .515, .955);
+}
+
+.next_section:hover .arrow {
+    transform: translateY(4px);
+}
+
+/* ------------------------------------------------------------------
+ * 5. Back to the top, once there is a top worth going back to.
+ * ------------------------------------------------------------------ */
+
+.back_to_top {
+    position: fixed;
+    right: 26px;
+    bottom: 26px;
+    z-index: 108;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 50%;
+    background: rgba(17, 17, 17, .9);
+    cursor: pointer;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: .35s all cubic-bezier(.455, .03, .515, .955);
+}
+
+.back_to_top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back_to_top:hover,
+.back_to_top:focus-visible {
+    border-color: #fff;
+    background: rgba(255, 255, 255, .12);
+}
+
+/* ------------------------------------------------------------------
+ * 6. Room at the foot of every page, so the bar never sits on the last
+ *    line of the footer.
+ * ------------------------------------------------------------------ */
+
+#footer-bottom {
+    padding-bottom: 90px;
+}
+
+@media screen and (max-width: 1199px) {
+    .back_to_top {
+        display: none;
+    }
+
+    /* On a phone the bar spans the screen: a strip is easier to hit
+       than a floating pill, and there is no room to float it. */
+    .section_status {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: none;
+        gap: 12px;
+        padding: 9px 14px;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        transform: translateY(100%);
+    }
+
+    .section_status.is-visible {
+        transform: translateY(0);
+    }
+
+    .section_status .list {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .scroll_hint {
+        bottom: 96px;
+        gap: 10px;
+    }
+
+    .scroll_hint--label {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .next_section--container {
+        padding-bottom: 50px;
+    }
+
+    .next_section {
+        padding: 14px 22px;
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+}
+
+/* Somebody who has asked for less movement still needs the cue — they
+   just do not need it waving at them. */
+@media (prefers-reduced-motion: reduce) {
+    .scroll_hint {
+        opacity: 1;
+        transform: translateX(-50%);
+        animation: none;
+    }
+
+    .scroll_hint--arrow {
+        animation: none;
+    }
+}

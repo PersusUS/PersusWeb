@@ -393,3 +393,172 @@
         transform: translate(-50%, -50%) scale(1);
     }
 }
+
+/* ===================================================================
+ * Round two. Everything above was written blind against the markup;
+ * everything below came out of driving the real pages at 375x812 and
+ * measuring what actually collided.
+ *
+ * Still phone-only, still override-only: no desktop rule is touched.
+ * =================================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* ---------------------------------------------------------------
+     * Display type, clipped
+     *
+     * SplitText wraps every word in `.word { overflow: hidden }` so the
+     * glyphs can slide up into view from behind their own line box. That
+     * box is the line box, so any line-height below 1 makes the mask
+     * shorter than the letters it is masking and Coign — which has tall
+     * caps and a deep descender — gets sliced top and bottom.
+     *
+     * It reads as a rendering fault rather than as a style: "A LITTLE
+     * ABOUT ME" came out with flat-topped letters and half an accent.
+     *
+     * Two halves to the fix. Line-height at or above 1 buys the
+     * descender room at the bottom, where the mask edge has to stay put
+     * because that is the edge the reveal slides through. The ascender
+     * gets its room from padding on the mask itself, cancelled by an
+     * equal negative margin so nothing below moves.
+     * --------------------------------------------------------------- */
+
+    .word {
+        padding-top: .16em;
+        margin-top: -.16em;
+    }
+
+    .projects_intro--wrapper .inner--container h1,
+    .about_intro--wrapper .inner--container .grid h1,
+    .single_case_hero--row .grid h1 {
+        line-height: 1;
+    }
+
+    .cta_footer--container .cta--container .text--container .title,
+    .next-project .inner--container p:last-child {
+        line-height: .95;
+    }
+
+    /* ---------------------------------------------------------------
+     * Page titles vs. the logo
+     *
+     * The circular PERSUS dial is fixed at the top-left and ends 130px
+     * down the viewport. Every interior page then opened its <h1> at
+     * about 108px, so the first word of the title ran straight through
+     * the bottom of the dial. On desktop the header is the full width of
+     * the screen and the title starts well clear of it; on a phone they
+     * share the same 375px.
+     *
+     * Each page keeps its own spacing mechanism — margin here, padding
+     * there — so this only raises the numbers that were already in use.
+     * --------------------------------------------------------------- */
+
+    .projects_intro--wrapper .inner--container h1 {
+        margin-top: 90px;
+    }
+
+    .about_intro--wrapper .inner--container .grid {
+        padding-top: 92px;
+    }
+
+    .single_case_hero--row {
+        padding-top: 164px;
+    }
+
+    /* ---------------------------------------------------------------
+     * Case studies lead with the figure
+     *
+     * `.single_case_hero--row` is a flex column and master.css gives the
+     * image `order: 1` against the text's `order: 2`, so on a phone the
+     * page opens on a bare chart: no title, no back link, no caption,
+     * nothing saying what is being measured. The figure is the payoff of
+     * the argument, not the opening of it.
+     * --------------------------------------------------------------- */
+
+    .single_case_hero--row .inner--container {
+        order: 1;
+    }
+
+    .single_case_hero--row .hero_img--container {
+        order: 2;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    /* ---------------------------------------------------------------
+     * Room for the section bar
+     *
+     * site-nav.js pins a "section 3 of 6" strip to the bottom edge on the
+     * pages that have named sections, and it was sitting on top of the
+     * last line of the page — the final list item, the next-page button,
+     * the first project title. The strip measures 59px, so 76px leaves
+     * the last line clear of it with a margin.
+     *
+     * The class comes from site-nav.js and only lands on pages that
+     * actually build the bar, so case studies keep their own footer
+     * spacing untouched.
+     * --------------------------------------------------------------- */
+
+    body.has-section-status [data-barba="container"] {
+        padding-bottom: 76px;
+    }
+
+    /* ---------------------------------------------------------------
+     * Vertical rhythm, second pass
+     *
+     * The first pass cut desktop's 300px section padding to 110px, which
+     * is right for a tablet and still about a seventh of a phone screen
+     * of nothing between one thought and the next. Measured on device,
+     * the page reads as a series of black gaps with sentences in them.
+     * These are the gaps that were actually long enough to notice.
+     * --------------------------------------------------------------- */
+
+    .default_row--container.intro {
+        padding: 72px 0;
+    }
+
+    .default_row--container.intro .inner--container .about_services--container {
+        padding-top: 52px;
+    }
+
+    .sub_portfolio {
+        padding: 32px 0 72px;
+    }
+
+    .main_portfolio--wrapper {
+        padding-bottom: 72px;
+    }
+
+    .project_filters {
+        padding-bottom: 34px;
+    }
+
+    .filter_status {
+        padding-bottom: 22px;
+    }
+
+    .about_text--wrapper .inner--container .grid {
+        padding-bottom: 64px;
+    }
+
+    .about_gallery--wrapper .inner--container .grid {
+        padding-top: 32px;
+        padding-bottom: 64px;
+    }
+
+    .logos_marquee--wrapper.spacing_bottom {
+        padding-bottom: 72px;
+    }
+
+    .single_case {
+        padding: 56px 0;
+    }
+
+    .next-project {
+        padding: 64px 0;
+    }
+
+    .cta_footer--container {
+        padding: 72px 0;
+    }
+}

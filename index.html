@@ -66,7 +66,7 @@
 
         <div data-barba="container">
 
-            <section class="home_hero--wrapper">
+            <section class="home_hero--wrapper" id="start" data-section="Start">
                 <div class="home_hero--container">
                     <h1 class="accessibility">Jesús P. Bazarot — AI/ML Researcher and Software Engineer</h1>
                     <div class="hero_heading--container">
@@ -128,9 +128,19 @@
                     </div>
                 </div>
                 <div class="circular_text--container"></div>
+
+                <a class="scroll_hint" href="#intro">
+                    <span class="scroll_hint--label">Scroll down to read on</span>
+                    <span class="scroll_hint--arrow" aria-hidden="true">
+                        <svg width="16" height="26" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1v20.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                            <path d="M1.6 15.4 8 21.8l6.4-6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
             </section>
     
-            <section class="default_row--container intro">
+            <section class="default_row--container intro" id="intro" data-section="About me" data-next-cue>
                 <div class="inner--container">
                     <div class="intro_text--container">
                         <p data-animation="chars" data-delay="0" data-stagger="0.01">
@@ -154,7 +164,7 @@
                 </div>
             </section>
     
-            <section class="default_row--container home_portfolio--wrapper">
+            <section class="default_row--container home_portfolio--wrapper" id="work" data-section="Recent work">
                 <div class="inner--container">
                     <div class="featured_projects--container">
                         <div class="featured_projects">
@@ -245,7 +255,7 @@
             </section>
     
             <!-- Original footer with CTA -->
-<footer id="footer">
+<footer id="footer" data-section="Contact">
     <section class="cta_footer--container">
         <div class="cta--wrapper">
             <div class="cta--container">
@@ -352,6 +362,7 @@
 <script type="text/javascript" src="js/fancybox.min.js"></script>
 <script type="text/javascript" src="js/text-reflow.js"></script>
 <script type="text/javascript" src="js/master.min.js"></script>
+<script type="text/javascript" src="js/mobile-fixes.js"></script>
 <script type="text/javascript" src="js/site-nav.js"></script>
 <script type="text/javascript" src="js/contact.js"></script>
 <script type="text/javascript" src="js/shark-mesh.js"></script>
