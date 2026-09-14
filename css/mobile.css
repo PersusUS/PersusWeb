@@ -423,7 +423,12 @@
      * equal negative margin so nothing below moves.
      * --------------------------------------------------------------- */
 
-    .word {
+    /* Only the display headings. SplitText puts `.word` around every word
+       of every paragraph too, and shifting each one of those up by .16em
+       wrecks the line spacing of the body copy. */
+    .projects_intro--wrapper .inner--container h1 .word,
+    .about_intro--wrapper .inner--container .grid h1 .word,
+    .single_case_hero--row .grid h1 .word {
         padding-top: .16em;
         margin-top: -.16em;
     }
@@ -560,5 +565,76 @@
 
     .cta_footer--container {
         padding: 72px 0;
+    }
+}
+
+/* ===================================================================
+ * Round three: things found on a real phone, not in an emulator.
+ * =================================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* ---------------------------------------------------------------
+     * "Other project" had no image
+     *
+     * master.css hides the next-project thumbnail behind an opaque #111
+     * curtain — .image--container::before, z-index 3, over an image at
+     * z-index 1 — and lifts it only on
+     *
+     *     .next-project:hover .image--container::before
+     *
+     * A phone has no hover, so the curtain never lifts and the card is a
+     * black rectangle on every case study. Touching it fires :hover just
+     * long enough for the image to flash and then vanish again, which is
+     * the "it moves and then you can't see it" of the bug report.
+     *
+     * On touch the revealed state is simply the default. The ::after
+     * scrim stays: it is what keeps the white title legible on top.
+     * --------------------------------------------------------------- */
+
+    .next-project .image--container::before {
+        transform: translateY(-100%);
+    }
+
+    /* ---------------------------------------------------------------
+     * The bottom footer sat on the edge of the glass
+     *
+     * On desktop this is three equal flex columns, each centred inside
+     * its own third, so nothing ever reaches the edge and no padding was
+     * needed. The phone layer stacks them into one left-aligned column,
+     * which put every line hard against x=0 with the long ones running
+     * off the right. It needs the same 25px gutter as .inner--container.
+     * --------------------------------------------------------------- */
+
+    .footer-bottom--wrapper {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    /* ---------------------------------------------------------------
+     * The contact CTA was printed on top of the shark
+     *
+     * .text--container is absolutely centred over the canvas. At 1440px
+     * the shark is wide and the 200px headline sits in clear water above
+     * it. At 375px the canvas is 341px tall, the headline drops to 48px,
+     * and the headline and the button both land on the animal — white
+     * type on a pale blue sky over a dark dorsal fin.
+     *
+     * In flow instead: shark, then headline, then button. Same order as
+     * the desktop reading, nothing overlapping.
+     * --------------------------------------------------------------- */
+
+    .cta_footer--container .cta--container .text--container {
+        position: static;
+        transform: none;
+        margin-top: 26px;
+    }
+
+    .cta_footer--container .cta--container .text--container .title {
+        color: #111;
+    }
+
+    .cta_footer--container .cta--container .text--container .lovely_button {
+        margin-top: 4px;
     }
 }

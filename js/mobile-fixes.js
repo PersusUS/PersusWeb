@@ -124,8 +124,46 @@
         }
     }
 
+    /* ---------------------------------------------------------------
+     * The contact footer's 250px entrance
+     *
+     * masterInit builds this:
+     *
+     *   gsap.timeline({ scrollTrigger: { trigger: '.cta_footer--container',
+     *       start: 'top 80%', end: 'bottom bottom', scrub: true,
+     *       id: 'cta reveal' } }).fromTo(e, {y: -250}, {y: 0})
+     *
+     * The whole pale-blue block slides up 250px and settles as you reach
+     * it. Against a 900px desktop footer that is a slow drift you barely
+     * register. On a phone the block is 555px tall, so a 250px slide is
+     * nearly half of it: the blue lifts over the section above, uncovers
+     * a band beneath itself, and lands with a visible jolt — which is
+     * most of what "the footer moves and there is blue where there
+     * shouldn't be" is describing.
+     *
+     * GSAP writes the transform inline, so a stylesheet cannot override
+     * it. The trigger has to go, and the transform with it.
+     * --------------------------------------------------------------- */
+
+    var CTA_ID = 'cta reveal';
+
+    function applyCtaSlide() {
+        if (!ready()) {
+            return;
+        }
+        var el = document.querySelector('.cta_footer--container');
+        if (!el || !isPhone()) {
+            return;
+        }
+        if (dropTrigger(CTA_ID)) {
+            gsap.set(el, { clearProps: 'transform' });
+            ScrollTrigger.refresh(true);
+        }
+    }
+
     function apply() {
         applyHeroZoom();
+        applyCtaSlide();
     }
 
     if (window.jQuery) {
