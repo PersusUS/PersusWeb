@@ -646,36 +646,32 @@
 @media screen and (max-width: 767px) {
 
     /* ---------------------------------------------------------------
-     * The header had nothing behind it
+     * Tapping the next-project card threw the image across the screen
      *
-     * #header is fixed at z-index 110 with no background, so every
-     * project title, chart and figure scrolls straight underneath the
-     * circular logo. On a 1440px desktop the logo sits in a wide empty
-     * margin and the header hides itself on the way down, so the two
-     * rarely meet. On a 375px phone they share the same column and the
-     * collision is constant: a white wordmark on top of a white paper
-     * figure, or "PERSEO" printed through the middle of the dial.
-     *
-     * A hard bar would cut the page in two, so this is a fade — opaque
-     * under the logo, gone by the bottom of the header.
+     * master.css positions that image absolutely and centres it with
+     * `translate(-50%, -50%)`. Restacking the card for phones replaced
+     * that with `transform: none`, which is right — but the hover rule
+     * underneath it still says `translate(-50%, -50%) scale(1)`, and a
+     * touch fires :hover. So the first tap jumped the image half its
+     * own width left and half its height up, and letting go put it
+     * back. The hover rules have to go the same way the layout did.
      * --------------------------------------------------------------- */
 
-    #header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 132px;
-        pointer-events: none;
-        z-index: -1;
-        background: linear-gradient(
-            to bottom,
-            #111 0%,
-            rgba(17, 17, 17, .96) 45%,
-            rgba(17, 17, 17, .75) 72%,
-            rgba(17, 17, 17, 0) 100%
-        );
+    .next-project:hover .image--container img {
+        transform: none;
+    }
+
+    /* ---------------------------------------------------------------
+     * Nothing moves under a finger
+     *
+     * Every card on the site grows its image 10% on hover. With a mouse
+     * that is a hover state; with a finger it is a shove that fires on
+     * the way to a tap and sticks until you touch something else.
+     * --------------------------------------------------------------- */
+
+    .home_portfolio--wrapper .featured_projects--container .featured_projects .single_project:hover .project_picture--container img,
+    .main_portfolio--wrapper .all_projects--container .single_project:hover .project_picture--container img {
+        transform: none;
     }
 
     /* ---------------------------------------------------------------
@@ -745,4 +741,32 @@
    thing to sample is the pale blue of the contact block. */
 html {
     background-color: #111111;
+}
+
+/* ===================================================================
+ * Round five.
+ * =================================================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* The contact block was a screenful of blue with the message
+       floating in the top third of it. master.css pushes .cta--wrapper
+       down 70px below 600px wide, which made sense when the text was
+       centred on top of the canvas and does not now that it sits under
+       it. Close the gap and let the group centre properly. */
+    .cta_footer--container .cta--wrapper {
+        margin-top: 0;
+    }
+
+    .cta_footer--container .cta--container {
+        padding: 0;
+    }
+
+    #shark_canvas {
+        height: clamp(200px, 30vh, 300px);
+    }
+
+    .cta_footer--container .cta--container .text--container {
+        margin-top: 8px;
+    }
 }

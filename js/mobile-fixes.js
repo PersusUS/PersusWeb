@@ -161,6 +161,98 @@
         }
     }
 
+    /* ---------------------------------------------------------------
+     * The browser chrome kept the loader's colour
+     *
+     * Every page opens with .loader_wrapper: four fixed #7e9fdb stripes
+     * covering the viewport for three seconds behind a rotating "J".
+     * iOS Safari decides what to tint its own toolbars with while the
+     * page is loading, which is exactly when the screen is that blue,
+     * and it does not go back and reconsider once the stripes slide
+     * away. So the phone kept a pale blue bar top and bottom over a
+     * black page for the rest of the visit.
+     *
+     * theme-color is declared as the loader's blue, so the chrome
+     * matches the screen while the animation runs, and is swapped for
+     * the page background the moment the stripes leave. Which is what
+     * it should have looked like all along: blue, then the background,
+     * and nothing else.
+     * --------------------------------------------------------------- */
+
+    var PAGE_COLOUR = '#111111';
+
+    function settleThemeColour() {
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta || meta.getAttribute('content') === PAGE_COLOUR) {
+            return;
+        }
+        meta.setAttribute('content', PAGE_COLOUR);
+        // Safari only re-reads the tag when it changes, and it does not
+        // always notice an attribute edit in place.
+        var parent = meta.parentNode;
+        parent.removeChild(meta);
+        parent.appendChild(meta);
+    }
+
+    /*
+     * The loader never actually left.
+     *
+     * master.css means to slide the four stripes off the top once the
+     * wrapper gets .loaded:
+     *
+     *   .loader_wrapper.loaded .stripe { transform: translateY(-100%) }
+     *
+     * The rule is in the stylesheet, the wrapper has the class, and the
+     * stripe matches the selector — and the computed transform is still
+     * the identity matrix. Whatever is eating it, the result is four
+     * fixed, full-height, #7e9fdb panels parked at z-index 1 for the
+     * whole visit. Page sections sit at z-index 2 and cover them, so it
+     * reads as correct until something does not paint: the overscroll
+     * at either end, a gap between sections, and the strip of page iOS
+     * Safari samples to colour its toolbars.
+     *
+     * Taking the wrapper out of the document once the animation has had
+     * its time is not subtle, but it does not depend on working out why
+     * the cascade is behaving like that.
+     */
+    function retireLoader(loader) {
+        loader.style.display = 'none';
+    }
+
+    function finish(loader) {
+        settleThemeColour();
+        if (loader) {
+            retireLoader(loader);
+        }
+    }
+
+    function watchLoader() {
+        var loader = document.querySelector('.loader_wrapper');
+        if (!loader) {
+            settleThemeColour();
+            return;
+        }
+        if (loader.classList.contains('loaded')) {
+            finish(loader);
+            return;
+        }
+        // master.min.js adds .loaded on a 3s timer, then the stripes take
+        // 0.35s to travel with up to 0.6s of stagger behind them.
+        var observer = new MutationObserver(function () {
+            if (loader.classList.contains('loaded')) {
+                observer.disconnect();
+                window.setTimeout(function () {
+                    finish(loader);
+                }, 950);
+            }
+        });
+        observer.observe(loader, { attributes: true, attributeFilter: ['class'] });
+        // Belt and braces, in case the loader never gets there.
+        window.setTimeout(function () {
+            finish(loader);
+        }, 5000);
+    }
+
     function apply() {
         applyHeroZoom();
         applyCtaSlide();
@@ -174,6 +266,14 @@
         document.addEventListener('DOMContentLoaded', apply);
     } else {
         apply();
+    }
+
+    // The loader runs once per full page load, at every width, so this is
+    // deliberately outside apply() and outside the breakpoint check.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', watchLoader);
+    } else {
+        watchLoader();
     }
 
     // master re-runs masterInit on afterEnter, which rebuilds the desktop
