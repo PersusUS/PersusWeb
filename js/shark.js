@@ -14,18 +14,12 @@
  *   data-shark-span   radians of yaw swept across a full scroll pass (1.05)
  *   data-shark-roll   radians of bank across the same pass (0.18)
  *   data-shark-fill   share of the visible width the body should take (0.62)
- *   data-shark-sway   strength of the swimming wave (1)
- *   data-shark-mesh   which global to draw: 'body' or 'head' ('body')
  *
  * The footer canvas keeps the defaults, so it renders exactly as before.
  *
- * The body model is "Shark" by Quaternius (poly.pizza), CC0 1.0 — public
- * domain, no attribution required. The rig and animation clips were stripped
- * when baking; material base colours were baked to vertex colours.
- *
- * The head is ours: tools/bake-shark-head.js builds it from profile curves and
- * writes js/shark-head-mesh.js. Edit the dials at the top of that script and
- * re-run it to change the animal.
+ * Model: "Shark" by Quaternius (poly.pizza), CC0 1.0 — public domain, no
+ * attribution required. The rig and animation clips were stripped when baking;
+ * material base colours were baked to vertex colours.
  *
  * In the footer it replaces the old <video id="cta_video">, whose source
  * (/assets/videos/…) has never existed in this repository.
@@ -38,8 +32,7 @@
     var BODY_LEN = 2.20;
     var instances = [];
 
-    var DEFAULTS = { yaw: -0.35, span: 1.05, roll: 0.18, fill: 0.62, sway: 1 };
-    var MESHES = { body: 'SHARK_MESH', head: 'SHARK_HEAD_MESH' };
+    var DEFAULTS = { yaw: -0.35, span: 1.05, roll: 0.18, fill: 0.62 };
 
     function options(canvas) {
         var o = {}, k;
@@ -48,7 +41,6 @@
             var raw = parseFloat(canvas.getAttribute('data-shark-' + k));
             o[k] = isNaN(raw) ? DEFAULTS[k] : raw;
         }
-        o.mesh = MESHES[canvas.getAttribute('data-shark-mesh')] || MESHES.body;
         return o;
     }
 
@@ -90,8 +82,8 @@
         return bytes;
     }
 
-    function loadMesh(name) {
-        var m = window[name];
+    function loadMesh() {
+        var m = window.SHARK_MESH;
         if (!m) return null;
         return {
             position: new Float32Array(decode(m.position).buffer),
@@ -188,7 +180,7 @@
     }
 
     function create(canvas, opt) {
-        var mesh = loadMesh(opt.mesh);
+        var mesh = loadMesh();
         if (!mesh) return null;
 
         var opts = { alpha: true, antialias: true, depth: true };
@@ -287,7 +279,7 @@
         gl.uniformMatrix4fv(s.uModel, false,
             compose(rotation(pitch, s.yaw, s.roll), s.scale, 0, -0.02 * s.scale, -3.6));
         gl.uniform1f(s.uTime, t);
-        gl.uniform1f(s.uSway, s.opt.sway * (s.reduced ? 0.25 : 1.0));
+        gl.uniform1f(s.uSway, s.reduced ? 0.25 : 1.0);
         gl.drawElements(gl.TRIANGLES, s.count, s.indexType, 0);
 
         s.raf = requestAnimationFrame(function (n) { frame(s, n); });
@@ -339,10 +331,6 @@
         });
         seen.forEach(mount);
     }
-
-    // about.html only fetches the head mesh on the layouts that draw it, so it
-    // can arrive after this file has already mounted what it could find.
-    window.SharkScene = { refresh: init };
 
     function hookBarba() {
         if (window.barba && window.barba.hooks) {
