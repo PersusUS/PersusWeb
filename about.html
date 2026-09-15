@@ -76,6 +76,18 @@
                         <p class="size-20" data-animation="fade-up" data-delay="0">I’m Jesús Pérez Bazarot, 21, born and raised near Seville and now in my final year of Computer Engineering at the Universidad de Sevilla — with my third year spent at the Beijing Institute of Technology. I work on the parts of AI that break: models that forget what they learned, models too large for the hardware they need to run on, benchmarks that quietly measure the wrong thing. Most of what I know I learned by building something, watching it fail in an interesting way, and rebuilding it. Along the way I've spoken at Telefónica, competed in NASA SpaceApps, been CTO of a small startup, and co-founded another. Martial arts, three or four times a week, taught me the part that no project teaches: how to keep showing up after losing.</p>
                     </div>
                 </div>
+                <!-- The headline runs the full grid and the paragraph stops at
+                     column 7, which leaves the right half of the opening screen
+                     empty. master.css already reserves that half for a
+                     .video--container on this page. Decorative, so it is hidden
+                     from assistive technology — the paragraph beside it says
+                     everything this says. -->
+                <div class="video--container shark_stage" aria-hidden="true">
+                    <canvas id="about_shark_canvas" data-shark
+                            data-shark-mesh="head" data-shark-sway="0"
+                            data-shark-yaw="-0.66" data-shark-span="2.00"
+                            data-shark-roll="0.26" data-shark-fill="0.68"></canvas>
+                </div>
             </section>
     
             <section class="default_row--container about_text--wrapper" id="about-work" data-section="What I do" data-next-cue>
@@ -411,6 +423,20 @@
     <script src="js/site-nav.js"></script>
 <script type="text/javascript" src="js/contact.js"></script>
 <script type="text/javascript" src="js/shark-mesh.js"></script>
+<script>
+    /* The head is 105KB of baked mesh and the phone layout never draws it —
+       css/shark.css hides the stage under 800px — so it is fetched only where
+       it is used. If it lands after shark.js has already mounted the canvases
+       it finds, refresh() picks it up; if it lands first, shark.js finds it on
+       its own. */
+    (function () {
+        if (!window.matchMedia || !window.matchMedia('(min-width: 801px)').matches) return;
+        var s = document.createElement('script');
+        s.src = 'js/shark-head-mesh.js';
+        s.onload = function () { if (window.SharkScene) window.SharkScene.refresh(); };
+        document.head.appendChild(s);
+    }());
+</script>
 <script type="text/javascript" src="js/shark.js"></script>
 
 
