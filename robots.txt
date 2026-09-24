@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://persus.netlify.app/sitemap.xml
