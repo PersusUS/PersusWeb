@@ -3,7 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        Projects | Persus
+        Projects · Jesús Pérez Bazarot
     </title>
 
     <meta name="description" content="Research and engineering projects: world model benchmarks, LLM optimisation, edge AI and real-time assistants.">
@@ -25,16 +25,18 @@
 
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://persus.netlify.app/portfolio.html">
 
-    <meta property="og:title" content="Projects | Persus">
+    <meta property="og:title" content="Projects · Jesús Pérez Bazarot">
     <meta property="og:description" content="Check out some of the most recent projects I've had the pleasure of working on">
-    <meta property="og:site_name" content="Projects | Persus">
-    <meta property="og:image" content="images/og_main.jpg">
+    <meta property="og:site_name" content="Jesús Pérez Bazarot">
+    <meta property="og:image" content="https://persus.netlify.app/images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="photo">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:description" content="Check out some of the most recent projects I've had the pleasure of working on">
-    <meta name="twitter:title" content="Projects | Persus">
+    <meta name="twitter:title" content="Projects · Jesús Pérez Bazarot">
+    <meta name="twitter:image" content="https://persus.netlify.app/images/og_main.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#111111">
@@ -72,332 +74,354 @@
             <section class="default_row--container projects_intro--wrapper" id="projects-intro" data-section="Recent projects">
                 <div class="inner--container">
                     <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Recent projects</h1>
-                    <p data-animation="words" data-delay="0.2" data-stagger="0.03">Research, tools and a few things I built to see whether they would work. Roughly newest first.</p>
+                    <p data-animation="words" data-delay="0.2" data-stagger="0.03">Research, tools and a few things I built to see whether they would work. Grouped by kind, roughly newest first within each group.</p>
                 </div>
             </section>
     
             <section class="default_row--container main_portfolio--wrapper" id="projects-list" data-section="All projects">
                 <div class="inner--container">
-                    <div class="all_projects--container grid">
-    
-                        <!--SELECTIVE SCAN CUDA KERNELS-->
-                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>GPU Kernels</li>
-                                    <li>CUDA</li>
-                                </ul>
-                                <img class="lazy" src="images/selective-scan.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="Selective-scan CUDA kernels">
+                    <div class="project_group">
+                        <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Research</h3>
+                        <div class="all_projects--container grid">
+                            <!--VLM CAPACITY WALL-->
+                            <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Research</li>
+                                        <li>Systems</li>
+                                    </ul>
+                                    <img class="lazy" src="images/vlm-capacity.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="The Capacity Wall">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">The Capacity Wall</p>
+                                    <p class="project_description">Video VLM serving is bound by KV cache capacity, not bandwidth — 113× fewer users</p>
+                                </div>
+                                <a href="projects/vlm-capacity.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Selective-scan CUDA kernels</p>
-                                <p class="project_description">Five kernels for the Mamba recurrence, up to 91.5% of peak memory bandwidth</p>
-                            </div>
-                            <a href="projects/selective-scan.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
 
-                        <!--VLM CAPACITY WALL-->
-                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Research</li>
-                                    <li>Systems</li>
-                                </ul>
-                                <img class="lazy" src="images/vlm-capacity.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="The Capacity Wall">
+                            <!--WORLD MODELS BENCHMARK-->
+                            <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Research</li>
+                                        <li>Continual Learning</li>
+                                    </ul>
+                                    <img class="lazy" src="images/worldmodels.webp"  sizes="(max-width: 600px) 100vw, 50vw"  alt="WMF Benchmark">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">WMF Benchmark</p>
+                                    <p class="project_description">Measuring how world models forget: under review at CL4FMAgents @ NeurIPS 2026 (non-archival workshop)</p>
+                                </div>
+                                <a href="projects/worldmodels.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">The Capacity Wall</p>
-                                <p class="project_description">Video VLM serving is bound by KV cache capacity, not bandwidth — 113× fewer users</p>
-                            </div>
-                            <a href="projects/vlm-capacity.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
 
-                        <!--WORLD MODELS BENCHMARK-->
-                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Research</li>
-                                    <li>Continual Learning</li>
-                                </ul>
-                                <img class="lazy" src="images/worldmodels.webp"  sizes="(max-width: 600px) 100vw, 50vw"  alt="WMF Benchmark">
+                            <!--HYBRIDMAMBA-11-->
+                            <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Research</li>
+                                        <li>Deep Learning</li>
+                                    </ul>
+                                    <img class="lazy" src="images/hybridmamba.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="HybridMamba-11">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">HybridMamba-11</p>
+                                    <p class="project_description">31.8M params in 13.6 MB — first SSM entry in OpenAI Parameter Golf</p>
+                                </div>
+                                <a href="projects/hybridmamba.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">WMF Benchmark</p>
-                                <p class="project_description">Measuring how world models forget — submitted, under review</p>
-                            </div>
-                            <a href="projects/worldmodels.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
 
-                        <!--PERSEO-->
-                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Applied AI</li>
-                                    <li>Rust</li>
-                                </ul>
-                                <img class="lazy" src="images/perseo.webp"  sizes="(max-width: 600px) 100vw, 50vw"  alt="Perseo">
+                            <!--MULTILINGUAL BENCHMARK-->
+                            <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Research</li>
+                                        <li>LLMs</li>
+                                    </ul>
+                                    <img class="lazy" src="images/multilingual.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Multilingual LLM Benchmark">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Multilingual Benchmark</p>
+                                    <p class="project_description">Chinese vs. Western frontier models across nine languages</p>
+                                </div>
+                                <a href="projects/multilingual.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Perseo</p>
-                                <p class="project_description">My longest-running project — a personal assistant that listens and watches</p>
-                            </div>
-                            <a href="projects/perseo.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
 
-                        <!--KOTOBA-->
-                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Personal Tools</li>
-                                    <li>Full-Stack</li>
-                                </ul>
-                                <img class="lazy" src="images/kotoba.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="Kotoba">
+                            <!--AGENTIC TRACES-->
+                            <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Dataset</li>
+                                        <li>Evaluation</li>
+                                    </ul>
+                                    <img class="lazy" src="images/agentic-traces.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Agentic Reasoning Traces">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Agentic Reasoning Traces</p>
+                                    <p class="project_description">15 traces, 142 steps, three of them wrong on purpose</p>
+                                </div>
+                                <a href="projects/agentic-traces.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Kotoba</p>
-                                <p class="project_description">The entire JLPT, spaced — 20,785 cards, no dependencies</p>
-                            </div>
-                            <a href="projects/kotoba.html" class="project_link" aria-label="Read more about this case study"></a>
                         </div>
+                    </div>
 
-                        <!--NIGHTSHIFT-->
-                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Agents</li>
-                                    <li>Automation</li>
-                                </ul>
-                                <img class="lazy" src="images/nightshift.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="NightShift">
+                    <div class="project_group">
+                        <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Systems</h3>
+                        <div class="all_projects--container grid">
+                            <!--SELECTIVE SCAN CUDA KERNELS-->
+                            <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>GPU Kernels</li>
+                                        <li>CUDA</li>
+                                    </ul>
+                                    <img class="lazy" src="images/selective-scan.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="Selective-scan CUDA kernels">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Selective-scan CUDA kernels</p>
+                                    <p class="project_description">Five kernels for the Mamba recurrence, up to 91.5% of peak memory bandwidth</p>
+                                </div>
+                                <a href="projects/selective-scan.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">NightShift</p>
-                                <p class="project_description">A queue that ships code while I sleep — 27 done</p>
+
+                            <!--PERSEO-->
+                            <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Applied AI</li>
+                                        <li>Rust</li>
+                                    </ul>
+                                    <img class="lazy" src="images/perseo.webp"  sizes="(max-width: 600px) 100vw, 50vw"  alt="Perseo">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Perseo</p>
+                                    <p class="project_description">My longest-running project — a personal assistant that listens and watches</p>
+                                </div>
+                                <a href="projects/perseo.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <a href="projects/nightshift.html" class="project_link" aria-label="Read more about this case study"></a>
+
+                            <!--NIGHTSHIFT-->
+                            <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Agents</li>
+                                        <li>Automation</li>
+                                    </ul>
+                                    <img class="lazy" src="images/nightshift.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="NightShift">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">NightShift</p>
+                                    <p class="project_description">A queue that ships code while I sleep — 27 done</p>
+                                </div>
+                                <a href="projects/nightshift.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
+
+                            <!--MAGI-->
+                            <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Applied AI</li>
+                                        <li>LLMs</li>
+                                    </ul>
+                                    <img class="lazy" src="images/magi.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="MAGI">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">MAGI</p>
+                                    <p class="project_description">Three personas answer at once and one veto sinks the verdict</p>
+                                </div>
+                                <a href="projects/magi.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
+
+                            <!--CLASSTRANSCRIBER-->
+                            <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Applied AI</li>
+                                        <li>Audio</li>
+                                    </ul>
+                                    <img class="lazy" src="images/classtranscriber.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="ClassTranscriber">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">ClassTranscriber</p>
+                                    <p class="project_description">Lectures into speaker-separated notes, all running locally</p>
+                                </div>
+                                <a href="projects/classtranscriber.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
+
+                            <!--AUTOLINKEDIN-->
+                            <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Applied AI</li>
+                                        <li>Full-Stack</li>
+                                    </ul>
+                                    <img class="lazy" src="images/autolinkedin.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="AutoLinkedIn">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">AutoLinkedIn</p>
+                                    <p class="project_description">Retrieval-augmented drafting from my own writing — paused</p>
+                                </div>
+                                <a href="projects/autolinkedin.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
+
+                            <!--ORGAAI-->
+                            <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Applied AI</li>
+                                        <li>Experience</li>
+                                    </ul>
+                                    <img class="lazy" src="images/orgaai.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="OrgaAI">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">OrgaAI</p>
+                                    <p class="project_description">Conversational AI under NDA — most of it I can't tell you</p>
+                                </div>
+                                <a href="projects/orgaai.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
                         </div>
+                    </div>
 
-                        <!--MAGI-->
-                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Applied AI</li>
-                                    <li>LLMs</li>
-                                </ul>
-                                <img class="lazy" src="images/magi.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="MAGI">
+                    <div class="project_group">
+                        <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Tools I use daily</h3>
+                        <div class="all_projects--container grid">
+                            <!--KOTOBA-->
+                            <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Personal Tools</li>
+                                        <li>Full-Stack</li>
+                                    </ul>
+                                    <img class="lazy" src="images/kotoba.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="Kotoba">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Kotoba</p>
+                                    <p class="project_description">The entire JLPT, spaced — 20,785 cards, no dependencies</p>
+                                </div>
+                                <a href="projects/kotoba.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">MAGI</p>
-                                <p class="project_description">Three personas answer at once and one veto sinks the verdict</p>
+
+                            <!--ARMARIO-->
+                            <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Personal Tools</li>
+                                        <li>Full-Stack</li>
+                                    </ul>
+                                    <img class="lazy" src="images/armario.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="Armario">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Armario</p>
+                                    <p class="project_description">Outfits from the real forecast — rules I can read, no model</p>
+                                </div>
+                                <a href="projects/armario.html" class="project_link" aria-label="Read more about this case study"></a>
                             </div>
-                            <a href="projects/magi.html" class="project_link" aria-label="Read more about this case study"></a>
                         </div>
+                    </div>
 
-                        <!--HYBRIDMAMBA-11-->
-                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Research</li>
-                                    <li>Deep Learning</li>
-                                </ul>
-                                <img class="lazy" src="images/hybridmamba.svg"  sizes="(max-width: 600px) 100vw, 50vw"  alt="HybridMamba-11">
+                    <div class="project_group">
+                        <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Ventures &amp; speaking</h3>
+                        <div class="all_projects--container grid">
+                            <!--NETKEY-->
+                            <div class="single_project" data-category="Product" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Product</li>
+                                        <li>Leadership</li>
+                                    </ul>
+                                    <img class="lazy" src="images/netkey.png" sizes="(max-width: 600px) 100vw, 50vw" alt="Netkey">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Netkey</p>
+                                    <p class="project_description">NFC networking startup where I was CTO</p>
+                                </div>
+                                <a href="projects/netkey.html" class="project_link"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">HybridMamba-11</p>
-                                <p class="project_description">31.8M params in 13.6 MB — first SSM entry in OpenAI Parameter Golf</p>
+
+                            <!--TELEFONICA-->
+                            <div class="single_project" data-category="Speaking" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Speaking</li>
+                                        <li>Robotics</li>
+                                    </ul>
+                                    <img class="lazy" src="images/Telefonica.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Telefonica">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Telefónica</p>
+                                    <p class="project_description">NB-IoT and swarm robotics talks in Seville</p>
+                                </div>
+                                <a href="projects/telefonica.html" class="project_link"></a>
                             </div>
-                            <a href="projects/hybridmamba.html" class="project_link" aria-label="Read more about this case study"></a>
+
+                            <!--SPUTNIK-->
+                            <div class="single_project" data-category="Speaking" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Speaking</li>
+                                        <li>Strategy</li>
+                                    </ul>
+                                    <img class="lazy" src="images/Sputnik.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Sputnik">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Sputnik</p>
+                                    <p class="project_description">The seminar that changed how I pick problems</p>
+                                </div>
+                                <a href="projects/sputnik.html" class="project_link"></a>
+                            </div>
+
+                            <!--BYTHEWAY-->
+                            <div class="single_project" data-category="Product" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Venture</li>
+                                        <li>Leadership</li>
+                                    </ul>
+                                    <img class="lazy" src="images/bytheway.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="ByTheWay">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">ByTheWay</p>
+                                    <p class="project_description">An early venture I co-founded</p>
+                                </div>
+                                <a href="projects/bytheway.html" class="project_link" aria-label="Read more about this case study"></a>
+                            </div>
                         </div>
+                    </div>
 
-                        <!--MULTILINGUAL BENCHMARK-->
-                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Research</li>
-                                    <li>LLMs</li>
-                                </ul>
-                                <img class="lazy" src="images/multilingual.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Multilingual LLM Benchmark">
+                    <div class="project_group">
+                        <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Early work</h3>
+                        <div class="all_projects--container grid">
+                            <!--AIMOUSE-->
+                            <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Computer Vision</li>
+                                        <li>Early Work</li>
+                                    </ul>
+                                    <img class="lazy" src="images/aimouse.png"  sizes="(max-width: 600px) 100vw, 50vw" alt="AI Mouse">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">AI Mouse</p>
+                                    <p class="project_description">Turning a hand into a pointing device</p>
+                                </div>
+                                <a href="projects/aimouse.html" class="project_link"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Multilingual Benchmark</p>
-                                <p class="project_description">Chinese vs. Western frontier models across nine languages</p>
-                            </div>
-                            <a href="projects/multilingual.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
 
-                        <!--ARMARIO-->
-                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Personal Tools</li>
-                                    <li>Full-Stack</li>
-                                </ul>
-                                <img class="lazy" src="images/armario.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="Armario">
+                            <!--FACE DETECTION-->
+                            <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0.2">
+                                <div class="project_picture--container">
+                                    <ul class="project_meta">
+                                        <li>Computer Vision</li>
+                                        <li>Early Work</li>
+                                    </ul>
+                                    <img class="lazy" src="images/face.png" sizes="(max-width: 600px) 100vw, 50vw"  alt="Face detection">
+                                </div>
+                                <div class="project_info--container">
+                                    <p class="project_title">Face Detection</p>
+                                    <p class="project_description">Where I learned that a working demo is not a system</p>
+                                </div>
+                                <a href="projects/facedetection.html" class="project_link"></a>
                             </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Armario</p>
-                                <p class="project_description">Outfits from the real forecast — rules I can read, no model</p>
-                            </div>
-                            <a href="projects/armario.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
-
-                        <!--NETKEY-->
-                        <div class="single_project" data-category="Product" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Product</li>
-                                    <li>Leadership</li>
-                                </ul>
-                                <img class="lazy" src="images/netkey.png" sizes="(max-width: 600px) 100vw, 50vw" alt="Netkey">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Netkey</p>
-                                <p class="project_description">NFC networking startup where I was CTO</p>
-                            </div>
-                            <a href="projects/netkey.html" class="project_link"></a>
-                        </div>
-
-                        <!--TELEFONICA-->
-                        <div class="single_project" data-category="Speaking" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Speaking</li>
-                                    <li>Robotics</li>
-                                </ul>
-                                <img class="lazy" src="images/Telefonica.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Telefonica">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Telefónica</p>
-                                <p class="project_description">NB-IoT and swarm robotics talks in Seville</p>
-                            </div>
-                            <a href="projects/telefonica.html" class="project_link"></a>
-                        </div>
-
-                        <!--SPUTNIK-->
-                        <div class="single_project" data-category="Speaking" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Speaking</li>
-                                    <li>Strategy</li>
-                                </ul>
-                                <img class="lazy" src="images/Sputnik.jpg" sizes="(max-width: 600px) 100vw, 50vw" alt="Sputnik">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Sputnik</p>
-                                <p class="project_description">The seminar that changed how I pick problems</p>
-                            </div>
-                            <a href="projects/sputnik.html" class="project_link"></a>
-                        </div>
-
-                        <!--AIMOUSE-->
-                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Computer Vision</li>
-                                    <li>Early Work</li>
-                                </ul>
-                                <img class="lazy" src="images/aimouse.png"  sizes="(max-width: 600px) 100vw, 50vw" alt="AI Mouse">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">AI Mouse</p>
-                                <p class="project_description">Turning a hand into a pointing device</p>
-                            </div>
-                            <a href="projects/aimouse.html" class="project_link"></a>
-                        </div>
-
-                        <!--FACE DETECTION-->
-                        <div class="single_project" data-category="Tools" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Computer Vision</li>
-                                    <li>Early Work</li>
-                                </ul>
-                                <img class="lazy" src="images/face.png" sizes="(max-width: 600px) 100vw, 50vw"  alt="Face detection">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Face Detection</p>
-                                <p class="project_description">Where I learned that a working demo is not a system</p>
-                            </div>
-                            <a href="projects/facedetection.html" class="project_link"></a>
-                        </div>
-
-                        <!--CLASSTRANSCRIBER-->
-                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Applied AI</li>
-                                    <li>Audio</li>
-                                </ul>
-                                <img class="lazy" src="images/classtranscriber.webp" sizes="(max-width: 600px) 100vw, 50vw" alt="ClassTranscriber">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">ClassTranscriber</p>
-                                <p class="project_description">Lectures into speaker-separated notes, all running locally</p>
-                            </div>
-                            <a href="projects/classtranscriber.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
-
-                        <!--AUTOLINKEDIN-->
-                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Applied AI</li>
-                                    <li>Full-Stack</li>
-                                </ul>
-                                <img class="lazy" src="images/autolinkedin.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="AutoLinkedIn">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">AutoLinkedIn</p>
-                                <p class="project_description">Retrieval-augmented drafting from my own writing — paused</p>
-                            </div>
-                            <a href="projects/autolinkedin.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
-
-                        <!--AGENTIC TRACES-->
-                        <div class="single_project" data-category="Research" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Dataset</li>
-                                    <li>Evaluation</li>
-                                </ul>
-                                <img class="lazy" src="images/agentic-traces.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="Agentic Reasoning Traces">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">Agentic Reasoning Traces</p>
-                                <p class="project_description">15 traces, 142 steps, three of them wrong on purpose</p>
-                            </div>
-                            <a href="projects/agentic-traces.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
-
-                        <!--BYTHEWAY-->
-                        <div class="single_project" data-category="Product" data-animation="fade-up" data-delay="0.2">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Venture</li>
-                                    <li>Leadership</li>
-                                </ul>
-                                <img class="lazy" src="images/bytheway.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="ByTheWay">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">ByTheWay</p>
-                                <p class="project_description">An early venture I co-founded</p>
-                            </div>
-                            <a href="projects/bytheway.html" class="project_link" aria-label="Read more about this case study"></a>
-                        </div>
-
-                        <!--ORGAAI-->
-                        <div class="single_project" data-category="Applied AI" data-animation="fade-up" data-delay="0">
-                            <div class="project_picture--container">
-                                <ul class="project_meta">
-                                    <li>Applied AI</li>
-                                    <li>Early Work</li>
-                                </ul>
-                                <img class="lazy" src="images/orgaai.svg" sizes="(max-width: 600px) 100vw, 50vw" alt="OrgaAI">
-                            </div>
-                            <div class="project_info--container">
-                                <p class="project_title">OrgaAI</p>
-                                <p class="project_description">Conversational AI under NDA — most of it I can't tell you</p>
-                            </div>
-                            <a href="projects/orgaai.html" class="project_link" aria-label="Read more about this case study"></a>
                         </div>
                     </div>
                 </div>
@@ -460,6 +484,9 @@
         </li>
         <li>
             <a href="about.html" class="">About Me</a>
+        </li>
+        <li>
+            <a href="cv.pdf" target="_blank" rel="noopener" data-barba-prevent class="">CV (PDF)</a>
         </li>
         <li>
             <a href="#footer" class="">Contact</a>

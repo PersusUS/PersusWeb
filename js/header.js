@@ -35,6 +35,10 @@
         '                    <a href="' + base + 'about.html"' + active('about') + '>About Me</a>',
         '                </li>',
         '                <li class="menu-item">',
+        // A file, not a page: a new tab, and kept away from Barba's transitions.
+        '                    <a href="' + base + 'cv.pdf" target="_blank" rel="noopener" data-barba-prevent class="">CV (PDF)</a>',
+        '                </li>',
+        '                <li class="menu-item">',
         '                    <a href="#footer" class="">Contact</a>',
         '                </li>',
         '            </ul>',

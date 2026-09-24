@@ -93,8 +93,8 @@
 /* ------------------------------------------------------------------
  * Portfolio filters.
  *
- * Eighteen cards in a single column with no grouping. Every project already
- * carries tags, so the vocabulary exists; this just makes it operable.
+ * The cards sit in headed groups, and every project also carries tags, so
+ * the vocabulary exists; the filters cut across the groups by tag.
  * ------------------------------------------------------------------ */
 
 .project_filters {
@@ -143,6 +143,16 @@
     display: none !important;
 }
 
+/* Groups on the projects page: the heading is the site's usual h3 label, and
+   the gap between groups is wider than the gap between rows of cards. */
+.project_group + .project_group {
+    margin-top: 80px;
+}
+
+.project_group[hidden] {
+    display: none !important;
+}
+
 .filter_status {
     text-align: center;
     font-size: 14px;
@@ -187,6 +197,10 @@
     .filter_chip {
         padding: 10px 16px;
         font-size: 13px;
+    }
+
+    .project_group + .project_group {
+        margin-top: 40px;
     }
 }
 

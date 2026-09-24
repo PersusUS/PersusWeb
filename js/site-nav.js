@@ -28,19 +28,26 @@
      * -------------------------------------------------------------- */
 
     function initFilters(scope) {
-        var grid = (scope || document).querySelector('.all_projects--container');
-        if (!grid) {
+        // The projects page is split into headed groups with one grid each.
+        // The bar sits above the first group and filters across all of them.
+        var grids = Array.prototype.slice.call((scope || document).querySelectorAll('.all_projects--container'));
+        if (!grids.length) {
             return;
         }
+        var groups = Array.prototype.slice.call((scope || document).querySelectorAll('.project_group'));
+        var first = groups[0] || grids[0];
 
         // Page transitions call init() again on the new container. If a filter
-        // bar is already sitting above this grid, it belongs to this grid and
+        // bar is already sitting above these grids, it belongs to them and
         // there is nothing to build.
-        if (grid.parentNode.querySelector('.project_filters')) {
+        if (first.parentNode.querySelector('.project_filters')) {
             return;
         }
 
-        var cards = Array.prototype.slice.call(grid.querySelectorAll('.single_project'));
+        var cards = [];
+        grids.forEach(function (grid) {
+            cards = cards.concat(Array.prototype.slice.call(grid.querySelectorAll('.single_project')));
+        });
         var categorised = cards.filter(function (card) {
             return card.dataset.category;
         });
@@ -83,6 +90,11 @@
                 }
             });
 
+            // A group the filter has emptied goes too, heading and all.
+            groups.forEach(function (group) {
+                group.hidden = !group.querySelector('.single_project:not([hidden])');
+            });
+
             Array.prototype.forEach.call(bar.children, function (chip) {
                 chip.setAttribute('aria-pressed', chip.dataset.filter === category ? 'true' : 'false');
             });
@@ -115,8 +127,8 @@
             addChip(category, category);
         });
 
-        grid.parentNode.insertBefore(bar, grid);
-        grid.parentNode.insertBefore(status, grid);
+        first.parentNode.insertBefore(bar, first);
+        first.parentNode.insertBefore(status, first);
         apply('all');
     }
 

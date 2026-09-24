@@ -3,7 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>
-        Selective-scan CUDA kernels | Persus
+        Selective-scan CUDA kernels · Jesús Pérez Bazarot
     </title>
 
     <meta name="description" content="Five CUDA implementations of the selective state-space recurrence, from a textbook Blelloch scan to a single-pass decoupled look-back kernel at 79.6-91.5% of peak memory bandwidth.">
@@ -26,15 +26,18 @@
 
     <meta property="og:locale" content="en_GB">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://persus.netlify.app/projects/selective-scan.html">
 
-    <meta property="og:title" content="Selective-scan CUDA kernels | Persus">
+    <meta property="og:title" content="Selective-scan CUDA kernels · Jesús Pérez Bazarot">
     <meta property="og:description" content="Five CUDA implementations of the selective state-space recurrence, from a textbook Blelloch scan to a single-pass decoupled look-back kernel at 79.6-91.5% of peak memory bandwidth.">
-    <meta property="og:site_name" content="Selective-scan CUDA kernels | Persus">
-    <meta property="og:image" content="../images/og_main.jpg">
+    <meta property="og:site_name" content="Jesús Pérez Bazarot">
+    <meta property="og:image" content="https://persus.netlify.app/images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:description" content="Five CUDA implementations of the selective state-space recurrence, from a textbook Blelloch scan to a single-pass decoupled look-back kernel at 79.6-91.5% of peak memory bandwidth.">
-    <meta name="twitter:title" content="Selective-scan CUDA kernels | Persus">
+    <meta name="twitter:title" content="Selective-scan CUDA kernels · Jesús Pérez Bazarot">
+    <meta name="twitter:image" content="https://persus.netlify.app/images/og_main.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#111111">
@@ -83,7 +86,7 @@
                             <p data-animation="fade-up" data-delay="0.4" class="size-20">I built it five times. A Blelloch up-sweep and down-sweep in shared memory. A three-pass multi-block version. Then three variants of <strong>decoupled look-back</strong> — the single-pass algorithm from Merrill and Garland's NVIDIA tech report, which is what CUB's <em>DeviceScan</em> runs underneath: a serial predecessor walk, then a warp-parallel walk inspecting 32 predecessors at once, then multiple items per thread scanned in registers.</p>
                             <p data-animation="fade-up" data-delay="0.5" class="size-20">The fastest kernel sustains <strong>79.6–91.5% of the theoretical memory bandwidth</strong> of an RTX 4050 Laptop, and is <strong>54–69× faster</strong> than the best pure-PyTorch baseline. The part I care about more: before writing it I had a memory-traffic model predicting a 2.33× gain over the three-pass version. Measured, 2.18–2.48×. The model was right for the reason it claimed to be.</p>
                             <p data-animation="fade-up" data-delay="0.5" class="size-20">A look-back scan is a hand-rolled synchronisation protocol between thread blocks, built on atomics, memory fences and volatile flag loads. Get one fence wrong and the kernel is correct almost every time, which is worse than being wrong every time. So the kernels carry <strong>107 correctness checks</strong> against a float64 reference and <strong>630 determinism runs</strong>, and the CPU mirrors of the index arithmetic each contain a deliberately broken variant — the suite has to prove it catches an operand-order error before any CUDA gets written.</p>
-                            <p data-animation="fade-up" data-delay="0.6" class="size-20">Four predictions went in writing before any measurement. Three held. One did not: I was convinced per-call allocations were the remaining cost, and a pre-allocated workspace measured <strong>identically</strong>, inside the noise. PyTorch's caching allocator had already made it free. That refutation is in the writeup rather than buried, and the useless parameter is still in the source, labelled as useless.</p>
+                            <p data-animation="fade-up" data-delay="0.6" class="size-20">Five predictions went in writing before any measurement. Three held. Two did not. I was convinced per-call allocations were the remaining cost, and a pre-allocated workspace measured <strong>identically</strong>, inside the noise: PyTorch's caching allocator had already made it free. The second was the expectation I had registered for Hillis–Steele, and the PyTorch version does not hold up against the single-pass kernel. That comparison is not a fair one yet, so I don't read it as a verdict on the algorithm: it runs in PyTorch rather than as a register-resident CUDA kernel, which means part of what it measures is the framework. Both refutations are in the writeup rather than buried, and the useless parameter is still in the source, labelled as useless.</p>
                             <p data-animation="fade-up" data-delay="0.6" class="size-20">Honest limits: one GPU, one clean sweep, fp32, forward pass only, no vectorised loads yet. On a laptop the memory clock oscillates and roughly every second sweep is unusable, so these numbers come from a run where the clock stayed pinned and a known-stable kernel returned its known value. They have not been reproduced on a second architecture.</p>
                         </div>
                         <div class="col-summary">
@@ -186,6 +189,9 @@
                     </li>
                     <li>
                         <a href="../about.html" class="">About Me</a>
+                    </li>
+                    <li>
+                        <a href="../cv.pdf" target="_blank" rel="noopener" data-barba-prevent class="">CV (PDF)</a>
                     </li>
                     <li>
                         <a href="#footer" class="">Contact</a>
