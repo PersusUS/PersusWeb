@@ -59,7 +59,7 @@
             '  <div class="sent">',
             '    <div class="tick">&#10003;</div>',
             '    <h2>Message sent</h2>',
-            '    <p>Thanks — it landed in my inbox. I will get back to you.</p>',
+            '    <p>Thanks, it landed in my inbox. I will get back to you.</p>',
             '  </div>',
             '</div>'
         ].join('\n');
