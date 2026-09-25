@@ -6,7 +6,7 @@
         NightShift · Jesús Pérez Bazarot
     </title>
 
-    <meta name="description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine — the model never decides the state.">
+    <meta name="description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine: the model never decides the state.">
 
 
     <link rel="shortcut icon" href="../images/persuslogowhite.ico" type="image/x-icon">
@@ -29,13 +29,13 @@
     <meta property="og:url" content="https://persus.netlify.app/projects/nightshift.html">
 
     <meta property="og:title" content="NightShift · Jesús Pérez Bazarot">
-    <meta property="og:description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine — the model never decides the state.">
+    <meta property="og:description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine: the model never decides the state.">
     <meta property="og:site_name" content="Jesús Pérez Bazarot">
     <meta property="og:image" content="https://persus.netlify.app/images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine — the model never decides the state.">
+    <meta name="twitter:description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine: the model never decides the state.">
     <meta name="twitter:title" content="NightShift · Jesús Pérez Bazarot">
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_main.jpg">
 
@@ -81,11 +81,11 @@
                             <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
                         </div>
                             <h1 data-animation="chars" data-delay="0" data-stagger="0.03">NightShift</h1>
-                            <p data-animation="fade-up" data-delay="0.2" class="size-20">NightShift exists to make the laptop work while I sleep. It is not a chatbot with a cron entry: it is a real state machine where the model never decides the state. A round ends only when the agent deletes the handoff file by calling <code>complete</code> — never because a model announces it is done. That one rule is the whole design, and everything else is built to keep it true.</p>
-                            <p data-animation="fade-up" data-delay="0.3" class="size-20">A night runs like this. Task Scheduler fires every hour from 00:00 to 06:00. Each round first wipes every API key from the environment, leaving only the subscription login, then calls <code>queue.py claim</code>, which writes <code>current.json</code> and a lock. A headless driver takes over the coding agent's terminal UI over a pseudo-terminal, types the prompt, and waits for <code>current.json</code> to disappear — that absence is the end signal, not any string the agent prints. A reaper always runs afterwards and either re-queues the task or marks it failed.</p>
-                            <p data-animation="fade-up" data-delay="0.4" class="size-20">There are three modes, tried in order: <em>execute</em> when a project is pending, <em>curate</em> when there are raw ideas to score and promote, <em>ideate</em> when there is nothing left and it has to generate its own. The round is sized to the real session budget — the driver reads the countdown line from the agent's UI and cuts the run short, reserving a few minutes at the end for the agent to write its log and call <code>complete</code>. Before that fix it believed it had forty minutes that did not exist.</p>
-                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Over about six weeks the queue went from four projects done to twenty-seven, and then the machine ran out of things to do. Most of that was hardening its own harness: a pre-flight <code>doctor.py</code>, log rotation, a watchdog for inactivity, per-round transcripts kept whole instead of one file overwritten each night. Some of it was work on other projects entirely — it cleaned up my assistant's codebase, extended my job scraper to fifty-six sources across two jobs, and prepared an arXiv submission checklist and a model-release watch for my World Models paper. One job, continuing a cryptanalysis project, it tried and failed.</p>
-                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">The honest state today: the queue is empty and the ideation mode — the only one that can refill it without me — crashes on start, so for now the machine depends on being fed by hand. The silent hang that once burned a whole night is gone, because there is no longer a single truncated transcript that each round overwrites; when something breaks now, there is evidence. The repository has been under git since the first night it went to production.</p>
+                            <p data-animation="fade-up" data-delay="0.2" class="size-20">NightShift exists to make the laptop work while I sleep. It is not a chatbot with a cron entry: it is a real state machine where the model never decides the state. A round ends only when the agent deletes the handoff file by calling <code>complete</code>, never because a model announces it is done. That one rule is the whole design, and everything else is built to keep it true.</p>
+                            <p data-animation="fade-up" data-delay="0.3" class="size-20">A night runs like this. Task Scheduler fires every hour from 00:00 to 06:00. Each round first wipes every API key from the environment, leaving only the subscription login, then calls <code>queue.py claim</code>, which writes <code>current.json</code> and a lock. A headless driver takes over the coding agent's terminal UI over a pseudo-terminal, types the prompt, and waits for <code>current.json</code> to disappear. That absence is the end signal, not any string the agent prints. A reaper always runs afterwards and either re-queues the task or marks it failed.</p>
+                            <p data-animation="fade-up" data-delay="0.4" class="size-20">There are three modes, tried in order: <em>execute</em> when a project is pending, <em>curate</em> when there are raw ideas to score and promote, <em>ideate</em> when there is nothing left and it has to generate its own. The round is sized to the real session budget: the driver reads the countdown line from the agent's UI and cuts the run short, reserving a few minutes at the end for the agent to write its log and call <code>complete</code>. Before that fix it believed it had forty minutes that did not exist.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Over about six weeks the queue went from four projects done to twenty-seven, and then the machine ran out of things to do. Most of that was hardening its own harness: a pre-flight <code>doctor.py</code>, log rotation, a watchdog for inactivity, per-round transcripts kept whole instead of one file overwritten each night. Some of it was work on other projects entirely: it cleaned up my assistant's codebase, extended my job scraper to fifty-six sources across two jobs, and prepared an arXiv submission checklist and a model-release watch for my World Models paper. One job, continuing a cryptanalysis project, it tried and failed.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">The honest state today: the queue is empty and the ideation mode, the only one that can refill it without me, crashes on start, so for now the machine depends on being fed by hand. The silent hang that once burned a whole night is gone, because there is no longer a single truncated transcript that each round overwrites; when something breaks now, there is evidence. The repository has been under git since the first night it went to production.</p>
                         </div>
                         <div class="col-summary">
                             <div class="entry" data-animation="fade-up" data-delay="0">
@@ -162,7 +162,7 @@
                         </div>
                         <div class="footer-col">
                             Designed and developed by me<br>
-                            ©2026 – All Rights Reserved
+                            ©2026 · All Rights Reserved
                         </div>
                     </div>
                 </div>
