@@ -6,7 +6,7 @@
         About Me · Jesús Pérez Bazarot 
     </title>
 
-    <meta name="description" content="Computer engineering student and AI/ML developer from Seville. World models, continual learning and edge AI.">
+    <meta name="description" content="Computer engineering student and ML researcher from Seville: continual learning in world models, CUDA kernels, and the tools I build for myself.">
 
     <link rel="shortcut icon" href="images/persuslogowhite.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="images/persuslogowhite.png">
@@ -28,13 +28,13 @@
     <meta property="og:url" content="https://persus.netlify.app/about.html">
 
     <meta property="og:title" content="About Me · Jesús Pérez Bazarot">
-    <meta property="og:description" content="Computer engineering student and AI/ML developer from Seville. World models, continual learning and edge AI.">
+    <meta property="og:description" content="Computer engineering student and ML researcher from Seville: continual learning in world models, CUDA kernels, and the tools I build for myself.">
     <meta property="og:site_name" content="Jesús Pérez Bazarot">
     <meta property="og:image" content="https://persus.netlify.app/images/og_main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="Computer engineering student and AI/ML developer from Seville. World models, continual learning and edge AI.">
+    <meta name="twitter:description" content="Computer engineering student and ML researcher from Seville: continual learning in world models, CUDA kernels, and the tools I build for myself.">
     <meta name="twitter:title" content="About Me · Jesús Pérez Bazarot">
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_main.jpg">
 
@@ -76,7 +76,7 @@
                 <div class="inner--container">
                     <div class="grid">
                         <h1 data-animation="chars" data-delay="0" data-stagger="0.03">A little about me</h1>
-                        <p class="size-20" data-animation="fade-up" data-delay="0">I’m Jesús Pérez Bazarot, 21, born and raised near Seville and now in my fourth year of Computer Engineering at the Universidad de Sevilla — with my third year spent at the Beijing Institute of Technology. I work on the parts of AI that break: models that forget what they learned, models too large for the hardware they need to run on, benchmarks that quietly measure the wrong thing. Most of what I know I learned by building something, watching it fail in an interesting way, and rebuilding it. Along the way I've spoken at Telefónica, competed in NASA SpaceApps, been CTO of a small startup, and co-founded another. Martial arts, three or four times a week, taught me the part that no project teaches: how to keep showing up after losing.</p>
+                        <p class="size-20" data-animation="fade-up" data-delay="0">I’m Jesús Pérez Bazarot: 21, from Seville, in my fourth year of Computer Engineering at the Universidad de Sevilla after a third year at the Beijing Institute of Technology. I don’t really believe something works until I’ve taken it apart. That has pointed me at very different things — a GPU kernel measured against the bandwidth of the chip it runs on, a benchmark that ended up refuting the method I proposed in it, a startup’s entire stack when I was its only engineer — but the habit is always the same: write down what I expect, measure, and say so when I was wrong.<br><br>I started early and in the open: CTO of a small hardware startup in my first year of university, a talk on Telefónica’s innovaTE stage, where I also introduced the Mayor of Seville, and a carpooling company I co-founded that didn’t survive. I kept the lessons from all three. I start more projects than is wise, and I finish the ones that matter. Three or four evenings a week I’m on a mat doing martial arts, which is where I learned to lose without quitting.</p>
                     </div>
                 </div>
             </section>
@@ -85,8 +85,8 @@
                 <div class="inner--container">
                     <div class="grid">
                         <h3 data-animation="chars" data-delay="0" data-stagger="0.03">What I do</h3>
-                        <p class="big-text" data-animation="words" data-delay="0" data-stagger="0.03">I build benchmarks and the systems they measure. If a result can’t be reproduced bit for bit, I don’t trust it yet — including my own.</p>
-                        <p class="size-20" data-animation="fade-up" data-delay="0">My current research asks a narrow question: when a world model learns a second task, what exactly does its transition model forget, and how do we measure that honestly? Building it taught me more about experimental hygiene than about world models. Seven debugging sessions turned up twenty-one bugs, one of which — a collapsed VAE posterior — invalidated an entire round of results and every conclusion I had drawn from them. Rewriting the paper from scratch was less painful than publishing something I knew was wrong.<br><br>Outside research, I write Rust and Python, deploy models on hardware that has no business running them, and keep a small set of tools I use daily. I’m aiming for a PhD in AI at MIT, and long term for work where machine learning is pointed at something worth conserving — marine ecology, for a start.</p>
+                        <p class="big-text" data-animation="words" data-delay="0" data-stagger="0.03">I write down what I expect before I measure it. When the numbers disagree, the numbers win — even when the idea they sink is mine.</p>
+                        <p class="size-20" data-animation="fade-up" data-delay="0">Right now that means two lines of work. The first is continual learning in world models: a 375-run benchmark I wrote up alone, under review at a NeurIPS 2026 workshop, whose two findings are both negative. Task distance doesn’t predict how much a model forgets, and the forgetting that matters happens in the encoder, where the usual metrics don’t look. One of those results refutes the method I set out to propose, and it went in the paper anyway. The second is the level below the model: hand-written CUDA scan kernels that sustain up to 91.5% of a laptop GPU’s memory bandwidth, and before that a Mamba–Transformer hybrid for OpenAI’s Parameter Golf, made compilable by rewriting its recurrence as a parallel scan in plain PyTorch.<br><br>Almost everything else I build, I build to use. Perseo, the assistant I’ve been rebuilding since 2023, reads my mail and calendar and only interrupts me when it matters; NightShift works through a queue of coding tasks while I sleep; Kotoba is how I study Japanese. Next comes a PhD in machine learning, with MIT as the target, and further out, work that points machine learning at something worth conserving. The shark on this site isn’t decoration.</p>
                     </div>
                 </div>
             </section>
@@ -127,9 +127,9 @@
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
                                         <span>AI/ML Developer</span>
-                                        <span>OrgaAI — conversational AI, audio &amp; transcription </span>
+                                        <span>OrgaAI — audio &amp; transcription pipeline, under NDA</span>
                                     </div>
-                                    <div class="entry_col">(under NDA)</div>
+                                    <div class="entry_col">Jun — Sep 2025</div>
                                 </li>
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
@@ -192,6 +192,13 @@
                                 </li>
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
+                                        <span>Selective-scan CUDA kernels</span>
+                                        <span>Five hand-written scan kernels, up to 91.5% of peak DRAM bandwidth</span>
+                                    </div>
+                                    <div class="entry_col">2026</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
                                         <span>HybridMamba-11</span>
                                         <span>OpenAI Parameter Golf — submitted April 2026</span>
                                     </div>
@@ -226,7 +233,7 @@
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
                                         <span>Wanted Entrepreneurship Competition</span>
-                                        <span>Winning team — venture and innovation execution</span>
+                                        <span>First place out of 20 teams</span>
                                     </div>
                                     <div class="entry_col">2023</div>
                                 </li>
@@ -236,6 +243,20 @@
                                         <span>Provincial level</span>
                                     </div>
                                     <div class="entry_col">2023</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>NASA Space Apps Challenge</span>
+                                        <span>Swarm systems and robotics challenges</span>
+                                    </div>
+                                    <div class="entry_col">2023</div>
+                                </li>
+                                <li data-animation="fade-up">
+                                    <div class="entry_col">
+                                        <span>Algorithmics Club</span>
+                                        <span>Universidad de Sevilla — member</span>
+                                    </div>
+                                    <div class="entry_col">2023 — Present</div>
                                 </li>
                             </ul>
                         </div>
@@ -269,7 +290,7 @@
                                 <li data-animation="fade-up">
                                     <div class="entry_col">
                                         <span>Spoken</span>
-                                        <span>Spanish (native), English (C1, Trinity 2020), Chinese (conversational)</span>
+                                        <span>Spanish (native), English (C1, Trinity 2020), Chinese (conversational), Japanese (learning)</span>
                                     </div>
                                 </li>
                             </ul>
@@ -278,7 +299,16 @@
                 </div>
             </section>
     
-            <section class="default_row--container logos_marquee--wrapper" id="about-logos" data-section="Where I have been">
+            <section class="default_row--container about_text--wrapper about_places--intro" id="about-places" data-section="Where I have been">
+                <div class="inner--container">
+                    <div class="grid">
+                        <h3 data-animation="chars" data-delay="0" data-stagger="0.03">Where I have been</h3>
+                        <p class="size-20" data-animation="fade-up" data-delay="0">From a lecture hall in Seville to a campus in Beijing, from a Telefónica stage to a NeurIPS workshop: the places, teams and programmes behind the work above.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="default_row--container logos_marquee--wrapper" id="about-logos">
                 <div class="marquee">
                     <div class="track">
                         <span class="item">
@@ -288,7 +318,7 @@
                             <img class="lazy" width="330" height="247" src="images/netkeylg.png" alt="NETKEY">
                             <img class="lazy" width="330" height="247" src="images/sputniklg.png" alt="SPUTNIK">
                         </span>
-                        <span class="item">
+                        <span class="item" aria-hidden="true">
                             <img class="lazy" width="330" height="247" src="images/nasalg.png" alt="NASA">
                             <img class="lazy" width="330" height="247" src="images/nasasplg.png" alt="NASA SPACEAPPS">
                             <img class="lazy" width="330" height="247" src="images/telefonicalg.png" alt="TELEFONICA">
@@ -298,28 +328,122 @@
                     </div>
                 </div>
             </section>
-    
-            <section class="default_row--container logos_marquee--wrapper spacing_bottom">
-                <div class="marquee">
+
+            <section class="default_row--container logos_marquee--wrapper places_marquee--wrapper spacing_bottom">
+                <div class="marquee places">
                     <div class="track">
                         <span class="item -r">
-                            <img class="lazy" width="330" height="247" src="images/nasalg.png" alt="NASA">
-                            <img class="lazy" width="330" height="247" src="images/nasasplg.png" alt="NASA SPACEAPPS">
-                            <img class="lazy" width="330" height="247" src="images/telefonicalg.png" alt="TELEFONICA">
-                            <img class="lazy" width="330" height="247" src="images/netkeylg.png" alt="NETKEY">
-                            <img class="lazy" width="330" height="247" src="images/sputniklg.png" alt="SPUTNIK">
+                            <span class="place">
+                                <span class="place_name">Seville</span>
+                                <span class="place_caption">Universidad de Sevilla · 2023 — now</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Beijing</span>
+                                <span class="place_caption">Beijing Institute of Technology · 2025 — 26</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">NeurIPS 2026</span>
+                                <span class="place_caption">CL4FMAgents workshop · under review</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">OpenAI</span>
+                                <span class="place_caption">Parameter Golf · HybridMamba-11</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Minerva</span>
+                                <span class="place_caption">Research intern · 2023 — 24</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">OrgaAI</span>
+                                <span class="place_caption">AI/ML developer · 2025</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">ByTheWay</span>
+                                <span class="place_caption">Co-founder &amp; co-CTO · 2024 — 25</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">NetKey</span>
+                                <span class="place_caption">CTO · 2023 — 24</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Telefónica</span>
+                                <span class="place_caption">innovaTE speaker · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">NASA Space Apps</span>
+                                <span class="place_caption">Swarms &amp; robotics · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Sputnik</span>
+                                <span class="place_caption">Young leaders programme · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Wanted</span>
+                                <span class="place_caption">First place · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Cologne</span>
+                                <span class="place_caption">Language exchange</span>
+                            </span>
                         </span>
-                        <span class="item -r">
-                            <img class="lazy" width="330" height="247" src="images/nasalg.png" alt="NASA">
-                            <img class="lazy" width="330" height="247" src="images/nasasplg.png" alt="NASA SPACEAPPS">
-                            <img class="lazy" width="330" height="247" src="images/telefonicalg.png" alt="TELEFONICA">
-                            <img class="lazy" width="330" height="247" src="images/netkeylg.png" alt="NETKEY">
-                            <img class="lazy" width="330" height="247" src="images/sputniklg.png" alt="SPUTNIK">
+                        <span class="item -r" aria-hidden="true">
+                            <span class="place">
+                                <span class="place_name">Seville</span>
+                                <span class="place_caption">Universidad de Sevilla · 2023 — now</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Beijing</span>
+                                <span class="place_caption">Beijing Institute of Technology · 2025 — 26</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">NeurIPS 2026</span>
+                                <span class="place_caption">CL4FMAgents workshop · under review</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">OpenAI</span>
+                                <span class="place_caption">Parameter Golf · HybridMamba-11</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Minerva</span>
+                                <span class="place_caption">Research intern · 2023 — 24</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">OrgaAI</span>
+                                <span class="place_caption">AI/ML developer · 2025</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">ByTheWay</span>
+                                <span class="place_caption">Co-founder &amp; co-CTO · 2024 — 25</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">NetKey</span>
+                                <span class="place_caption">CTO · 2023 — 24</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Telefónica</span>
+                                <span class="place_caption">innovaTE speaker · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">NASA Space Apps</span>
+                                <span class="place_caption">Swarms &amp; robotics · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Sputnik</span>
+                                <span class="place_caption">Young leaders programme · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Wanted</span>
+                                <span class="place_caption">First place · 2023</span>
+                            </span>
+                            <span class="place">
+                                <span class="place_name">Cologne</span>
+                                <span class="place_caption">Language exchange</span>
+                            </span>
                         </span>
                     </div>
                 </div>
             </section>
-    
+
             <!-- Original footer with CTA -->
 <footer id="footer" data-section="Contact">
     <section class="cta_footer--container">
