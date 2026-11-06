@@ -2,7 +2,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Armario · Jesús Pérez Bazarot</title>
+    <title>
+        Armario · Jesús Pérez Bazarot</title>
 
     <meta name="description" content="A local wardrobe app that photographs my clothes and proposes outfits from the real forecast, using a deterministic rules engine, no LLM anywhere.">
 
@@ -38,58 +39,196 @@
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_card.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#a1c4fd">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <meta name="robots" content="noodp">
-    <link rel="stylesheet" href="../css/site.css">
+
+    <link rel="stylesheet" href="../css/master.min.css">
+    <link rel="stylesheet" href="../css/normalize.min.css">
+    <link rel="stylesheet" href="../css/fancybox.min.css">
+    <link rel="stylesheet" href="../css/shark.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/case.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+    <link rel="stylesheet" href="../css/nav.css">
+
+    <noscript>
+        <style>
+            html { overflow-y: auto !important; }
+            [data-animation] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
+            .loader_wrapper { display: none !important; }
+        </style>
+    </noscript>
 </head>
+
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site_header">
-    <a class="site_name" href="../index.html">Jesús P. Bazarot</a>
-    <nav class="site_nav" aria-label="Main">
-        <a href="../portfolio.html">Projects</a>
-        <a href="../about.html">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-<main id="main">
-    <p class="case_back"><a href="../portfolio.html">All projects</a></p>
-    <h1 class="case_title">Armario</h1>
-    <div class="case_body">
-        <div class="prose">
-            <p>I own enough clothes to dress well and I still wear the same four things. Armario is a local web app that holds a photographed catalogue of my wardrobe and proposes outfits for the day from the real forecast and the occasion, and unlike almost everything else in this portfolio, it deliberately contains <strong>no model at all</strong>.</p>
-            <p>The first version was going to call an LLM with a prompt and a few examples. I threw it away. A deterministic rules engine costs nothing per query, needs no API key, runs on a tablet with no signal, and (the part that actually matters) <em>can explain itself</em>. Every proposal carries the reasons that produced it. A model that says "this looks good together" is not something I can argue with; a score I can read is.</p>
-            <p>Each garment is scored on six weighted signals: how well its temperature range overlaps today's real forecast from Open-Meteo (×3), how it fits the occasion (×2), whether it fits me and whether I like it (×1.5 each), a star rating, and a penalty that decays over a week if I wore it recently. The outfit score is the mean of its pieces plus a colour-harmony term: neutrals are free, two strong families cost you, three sink the proposal. Anything in the laundry basket is filtered out before scoring, and wearing an outfit throws its pieces in the basket automatically. Watches, belts and shoes are exempt: they don't get washed every time.</p>
-            <p>Cataloguing is the part I automated hardest, because it's the part that decides whether the project survives. rembg (u2net) cuts the background out of every photo; the dominant colour is inferred from the cut-out's alpha channel and resolved against a 28-colour vocabulary, the same vocabulary the harmony rule speaks, so detection feeds the engine directly. Ten out of ten on synthetic samples. Anything I type by hand always wins.</p>
-            <p>The detour worth reporting is the camera. I wanted the phone as a webcam so I could shoot garments from across the room: the virtual-camera app showed a perfect live picture in its own window and handed OpenCV nothing but black frames. I stopped fighting drivers and inverted the problem: the phone opens the web app over the LAN and shoots with its own camera, while the PC keeps doing the background removal and the colour. I lost the framing guide; I gained a workflow I'll actually use for fifty garments. Cheap answers beat clever ones when the clever one is a driver.</p>
-            <p>One FastAPI process serves a four-screen front end written in plain HTML, CSS and JavaScript (no npm, no build step) over SQLite. The same Python runs unchanged on a rooted Android tablet under Termux, which is where it lives day to day. Status: the code is done and the wardrobe isn't. The engine is only as good as the garments and the ratings I feed it, and that part is manual labour no architecture removes.</p>
+
+    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
+
+    <script src="../js/header.js"></script>
+
+    <main id="wrapper" data-barba="wrapper">
+
+        <div data-barba="container">
+
+            <section class="default_row--container single_case_hero--row">
+                <div class="inner--container">
+                    <div class="grid">
+                        <div class="col-intro">
+                        <div class="case_back--container">
+                            <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
+                        </div>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Armario</h1>
+                                                        <p data-animation="fade-up" data-delay="0.2" class="size-20">I own enough clothes to dress well and I still wear the same four things. Armario is a local web app that holds a photographed catalogue of my wardrobe and proposes outfits for the day from the real forecast and the occasion, and unlike almost everything else in this portfolio, it deliberately contains <strong>no model at all</strong>.</p>
+                            <p data-animation="fade-up" data-delay="0.3" class="size-20">The first version was going to call an LLM with a prompt and a few examples. I threw it away. A deterministic rules engine costs nothing per query, needs no API key, runs on a tablet with no signal, and (the part that actually matters) <em>can explain itself</em>. Every proposal carries the reasons that produced it. A model that says "this looks good together" is not something I can argue with; a score I can read is.</p>
+                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">Each garment is scored on six weighted signals: how well its temperature range overlaps today's real forecast from Open-Meteo (×3), how it fits the occasion (×2), whether it fits me and whether I like it (×1.5 each), a star rating, and a penalty that decays over a week if I wore it recently. The outfit score is the mean of its pieces plus a colour-harmony term: neutrals are free, two strong families cost you, three sink the proposal. Anything in the laundry basket is filtered out before scoring, and wearing an outfit throws its pieces in the basket automatically. Watches, belts and shoes are exempt: they don't get washed every time.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Cataloguing is the part I automated hardest, because it's the part that decides whether the project survives. rembg (u2net) cuts the background out of every photo; the dominant colour is inferred from the cut-out's alpha channel and resolved against a 28-colour vocabulary, the same vocabulary the harmony rule speaks, so detection feeds the engine directly. Ten out of ten on synthetic samples. Anything I type by hand always wins.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">The detour worth reporting is the camera. I wanted the phone as a webcam so I could shoot garments from across the room: the virtual-camera app showed a perfect live picture in its own window and handed OpenCV nothing but black frames. I stopped fighting drivers and inverted the problem: the phone opens the web app over the LAN and shoots with its own camera, while the PC keeps doing the background removal and the colour. I lost the framing guide; I gained a workflow I'll actually use for fifty garments. Cheap answers beat clever ones when the clever one is a driver.</p>
+                            <p data-animation="fade-up" data-delay="0.7" class="size-20">One FastAPI process serves a four-screen front end written in plain HTML, CSS and JavaScript (no npm, no build step) over SQLite. The same Python runs unchanged on a rooted Android tablet under Termux, which is where it lives day to day. Status: the code is done and the wardrobe isn't. The engine is only as good as the garments and the ratings I feed it, and that part is manual labour no architecture removes.</p>
+                        </div>
+                        <div class="col-summary">
+                            <div class="entry" data-animation="fade-up" data-delay="0">
+                                <span>Services</span>
+                                <span class="size-20">Personal Tools, Full-Stack</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.2">
+                                <span>Stack</span>
+                                <span class="size-20">Python, FastAPI, SQLite, OpenCV, rembg (u2net), Open-Meteo, vanilla JS, Termux</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.3">
+                                <span>Status</span>
+                                <span class="size-20">In use · wardrobe still being catalogued</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.4">
+                                <span>Year</span>
+                                <span class="size-20">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero_img--container">
+                    <div class="hero_img parallax reveal_effect">
+                        <div class="mask"></div>
+                        <img class="lazy" src="../images/armario.webp" alt="Armario">
+                    </div>
+                </div>
+            </section>
+
+            <section class="default_row--container next-project single_project">
+                <div class="inner--container">
+                    <p>Other Project</p>
+                    <p>Netkey</p>
+                </div>
+                <div class="image--container">
+                    <img class="lazy" src="../images/netkey.png" alt="Netkey">
+                </div>
+                <a href="netkey.html" class="project_link link"></a>
+            </section>
+
+            <!-- Original footer with CTA -->
+            <footer id="footer">
+                <section class="cta_footer--container">
+                    <div class="cta--wrapper">
+                        <div class="cta--container">
+                            <div class="video--container">
+                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
+                            </div>
+                            <div class="text--container">
+                                <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
+                                <a class="lovely_button link" href="mailto:jp.bazarot@gmail.com?subject=Hello%20there!" target="_self">
+                                    <span class="text">Drop me an email!</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+
+            <!-- New footer specifically for socials, copyright, and coordinates -->
+            <footer id="footer-bottom">
+                <div class="footer-bottom--container">
+                    <div class="footer-bottom--wrapper">
+                        <div class="footer-col">
+                            N 37°23′21″ W 5°59′04″
+                        </div>
+                        <div class="footer-col">
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
+                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="footer-col">
+                            Designed and developed by me<br>
+                            ©2026 · All Rights Reserved
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100" alt=""></div>
+
+            <div class="mobile_menu--wrapper">
+    <div class="overlay"></div>
+    <div class="mobile_menu--container">
+        <div class="inner">
+            <nav>
+                <ul class="mobile_menu">
+                    <li>
+                        <a href="../index.html" class="">Home</a>
+                    </li>
+                    <li>
+                        <a href="../portfolio.html" class="">Projects</a>
+                    </li>
+                    <li>
+                        <a href="../about.html" class="">About Me</a>
+                    </li>
+                    <li>
+                        <a href="#footer" class="">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <ul class="social_menu">
+                <li>
+                    <a href="https://www.instagram.com/jpbazarot/" target="_blank">Instagram</a>
+                </li>
+                <li>
+                    <a href="https://www.x.com/JPBazarot" target="_blank">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
+                </li>
+            </ul>
         </div>
-        <dl class="facts">
-            <dt>Stack</dt>
-            <dd>Python, FastAPI, SQLite, OpenCV, rembg (u2net), Open-Meteo, vanilla JS, Termux</dd>
-            <dt>Status</dt>
-            <dd>In use · wardrobe still being catalogued</dd>
-            <dt>Year</dt>
-            <dd>2026</dd>
-        </dl>
     </div>
-    <figure class="case_figure">
-        <img src="../images/armario.webp" loading="lazy" alt="Armario">
-    </figure>
-    <p class="next">Next: <a href="netkey.html">Netkey</a></p>
-</main>
-<footer class="site_footer" id="contact">
-    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
-    <a class="mail" href="mailto:jp.bazarot@gmail.com">jp.bazarot@gmail.com</a>
-    <div class="footer_links">
-        <a href="https://github.com/PersusUS">GitHub</a>
-        <a href="https://www.linkedin.com/in/jpbazarot/">LinkedIn</a>
-        <a href="https://www.x.com/JPBazarot">Twitter</a>
-        <a href="https://www.instagram.com/jpbazarot/">Instagram</a>
-        <span class="made">Seville, 2026</span>
-    </div>
-</footer>
-<script src="../js/shark-mesh.js" defer></script>
-<script src="../js/shark.js" defer></script>
-</body>
-</html>
+</div>
+        </div>
+
+    </main>
+
+    <div class="noise-bg"></div>
+
+<script src="../js/barba.core.min.js"></script>
+<script src="../js/barba.css.min.js"></script>
+<script type="text/javascript" src="../js/lenis.min.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/gsap.min.js"></script>
+<script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
+<script type="text/javascript" src="../js/SplitText.min.js"></script>
+<script type="text/javascript" src="../js/lazyload.min.js"></script>
+<script type="text/javascript" src="../js/fancybox.min.js"></script>
+<script type="text/javascript" src="../js/text-reflow.js"></script>
+<script type="text/javascript" src="../js/master.min.js"></script>
+<script type="text/javascript" src="../js/mobile-fixes.js"></script>
+    <script src="../js/site-nav.js"></script>
+<script type="text/javascript" src="../js/contact.js"></script>
+<script type="text/javascript" src="../js/shark-mesh.js"></script>
+<script type="text/javascript" src="../js/shark.js"></script>
+
+
+
+</body></html>

@@ -2,7 +2,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>NightShift · Jesús Pérez Bazarot</title>
+    <title>
+        NightShift · Jesús Pérez Bazarot
+    </title>
 
     <meta name="description" content="An autonomous nightly queue: it claims a task, runs it with an unattended coding agent, and leaves a report in Telegram by morning. A real state machine: the model never decides the state.">
 
@@ -38,57 +40,195 @@
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_card.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#a1c4fd">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <meta name="robots" content="noodp">
-    <link rel="stylesheet" href="../css/site.css">
+
+    <link rel="stylesheet" href="../css/master.min.css">
+    <link rel="stylesheet" href="../css/normalize.min.css">
+    <link rel="stylesheet" href="../css/fancybox.min.css">
+    <link rel="stylesheet" href="../css/shark.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/case.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+    <link rel="stylesheet" href="../css/nav.css">
+
+    <noscript>
+        <style>
+            html { overflow-y: auto !important; }
+            [data-animation] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
+            .loader_wrapper { display: none !important; }
+        </style>
+    </noscript>
 </head>
+
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site_header">
-    <a class="site_name" href="../index.html">Jesús P. Bazarot</a>
-    <nav class="site_nav" aria-label="Main">
-        <a href="../portfolio.html">Projects</a>
-        <a href="../about.html">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-<main id="main">
-    <p class="case_back"><a href="../portfolio.html">All projects</a></p>
-    <h1 class="case_title">NightShift</h1>
-    <div class="case_body">
-        <div class="prose">
-            <p>NightShift exists to make the laptop work while I sleep. It is a state machine where the model never decides the state. A round ends only when the agent deletes the handoff file by calling <code>complete</code>, never because a model announces it is done. That one rule is the whole design, and everything else is built to keep it true.</p>
-            <p>A night runs like this. Task Scheduler fires every hour from 00:00 to 06:00. Each round first wipes every API key from the environment, leaving only the subscription login, then calls <code>queue.py claim</code>, which writes <code>current.json</code> and a lock. A headless driver takes over the coding agent's terminal UI over a pseudo-terminal, types the prompt, and waits for <code>current.json</code> to disappear. That absence is the end signal, not any string the agent prints. A reaper always runs afterwards and either re-queues the task or marks it failed.</p>
-            <p>There are three modes, tried in order: <em>execute</em> when a project is pending, <em>curate</em> when there are raw ideas to score and promote, <em>ideate</em> when there is nothing left and it has to generate its own. The round is sized to the real session budget: the driver reads the countdown line from the agent's UI and cuts the run short, reserving a few minutes at the end for the agent to write its log and call <code>complete</code>. Before that fix it believed it had forty minutes that did not exist.</p>
-            <p>Over about six weeks the queue went from four projects done to twenty-seven, and then the machine ran out of things to do. Most of that was hardening its own harness: a pre-flight <code>doctor.py</code>, log rotation, a watchdog for inactivity, per-round transcripts kept whole instead of one file overwritten each night. Some of it was work on other projects entirely: it cleaned up my assistant's codebase, extended my job scraper to fifty-six sources across two jobs, and prepared an arXiv submission checklist and a model-release watch for my World Models paper. One job, continuing a cryptanalysis project, it tried and failed.</p>
-            <p>Today the queue is empty and the ideation mode, the only one that can refill it without me, crashes on start, so for now the machine depends on being fed by hand. The silent hang that once burned a whole night is gone, because there is no longer a single truncated transcript that each round overwrites; when something breaks now, there is evidence. The repository has been under git since the first night it went to production.</p>
+
+    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
+
+    <script src="../js/header.js"></script>
+
+    <main id="wrapper" data-barba="wrapper">
+
+        <div data-barba="container">
+
+            <section class="default_row--container single_case_hero--row">
+                <div class="inner--container">
+                    <div class="grid">
+                        <div class="col-intro">
+                        <div class="case_back--container">
+                            <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
+                        </div>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">NightShift</h1>
+                            <p data-animation="fade-up" data-delay="0.2" class="size-20">NightShift exists to make the laptop work while I sleep. It is a state machine where the model never decides the state. A round ends only when the agent deletes the handoff file by calling <code>complete</code>, never because a model announces it is done. That one rule is the whole design, and everything else is built to keep it true.</p>
+                            <p data-animation="fade-up" data-delay="0.3" class="size-20">A night runs like this. Task Scheduler fires every hour from 00:00 to 06:00. Each round first wipes every API key from the environment, leaving only the subscription login, then calls <code>queue.py claim</code>, which writes <code>current.json</code> and a lock. A headless driver takes over the coding agent's terminal UI over a pseudo-terminal, types the prompt, and waits for <code>current.json</code> to disappear. That absence is the end signal, not any string the agent prints. A reaper always runs afterwards and either re-queues the task or marks it failed.</p>
+                            <p data-animation="fade-up" data-delay="0.4" class="size-20">There are three modes, tried in order: <em>execute</em> when a project is pending, <em>curate</em> when there are raw ideas to score and promote, <em>ideate</em> when there is nothing left and it has to generate its own. The round is sized to the real session budget: the driver reads the countdown line from the agent's UI and cuts the run short, reserving a few minutes at the end for the agent to write its log and call <code>complete</code>. Before that fix it believed it had forty minutes that did not exist.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Over about six weeks the queue went from four projects done to twenty-seven, and then the machine ran out of things to do. Most of that was hardening its own harness: a pre-flight <code>doctor.py</code>, log rotation, a watchdog for inactivity, per-round transcripts kept whole instead of one file overwritten each night. Some of it was work on other projects entirely: it cleaned up my assistant's codebase, extended my job scraper to fifty-six sources across two jobs, and prepared an arXiv submission checklist and a model-release watch for my World Models paper. One job, continuing a cryptanalysis project, it tried and failed.</p>
+                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">Today the queue is empty and the ideation mode, the only one that can refill it without me, crashes on start, so for now the machine depends on being fed by hand. The silent hang that once burned a whole night is gone, because there is no longer a single truncated transcript that each round overwrites; when something breaks now, there is evidence. The repository has been under git since the first night it went to production.</p>
+                        </div>
+                        <div class="col-summary">
+                            <div class="entry" data-animation="fade-up" data-delay="0">
+                                <span>Services</span>
+                                <span class="size-20">Automation, Agent Infrastructure</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.2">
+                                <span>Stack</span>
+                                <span class="size-20">Python, Windows Task Scheduler, ConPTY, Telegram Bot API</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.3">
+                                <span>Status</span>
+                                <span class="size-20">In production since Aug 2026 · 27 shipped</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.4">
+                                <span>Year</span>
+                                <span class="size-20">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero_img--container">
+                    <div class="hero_img parallax reveal_effect">
+                        <div class="mask"></div>
+                        <img class="lazy" src="../images/nightshift.webp" alt="NightShift">
+                    </div>
+                </div>
+            </section>
+
+            <section class="default_row--container next-project single_project">
+                <div class="inner--container">
+                    <p>Other Project</p>
+                    <p>Perseo</p>
+                </div>
+                <div class="image--container">
+                    <img class="lazy" src="../images/perseo.webp" alt="Perseo">
+                </div>
+                <a href="perseo.html" class="project_link link"></a>
+            </section>
+
+            <!-- Original footer with CTA -->
+            <footer id="footer">
+                <section class="cta_footer--container">
+                    <div class="cta--wrapper">
+                        <div class="cta--container">
+                            <div class="video--container">
+                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
+                            </div>
+                            <div class="text--container">
+                                <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
+                                <a class="lovely_button link" href="mailto:jp.bazarot@gmail.com?subject=Hello%20there!" target="_self">
+                                    <span class="text">Drop me an email!</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+
+            <!-- New footer specifically for socials, copyright, and coordinates -->
+            <footer id="footer-bottom">
+                <div class="footer-bottom--container">
+                    <div class="footer-bottom--wrapper">
+                        <div class="footer-col">
+                            N 37°23′21″ W 5°59′04″
+                        </div>
+                        <div class="footer-col">
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
+                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="footer-col">
+                            Designed and developed by me<br>
+                            ©2026 · All Rights Reserved
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100" alt=""></div>
+
+            <div class="mobile_menu--wrapper">
+    <div class="overlay"></div>
+    <div class="mobile_menu--container">
+        <div class="inner">
+            <nav>
+                <ul class="mobile_menu">
+                    <li>
+                        <a href="../index.html" class="">Home</a>
+                    </li>
+                    <li>
+                        <a href="../portfolio.html" class="">Projects</a>
+                    </li>
+                    <li>
+                        <a href="../about.html" class="">About Me</a>
+                    </li>
+                    <li>
+                        <a href="#footer" class="">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <ul class="social_menu">
+                <li>
+                    <a href="https://www.instagram.com/jpbazarot/" target="_blank">Instagram</a>
+                </li>
+                <li>
+                    <a href="https://www.x.com/JPBazarot" target="_blank">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
+                </li>
+            </ul>
         </div>
-        <dl class="facts">
-            <dt>Stack</dt>
-            <dd>Python, Windows Task Scheduler, ConPTY, Telegram Bot API</dd>
-            <dt>Status</dt>
-            <dd>In production since Aug 2026 · 27 shipped</dd>
-            <dt>Year</dt>
-            <dd>2026</dd>
-        </dl>
     </div>
-    <figure class="case_figure">
-        <img src="../images/nightshift.webp" loading="lazy" alt="NightShift">
-    </figure>
-    <p class="next">Next: <a href="perseo.html">Perseo</a></p>
-</main>
-<footer class="site_footer" id="contact">
-    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
-    <a class="mail" href="mailto:jp.bazarot@gmail.com">jp.bazarot@gmail.com</a>
-    <div class="footer_links">
-        <a href="https://github.com/PersusUS">GitHub</a>
-        <a href="https://www.linkedin.com/in/jpbazarot/">LinkedIn</a>
-        <a href="https://www.x.com/JPBazarot">Twitter</a>
-        <a href="https://www.instagram.com/jpbazarot/">Instagram</a>
-        <span class="made">Seville, 2026</span>
-    </div>
-</footer>
-<script src="../js/shark-mesh.js" defer></script>
-<script src="../js/shark.js" defer></script>
-</body>
-</html>
+</div>
+        </div>
+
+    </main>
+
+    <div class="noise-bg"></div>
+
+<script src="../js/barba.core.min.js"></script>
+<script src="../js/barba.css.min.js"></script>
+<script type="text/javascript" src="../js/lenis.min.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/gsap.min.js"></script>
+<script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
+<script type="text/javascript" src="../js/SplitText.min.js"></script>
+<script type="text/javascript" src="../js/lazyload.min.js"></script>
+<script type="text/javascript" src="../js/fancybox.min.js"></script>
+<script type="text/javascript" src="../js/text-reflow.js"></script>
+<script type="text/javascript" src="../js/master.min.js"></script>
+<script type="text/javascript" src="../js/mobile-fixes.js"></script>
+    <script src="../js/site-nav.js"></script>
+<script type="text/javascript" src="../js/contact.js"></script>
+<script type="text/javascript" src="../js/shark-mesh.js"></script>
+<script type="text/javascript" src="../js/shark.js"></script>
+
+
+
+</body></html>
