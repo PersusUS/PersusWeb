@@ -2,7 +2,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Selective-scan CUDA kernels · Jesús Pérez Bazarot</title>
+    <title>
+        Selective-scan CUDA kernels · Jesús Pérez Bazarot
+    </title>
 
     <meta name="description" content="Five CUDA implementations of the selective state-space recurrence, from a textbook Blelloch scan to a single-pass decoupled look-back kernel at 79.6-91.5% of peak memory bandwidth.">
 
@@ -38,61 +40,201 @@
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_card.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#a1c4fd">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <meta name="robots" content="noodp">
-    <link rel="stylesheet" href="../css/site.css">
+
+    <link rel="stylesheet" href="../css/master.min.css">
+    <link rel="stylesheet" href="../css/normalize.min.css">
+    <link rel="stylesheet" href="../css/fancybox.min.css">
+    <link rel="stylesheet" href="../css/shark.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/case.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+    <link rel="stylesheet" href="../css/nav.css">
+
+    <noscript>
+        <style>
+            html { overflow-y: auto !important; }
+            [data-animation] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
+            .loader_wrapper { display: none !important; }
+        </style>
+    </noscript>
 </head>
+
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site_header">
-    <a class="site_name" href="../index.html">Jesús P. Bazarot</a>
-    <nav class="site_nav" aria-label="Main">
-        <a href="../portfolio.html">Projects</a>
-        <a href="../about.html">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-<main id="main">
-    <p class="case_back"><a href="../portfolio.html">All projects</a></p>
-    <h1 class="case_title">Selective-scan CUDA kernels</h1>
-    <div class="case_body">
-        <div class="prose">
-            <p>In <a href="hybridmamba.html" class="link">HybridMamba-11</a> I rewrote the selective state-space recurrence as a parallel scan in pure PyTorch, because Mamba's reference kernels would not compile. That worked, but it left an obvious question unanswered: how fast can this recurrence actually go if you write the kernel yourself?</p>
-            <p>The recurrence is <em>h[t] = a[t]·h[t-1] + b[t]</em>, which looks strictly sequential and is not. Each step is an affine map, affine maps compose, and composition is associative, so the whole thing is a prefix scan over pairs. Associativity is the entire licence for running it in parallel. Commutativity does <strong>not</strong> hold, which means every swapped operand is a silently wrong answer rather than a crash.</p>
-            <p>I built it five times. A Blelloch up-sweep and down-sweep in shared memory. A three-pass multi-block version. Then three variants of <strong>decoupled look-back</strong>, the single-pass algorithm from Merrill and Garland's NVIDIA tech report, which is what CUB's <em>DeviceScan</em> runs underneath: a serial predecessor walk, then a warp-parallel walk inspecting 32 predecessors at once, then multiple items per thread scanned in registers.</p>
-            <p>The fastest kernel sustains <strong>79.6–91.5% of the theoretical memory bandwidth</strong> of an RTX 4050 Laptop, and is <strong>54–69× faster</strong> than the best pure-PyTorch baseline. Before writing it I had a memory-traffic model predicting a 2.33× gain over the three-pass version. Measured, 2.18–2.48×. The model was right for the reason it claimed to be.</p>
-            <p>A look-back scan is a hand-rolled synchronisation protocol between thread blocks, built on atomics, memory fences and volatile flag loads. Get one fence wrong and the kernel is correct almost every time, which is worse than being wrong every time. So the kernels carry <strong>107 correctness checks</strong> against a float64 reference and <strong>630 determinism runs</strong>, and the CPU mirrors of the index arithmetic each contain a deliberately broken variant: the suite has to prove it catches an operand-order error before any CUDA gets written.</p>
-            <p>Five predictions went in writing before any measurement. Three held. Two did not. I was convinced per-call allocations were the remaining cost, and a pre-allocated workspace measured <strong>identically</strong>, inside the noise: PyTorch's caching allocator had already made it free. The second was the expectation I had registered for Hillis–Steele, and the PyTorch version does not hold up against the single-pass kernel. That comparison is not a fair one yet, so I don't read it as a verdict on the algorithm: it runs in PyTorch rather than as a register-resident CUDA kernel, which means part of what it measures is the framework. Both refutations are in the writeup rather than buried, and the useless parameter is still in the source, labelled as useless.</p>
-            <p>Limits: one GPU, one clean sweep, fp32, forward pass only, no vectorised loads yet. On a laptop the memory clock oscillates and roughly every second sweep is unusable, so these numbers come from a run where the clock stayed pinned and a known-stable kernel returned its known value. They have not been reproduced on a second architecture.</p>
+
+    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
+
+    <script src="../js/header.js"></script>
+
+    <main id="wrapper" data-barba="wrapper">
+
+        <div data-barba="container">
+
+            <section class="default_row--container single_case_hero--row">
+                <div class="inner--container">
+                    <div class="grid">
+                        <div class="col-intro">
+                        <div class="case_back--container">
+                            <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
+                        </div>
+                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">Selective-scan CUDA kernels</h1>
+                            <p data-animation="fade-up" data-delay="0.2" class="size-20">In <a href="hybridmamba.html" class="link">HybridMamba-11</a> I rewrote the selective state-space recurrence as a parallel scan in pure PyTorch, because Mamba's reference kernels would not compile. That worked, but it left an obvious question unanswered: how fast can this recurrence actually go if you write the kernel yourself?</p>
+                            <p data-animation="fade-up" data-delay="0.3" class="size-20">The recurrence is <em>h[t] = a[t]·h[t-1] + b[t]</em>, which looks strictly sequential and is not. Each step is an affine map, affine maps compose, and composition is associative, so the whole thing is a prefix scan over pairs. Associativity is the entire licence for running it in parallel. Commutativity does <strong>not</strong> hold, which means every swapped operand is a silently wrong answer rather than a crash.</p>
+                            <p data-animation="fade-up" data-delay="0.4" class="size-20">I built it five times. A Blelloch up-sweep and down-sweep in shared memory. A three-pass multi-block version. Then three variants of <strong>decoupled look-back</strong>, the single-pass algorithm from Merrill and Garland's NVIDIA tech report, which is what CUB's <em>DeviceScan</em> runs underneath: a serial predecessor walk, then a warp-parallel walk inspecting 32 predecessors at once, then multiple items per thread scanned in registers.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">The fastest kernel sustains <strong>79.6–91.5% of the theoretical memory bandwidth</strong> of an RTX 4050 Laptop, and is <strong>54–69× faster</strong> than the best pure-PyTorch baseline. Before writing it I had a memory-traffic model predicting a 2.33× gain over the three-pass version. Measured, 2.18–2.48×. The model was right for the reason it claimed to be.</p>
+                            <p data-animation="fade-up" data-delay="0.5" class="size-20">A look-back scan is a hand-rolled synchronisation protocol between thread blocks, built on atomics, memory fences and volatile flag loads. Get one fence wrong and the kernel is correct almost every time, which is worse than being wrong every time. So the kernels carry <strong>107 correctness checks</strong> against a float64 reference and <strong>630 determinism runs</strong>, and the CPU mirrors of the index arithmetic each contain a deliberately broken variant: the suite has to prove it catches an operand-order error before any CUDA gets written.</p>
+                            <p data-animation="fade-up" data-delay="0.6" class="size-20">Five predictions went in writing before any measurement. Three held. Two did not. I was convinced per-call allocations were the remaining cost, and a pre-allocated workspace measured <strong>identically</strong>, inside the noise: PyTorch's caching allocator had already made it free. The second was the expectation I had registered for Hillis–Steele, and the PyTorch version does not hold up against the single-pass kernel. That comparison is not a fair one yet, so I don't read it as a verdict on the algorithm: it runs in PyTorch rather than as a register-resident CUDA kernel, which means part of what it measures is the framework. Both refutations are in the writeup rather than buried, and the useless parameter is still in the source, labelled as useless.</p>
+                            <p data-animation="fade-up" data-delay="0.6" class="size-20">Limits: one GPU, one clean sweep, fp32, forward pass only, no vectorised loads yet. On a laptop the memory clock oscillates and roughly every second sweep is unusable, so these numbers come from a run where the clock stayed pinned and a known-stable kernel returned its known value. They have not been reproduced on a second architecture.</p>
+                        </div>
+                        <div class="col-summary">
+                            <div class="entry" data-animation="fade-up" data-delay="0">
+                                <span>Services</span>
+                                <span class="size-20">GPU Kernels, Performance Engineering</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.2">
+                                <span>Stack</span>
+                                <span class="size-20">CUDA C++, PyTorch C++ extensions, shared memory, warp intrinsics, atomics</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.3">
+                                <span>Result</span>
+                                <span class="size-20">79.6–91.5% of peak bandwidth · 54–69× over PyTorch</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.4">
+                                <span>Year</span>
+                                <span class="size-20">2026</span>
+                            </div>
+                            <div class="entry" data-animation="fade-up" data-delay="0.5">
+                                <span>Code</span>
+                                <a class="repo_link" href="https://github.com/PersusUS/selective-scan-cuda" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>selective-scan-cuda</span><span class="arrow" aria-hidden="true">↗</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero_img--container">
+                    <div class="hero_img parallax reveal_effect">
+                        <div class="mask"></div>
+                        <img class="lazy" src="../images/selective-scan.svg" alt="Selective-scan CUDA kernels">
+                    </div>
+                </div>
+            </section>
+
+            <section class="default_row--container next-project single_project">
+                <div class="inner--container">
+                    <p>Other Project</p>
+                    <p>HybridMamba-11</p>
+                </div>
+                <div class="image--container">
+                    <img class="lazy" src="../images/hybridmamba.svg" alt="HybridMamba-11">
+                </div>
+                <a href="hybridmamba.html" class="project_link link"></a>
+            </section>
+
+            <!-- Original footer with CTA -->
+            <footer id="footer">
+                <section class="cta_footer--container">
+                    <div class="cta--wrapper">
+                        <div class="cta--container">
+                            <div class="video--container">
+                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
+                            </div>
+                            <div class="text--container">
+                                <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
+                                <a class="lovely_button link" href="mailto:jp.bazarot@gmail.com?subject=Hello%20there!" target="_self">
+                                    <span class="text">Drop me an email!</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </footer>
+
+            <!-- New footer specifically for socials, copyright, and coordinates -->
+            <footer id="footer-bottom">
+                <div class="footer-bottom--container">
+                    <div class="footer-bottom--wrapper">
+                        <div class="footer-col">
+                            N 37°23′21″ W 5°59′04″
+                        </div>
+                        <div class="footer-col">
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
+                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
+                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
+                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="footer-col">
+                            Designed and developed by me<br>
+                            ©2026 · All Rights Reserved
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100" alt=""></div>
+
+            <div class="mobile_menu--wrapper">
+    <div class="overlay"></div>
+    <div class="mobile_menu--container">
+        <div class="inner">
+            <nav>
+                <ul class="mobile_menu">
+                    <li>
+                        <a href="../index.html" class="">Home</a>
+                    </li>
+                    <li>
+                        <a href="../portfolio.html" class="">Projects</a>
+                    </li>
+                    <li>
+                        <a href="../about.html" class="">About Me</a>
+                    </li>
+                    <li>
+                        <a href="#footer" class="">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            <ul class="social_menu">
+                <li>
+                    <a href="https://www.instagram.com/jpbazarot/" target="_blank">Instagram</a>
+                </li>
+                <li>
+                    <a href="https://www.x.com/JPBazarot" target="_blank">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
+                </li>
+                <li>
+                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
+                </li>
+            </ul>
         </div>
-        <dl class="facts">
-            <dt>Stack</dt>
-            <dd>CUDA C++, PyTorch C++ extensions, shared memory, warp intrinsics, atomics</dd>
-            <dt>Result</dt>
-            <dd>79.6–91.5% of peak bandwidth · 54–69× over PyTorch</dd>
-            <dt>Year</dt>
-            <dd>2026</dd>
-            <dt>Code</dt>
-            <dd><a href="https://github.com/PersusUS/selective-scan-cuda">selective-scan-cuda</a></dd>
-        </dl>
     </div>
-    <figure class="case_figure">
-        <img src="../images/selective-scan.svg" loading="lazy" alt="Selective-scan CUDA kernels">
-    </figure>
-    <p class="next">Next: <a href="hybridmamba.html">HybridMamba-11</a></p>
-</main>
-<footer class="site_footer" id="contact">
-    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
-    <a class="mail" href="mailto:jp.bazarot@gmail.com">jp.bazarot@gmail.com</a>
-    <div class="footer_links">
-        <a href="https://github.com/PersusUS">GitHub</a>
-        <a href="https://www.linkedin.com/in/jpbazarot/">LinkedIn</a>
-        <a href="https://www.x.com/JPBazarot">Twitter</a>
-        <a href="https://www.instagram.com/jpbazarot/">Instagram</a>
-        <span class="made">Seville, 2026</span>
-    </div>
-</footer>
-<script src="../js/shark-mesh.js" defer></script>
-<script src="../js/shark.js" defer></script>
-</body>
-</html>
+</div>
+        </div>
+
+    </main>
+
+    <div class="noise-bg"></div>
+
+<script src="../js/barba.core.min.js"></script>
+<script src="../js/barba.css.min.js"></script>
+<script type="text/javascript" src="../js/lenis.min.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/gsap.min.js"></script>
+<script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
+<script type="text/javascript" src="../js/SplitText.min.js"></script>
+<script type="text/javascript" src="../js/lazyload.min.js"></script>
+<script type="text/javascript" src="../js/fancybox.min.js"></script>
+<script type="text/javascript" src="../js/text-reflow.js"></script>
+<script type="text/javascript" src="../js/master.min.js"></script>
+<script type="text/javascript" src="../js/mobile-fixes.js"></script>
+    <script src="../js/site-nav.js"></script>
+<script type="text/javascript" src="../js/contact.js"></script>
+<script type="text/javascript" src="../js/shark-mesh.js"></script>
+<script type="text/javascript" src="../js/shark.js"></script>
+
+
+
+</body></html>
