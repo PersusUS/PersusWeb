@@ -2,9 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>
-        WMF Benchmark · Jesús Pérez Bazarot
-    </title>
+    <title>WMF Benchmark · Jesús Pérez Bazarot</title>
 
     <meta name="description" content="A benchmark for catastrophic forgetting in the transition model of a world model. 3 environment families, 3 task distances, 5 methods, up to 10 seeds per cell.">
 
@@ -40,203 +38,60 @@
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_card.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#111111">
-    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#a1c4fd">
     <meta name="robots" content="noodp">
-
-    <link rel="stylesheet" href="../css/master.min.css">
-    <link rel="stylesheet" href="../css/normalize.min.css">
-    <link rel="stylesheet" href="../css/fancybox.min.css">
-    <link rel="stylesheet" href="../css/shark.css">
-    <link rel="stylesheet" href="../css/contact.css">
-    <link rel="stylesheet" href="../css/case.css">
-    <link rel="stylesheet" href="../css/about.css">
-    <link rel="stylesheet" href="../css/mobile.css">
-    <link rel="stylesheet" href="../css/nav.css">
-
-    <noscript>
-        <style>
-            html { overflow-y: auto !important; }
-            [data-animation] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
-            .loader_wrapper { display: none !important; }
-        </style>
-    </noscript>
+    <link rel="stylesheet" href="../css/site.css">
 </head>
-
 <body>
-
-    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
-
-    <script src="../js/header.js"></script>
-
-    <main id="wrapper" data-barba="wrapper">
-
-        <div data-barba="container">
-
-            <section class="default_row--container single_case_hero--row">
-                <div class="inner--container">
-                    <div class="grid">
-                        <div class="col-intro">
-                        <div class="case_back--container">
-                            <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
-                        </div>
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">WMF Benchmark</h1>
-                            <p data-animation="words" data-delay="0.2" data-stagger="0.03" class="size-20">A world model learns to predict how an environment behaves. Train one on a second task and it quietly loses the first: the same catastrophic forgetting that plagues supervised continual learning, but harder to see, because the damage lives inside a latent transition model rather than in a visible accuracy number. Existing continual-learning benchmarks measure the policy or the system end to end. None of them isolate the component that actually forgets.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">So I built one. The benchmark holds everything else fixed and measures forgetting specifically in the transition model M: three environment families (MiniGrid, Gymnasium/MuJoCo, dm_control) × three task distances × five methods, ten seeds in every cell that discriminates between them: 375 runs plus 75 from-scratch reference pairs. Baselines are fine-tuning, infinite replay, EWC and Progressive Networks, against my own method, UG-MTM (an uncertainty-gated mixture of transition models).</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">The honest part of this project is what happened next. I wrote a first paper in July 2026 with five findings, one of them at p&nbsp;&lt;&nbsp;0.001. Then I went looking for bugs and found twenty-one. The worst was a collapsed VAE posterior: zero of thirty-two latent dimensions were active, meaning the transition model had never actually seen the environment. That single bug invalidated all 225 runs. Others followed: evaluation on noise, a badly defined NLL, a KL term inflating a metric roughly twelve-fold, unseeded environments that made nothing reproducible, an EWC Fisher matrix that was almost inert, and a dm_control distance setting that compared a task against itself.</p>
-                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">None of the five original findings survived the corrected pipeline. The one that looked most solid reversed sign. I threw the paper away and started again, which is the entire reason I now think the benchmark, not my method, is the contribution worth publishing. Once the pipeline is correct, UG-MTM does not forget because it does not learn: it freezes its encoder, so it preserves the first task bit for bit and pays for it with the worst forward transfer in the grid by two orders of magnitude. Saying so is the point.</p>
-                            <p data-animation="fade-up" data-delay="0.6" class="size-20">The rebuilt benchmark produced two results, both negative and neither about which method wins. First, the distance axis I designed the whole thing around does not order forgetting: it peaks at the <em>medium</em> level in all three families, and across the nine cells the label carries no rank information at all. The cleanest case needs no cross-family comparison: one family's maximum level is its medium perturbation plus two more, on the same task pair, and it forgets <em>less</em>, because a cheetah at triple mass barely moves and a task that generates little variety has little to teach. Second, the forgetting happens almost entirely in the encoder, where component-level metrics, including mine, are blind by construction. Fine-tuning's reconstruction of the first task degrades by a factor of 811 while its prediction fidelity reports an improvement, and EWC makes that exact: its Fisher information is identically zero on every encoder parameter, so it protects the transition model almost perfectly and nothing else.</p>
-                            <p data-animation="words" data-delay="0.7" data-stagger="0.03" class="size-20">What holds up: 434 tests, same-seed reruns that reproduce every metric bit for bit, a declared scope for every metric, every table generated from the stored results rather than transcribed, and a runner that refuses to combine results produced under different protocols. The eight-page version went out in August and is under review at CL4FMAgents @ NeurIPS 2026 (non-archival workshop); all 375 result files are public.</p>
-                        </div>
-                        <div class="col-summary">
-                            <div class="entry" data-animation="fade-up" data-delay="0">
-                                <span>Services</span>
-                                <span class="size-20">Research, Benchmark Design</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.2">
-                                <span>Stack</span>
-                                <span class="size-20">PyTorch, MiniGrid, Gymnasium/MuJoCo, dm_control</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.3">
-                                <span>Status</span>
-                                <span class="size-20">Under review at CL4FMAgents @ NeurIPS 2026 (non-archival workshop)</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.4">
-                                <span>Year</span>
-                                <span class="size-20">2026</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.5">
-                                <span>Code</span>
-                                <a class="repo_link" href="https://github.com/PersusUS/WorldModelsBenchmark" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>WorldModelsBenchmark</span><span class="arrow" aria-hidden="true">↗</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero_img--container">
-                    <div class="hero_img parallax reveal_effect">
-                        <div class="mask"></div>
-                        <img class="lazy" src="../images/worldmodels.webp" alt="WMF Benchmark">
-                    </div>
-                </div>
-            </section>
-
-            <section class="default_row--container next-project single_project">
-                <div class="inner--container">
-                    <p>Other Project</p>
-                    <p>Perseo</p>
-                </div>
-                <div class="image--container">
-                    <img class="lazy" src="../images/perseo.webp" alt="Perseo">
-                </div>
-                <a href="perseo.html" class="project_link link"></a>
-            </section>
-
-            <!-- Original footer with CTA -->
-            <footer id="footer">
-                <section class="cta_footer--container">
-                    <div class="cta--wrapper">
-                        <div class="cta--container">
-                            <div class="video--container">
-                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
-                            </div>
-                            <div class="text--container">
-                                <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
-                                <a class="lovely_button link" href="mailto:jp.bazarot@gmail.com?subject=Hello%20there!" target="_self">
-                                    <span class="text">Drop me an email!</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </footer>
-
-            <!-- New footer specifically for socials, copyright, and coordinates -->
-            <footer id="footer-bottom">
-                <div class="footer-bottom--container">
-                    <div class="footer-bottom--wrapper">
-                        <div class="footer-col">
-                            N 37°23′21″ W 5°59′04″
-                        </div>
-                        <div class="footer-col">
-                            <div class="social-links">
-                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
-                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
-                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
-                            </div>
-                        </div>
-                        <div class="footer-col">
-                            Designed and developed by me<br>
-                            ©2026 · All Rights Reserved
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100" alt=""></div>
-
-            <div class="mobile_menu--wrapper">
-    <div class="overlay"></div>
-    <div class="mobile_menu--container">
-        <div class="inner">
-            <nav>
-                <ul class="mobile_menu">
-                    <li>
-                        <a href="../index.html" class="">Home</a>
-                    </li>
-                    <li>
-                        <a href="../portfolio.html" class="">Projects</a>
-                    </li>
-                    <li>
-                        <a href="../about.html" class="">About Me</a>
-                    </li>
-                    <li>
-                        <a href="../cv.pdf" target="_blank" rel="noopener" data-barba-prevent class="">CV (PDF)</a>
-                    </li>
-                    <li>
-                        <a href="#footer" class="">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-            <ul class="social_menu">
-                <li>
-                    <a href="https://www.instagram.com/jpbazarot/" target="_blank">Instagram</a>
-                </li>
-                <li>
-                    <a href="https://www.x.com/JPBazarot" target="_blank">Twitter</a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
-                </li>
-                <li>
-                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
-                </li>
-            </ul>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site_header">
+    <a class="site_name" href="../index.html">Jesús P. Bazarot</a>
+    <nav class="site_nav" aria-label="Main">
+        <a href="../portfolio.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+<main id="main">
+    <p class="case_back"><a href="../portfolio.html">All projects</a></p>
+    <h1 class="case_title">WMF Benchmark</h1>
+    <div class="case_body">
+        <div class="prose">
+            <p>A world model learns to predict how an environment behaves. Train one on a second task and it loses the first: the same catastrophic forgetting that plagues supervised continual learning, but harder to see, because the damage lives inside a latent transition model rather than in a visible accuracy number. Existing continual-learning benchmarks measure the policy or the system end to end. None of them isolate the component that actually forgets.</p>
+            <p>So I built one. The benchmark holds everything else fixed and measures forgetting specifically in the transition model M: three environment families (MiniGrid, Gymnasium/MuJoCo, dm_control) × three task distances × five methods, ten seeds in every cell that discriminates between them: 375 runs plus 75 from-scratch reference pairs. Baselines are fine-tuning, infinite replay, EWC and Progressive Networks, against my own method, UG-MTM (an uncertainty-gated mixture of transition models).</p>
+            <p>I wrote a first paper in July 2026 with five findings, one of them at p&nbsp;&lt;&nbsp;0.001. Then I went looking for bugs and found twenty-one. The worst was a collapsed VAE posterior: zero of thirty-two latent dimensions were active, meaning the transition model had never actually seen the environment. That single bug invalidated all 225 runs. Others followed: evaluation on noise, a badly defined NLL, a KL term inflating a metric roughly twelve-fold, unseeded environments that made nothing reproducible, an EWC Fisher matrix that was almost inert, and a dm_control distance setting that compared a task against itself.</p>
+            <p>None of the five original findings survived the corrected pipeline. The one that looked most solid reversed sign. I threw the paper away and started again, which is the entire reason I now think the benchmark, not my method, is the contribution worth publishing. Once the pipeline is correct, UG-MTM does not forget because it does not learn: it freezes its encoder, so it preserves the first task bit for bit and pays for it with the worst forward transfer in the grid by two orders of magnitude.</p>
+            <p>The rebuilt benchmark produced two results, both negative and neither about which method wins. First, the distance axis I designed the whole thing around does not order forgetting: it peaks at the <em>medium</em> level in all three families, and across the nine cells the label carries no rank information at all. The cleanest case needs no cross-family comparison: one family's maximum level is its medium perturbation plus two more, on the same task pair, and it forgets <em>less</em>, because a cheetah at triple mass barely moves and a task that generates little variety has little to teach. Second, the forgetting happens almost entirely in the encoder, where component-level metrics, including mine, are blind by construction. Fine-tuning's reconstruction of the first task degrades by a factor of 811 while its prediction fidelity reports an improvement, and EWC makes that exact: its Fisher information is identically zero on every encoder parameter, so it protects the transition model almost perfectly and nothing else.</p>
+            <p>What holds up: 434 tests, same-seed reruns that reproduce every metric bit for bit, a declared scope for every metric, every table generated from the stored results rather than transcribed, and a runner that refuses to combine results produced under different protocols. The eight-page version went out in August and is under review at CL4FMAgents @ NeurIPS 2026 (non-archival workshop); all 375 result files are public.</p>
         </div>
+        <dl class="facts">
+            <dt>Stack</dt>
+            <dd>PyTorch, MiniGrid, Gymnasium/MuJoCo, dm_control</dd>
+            <dt>Status</dt>
+            <dd>Under review at CL4FMAgents @ NeurIPS 2026 (non-archival workshop)</dd>
+            <dt>Year</dt>
+            <dd>2026</dd>
+            <dt>Code</dt>
+            <dd><a href="https://github.com/PersusUS/WorldModelsBenchmark">WorldModelsBenchmark</a></dd>
+        </dl>
     </div>
-</div>
-        </div>
-
-    </main>
-
-    <div class="noise-bg"></div>
-
-<script src="../js/barba.core.min.js"></script>
-<script src="../js/barba.css.min.js"></script>
-<script type="text/javascript" src="../js/lenis.min.js"></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/gsap.min.js"></script>
-<script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
-<script type="text/javascript" src="../js/SplitText.min.js"></script>
-<script type="text/javascript" src="../js/lazyload.min.js"></script>
-<script type="text/javascript" src="../js/fancybox.min.js"></script>
-<script type="text/javascript" src="../js/text-reflow.js"></script>
-<script type="text/javascript" src="../js/master.min.js"></script>
-<script type="text/javascript" src="../js/mobile-fixes.js"></script>
-    <script src="../js/site-nav.js"></script>
-<script type="text/javascript" src="../js/contact.js"></script>
-<script type="text/javascript" src="../js/shark-mesh.js"></script>
-<script type="text/javascript" src="../js/shark.js"></script>
-
-
-
-</body></html>
+    <figure class="case_figure">
+        <img src="../images/worldmodels.webp" loading="lazy" alt="WMF Benchmark">
+    </figure>
+    <p class="next">Next: <a href="perseo.html">Perseo</a></p>
+</main>
+<footer class="site_footer" id="contact">
+    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
+    <a class="mail" href="mailto:jp.bazarot@gmail.com">jp.bazarot@gmail.com</a>
+    <div class="footer_links">
+        <a href="https://github.com/PersusUS">GitHub</a>
+        <a href="https://www.linkedin.com/in/jpbazarot/">LinkedIn</a>
+        <a href="https://www.x.com/JPBazarot">Twitter</a>
+        <a href="https://www.instagram.com/jpbazarot/">Instagram</a>
+        <span class="made">Seville, 2026</span>
+    </div>
+</footer>
+<script src="../js/shark-mesh.js" defer></script>
+<script src="../js/shark.js" defer></script>
+</body>
+</html>

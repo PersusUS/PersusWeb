@@ -2,8 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>
-        AutoLinkedIn · Jesús Pérez Bazarot</title>
+    <title>AutoLinkedIn · Jesús Pérez Bazarot</title>
 
     <meta name="description" content="A web app that interviews you by voice in real time and writes LinkedIn posts from the conversation, grounded in everything you have published before.">
 
@@ -39,202 +38,59 @@
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_card.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#111111">
-    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#a1c4fd">
     <meta name="robots" content="noodp">
-
-    <link rel="stylesheet" href="../css/master.min.css">
-    <link rel="stylesheet" href="../css/normalize.min.css">
-    <link rel="stylesheet" href="../css/fancybox.min.css">
-    <link rel="stylesheet" href="../css/shark.css">
-    <link rel="stylesheet" href="../css/contact.css">
-    <link rel="stylesheet" href="../css/case.css">
-    <link rel="stylesheet" href="../css/about.css">
-    <link rel="stylesheet" href="../css/mobile.css">
-    <link rel="stylesheet" href="../css/nav.css">
-
-    <noscript>
-        <style>
-            html { overflow-y: auto !important; }
-            [data-animation] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
-            .loader_wrapper { display: none !important; }
-        </style>
-    </noscript>
+    <link rel="stylesheet" href="../css/site.css">
 </head>
-
 <body>
-
-    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
-
-    <script src="../js/header.js"></script>
-
-    <main id="wrapper" data-barba="wrapper">
-
-        <div data-barba="container">
-
-            <section class="default_row--container single_case_hero--row">
-                <div class="inner--container">
-                    <div class="grid">
-                        <div class="col-intro">
-                        <div class="case_back--container">
-                            <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
-                        </div>
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">AutoLinkedIn</h1>
-                                                        <p data-animation="fade-up" data-delay="0.2" class="size-20">Writing about your own work is tedious, and the usual fix, asking a model to do it, produces posts that sound like a model. AutoLinkedIn takes a different route: it <strong>interviews you out loud</strong>, in real time, and writes from what you actually said.</p>
-                            <p data-animation="words" data-delay="0.3" data-stagger="0.03" class="size-20">The conversation runs as a genuine bidirectional voice session. Low-latency PCM16 audio streams from the browser through WebSockets and AudioWorklet-based processing into the Gemini Live API, so it interrupts, follows up and changes direction the way an interviewer does. Getting that to feel like a conversation rather than a walkie-talkie was most of the engineering.</p>
-                            <p data-animation="words" data-delay="0.4" data-stagger="0.03" class="size-20">Behind it sits a RAG layer: FastAPI, Supabase with pgvector, and Gemini embeddings over everything you have published before. That is what keeps the voice consistent across posts instead of resetting every session: the model is drafting in the context of your own back catalogue.</p>
-                            <p data-animation="words" data-delay="0.5" data-stagger="0.03" class="size-20">Generation is constrained to strict JSON structured outputs, which is what makes the result programmable rather than a blob of prose, and posts come out adapted for Spanish, English and Mandarin markets. LinkedIn OAuth 2.0 closes the loop: review, edit and publish in one click from a React dashboard. Database interactions and AI edge cases are covered by pytest and pytest-asyncio.</p>
-                            <p data-animation="words" data-delay="0.6" data-stagger="0.03" class="size-20">It is currently paused, with parts of it broken: API surfaces moved underneath it and I never wrote enough tests around the integration boundaries to tell me exactly where it gave way. The retrieval and voice-loop design were sound, though, and I would build both the same way again.</p>
-                        </div>
-                        <div class="col-summary">
-                            <div class="entry" data-animation="fade-up" data-delay="0">
-                                <span>Services</span>
-                                <span class="size-20">Applied AI, Full-Stack</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.2">
-                                <span>Stack</span>
-                                <span class="size-20">React, TypeScript, FastAPI, WebSockets, AudioWorklet, Supabase pgvector, Gemini Live</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.3">
-                                <span>Status</span>
-                                <span class="size-20">Paused · partially broken</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.4">
-                                <span>Year</span>
-                                <span class="size-20">2025</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.5">
-                                <span>Code</span>
-                                <a class="repo_link" href="https://github.com/PersusUS/AutoLinkedin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>AutoLinkedin</span><span class="arrow" aria-hidden="true">↗</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero_img--container">
-                    <div class="hero_img parallax reveal_effect">
-                        <div class="mask"></div>
-                        <img class="lazy" src="../images/autolinkedin.svg" alt="AutoLinkedIn">
-                    </div>
-                </div>
-            </section>
-
-            <section class="default_row--container next-project single_project">
-                <div class="inner--container">
-                    <p>Other Project</p>
-                    <p>Agentic Reasoning Traces</p>
-                </div>
-                <div class="image--container">
-                    <img class="lazy" src="../images/agentic-traces.svg" alt="Agentic Reasoning Traces">
-                </div>
-                <a href="agentic-traces.html" class="project_link link"></a>
-            </section>
-
-            <!-- Original footer with CTA -->
-            <footer id="footer">
-                <section class="cta_footer--container">
-                    <div class="cta--wrapper">
-                        <div class="cta--container">
-                            <div class="video--container">
-                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
-                            </div>
-                            <div class="text--container">
-                                <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
-                                <a class="lovely_button link" href="mailto:jp.bazarot@gmail.com?subject=Hello%20there!" target="_self">
-                                    <span class="text">Drop me an email!</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </footer>
-
-            <!-- New footer specifically for socials, copyright, and coordinates -->
-            <footer id="footer-bottom">
-                <div class="footer-bottom--container">
-                    <div class="footer-bottom--wrapper">
-                        <div class="footer-col">
-                            N 37°23′21″ W 5°59′04″
-                        </div>
-                        <div class="footer-col">
-                            <div class="social-links">
-                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
-                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> / 
-                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
-                            </div>
-                        </div>
-                        <div class="footer-col">
-                            Designed and developed by me<br>
-                            ©2026 · All Rights Reserved
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100" alt=""></div>
-
-            <div class="mobile_menu--wrapper">
-    <div class="overlay"></div>
-    <div class="mobile_menu--container">
-        <div class="inner">
-            <nav>
-                <ul class="mobile_menu">
-                    <li>
-                        <a href="../index.html" class="">Home</a>
-                    </li>
-                    <li>
-                        <a href="../portfolio.html" class="">Projects</a>
-                    </li>
-                    <li>
-                        <a href="../about.html" class="">About Me</a>
-                    </li>
-                    <li>
-                        <a href="../cv.pdf" target="_blank" rel="noopener" data-barba-prevent class="">CV (PDF)</a>
-                    </li>
-                    <li>
-                        <a href="#footer" class="">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-            <ul class="social_menu">
-                <li>
-                    <a href="https://www.instagram.com/jpbazarot/" target="_blank">Instagram</a>
-                </li>
-                <li>
-                    <a href="https://www.x.com/JPBazarot" target="_blank">Twitter</a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
-                </li>
-                <li>
-                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
-                </li>
-            </ul>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site_header">
+    <a class="site_name" href="../index.html">Jesús P. Bazarot</a>
+    <nav class="site_nav" aria-label="Main">
+        <a href="../portfolio.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+<main id="main">
+    <p class="case_back"><a href="../portfolio.html">All projects</a></p>
+    <h1 class="case_title">AutoLinkedIn</h1>
+    <div class="case_body">
+        <div class="prose">
+            <p>Writing about your own work is tedious, and the usual fix, asking a model to do it, produces posts that sound like a model. AutoLinkedIn takes a different route: it <strong>interviews you out loud</strong>, in real time, and writes from what you actually said.</p>
+            <p>The conversation runs as a genuine bidirectional voice session. Low-latency PCM16 audio streams from the browser through WebSockets and AudioWorklet-based processing into the Gemini Live API, so it interrupts, follows up and changes direction the way an interviewer does. Getting that to feel like a conversation rather than a walkie-talkie was most of the engineering.</p>
+            <p>Behind it sits a RAG layer: FastAPI, Supabase with pgvector, and Gemini embeddings over everything you have published before. That is what keeps the voice consistent across posts instead of resetting every session: the model is drafting in the context of your own back catalogue.</p>
+            <p>Generation is constrained to strict JSON structured outputs, which is what makes the result programmable rather than a blob of prose, and posts come out adapted for Spanish, English and Mandarin markets. LinkedIn OAuth 2.0 closes the loop: review, edit and publish in one click from a React dashboard. Database interactions and AI edge cases are covered by pytest and pytest-asyncio.</p>
+            <p>It is currently paused, with parts of it broken: API surfaces moved underneath it and I never wrote enough tests around the integration boundaries to tell me exactly where it gave way. The retrieval and voice-loop design were sound, though, and I would build both the same way again.</p>
         </div>
+        <dl class="facts">
+            <dt>Stack</dt>
+            <dd>React, TypeScript, FastAPI, WebSockets, AudioWorklet, Supabase pgvector, Gemini Live</dd>
+            <dt>Status</dt>
+            <dd>Paused · partially broken</dd>
+            <dt>Year</dt>
+            <dd>2025</dd>
+            <dt>Code</dt>
+            <dd><a href="https://github.com/PersusUS/AutoLinkedin">AutoLinkedin</a></dd>
+        </dl>
     </div>
-</div>
-        </div>
-
-    </main>
-
-    <div class="noise-bg"></div>
-
-<script src="../js/barba.core.min.js"></script>
-<script src="../js/barba.css.min.js"></script>
-<script type="text/javascript" src="../js/lenis.min.js"></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/gsap.min.js"></script>
-<script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
-<script type="text/javascript" src="../js/SplitText.min.js"></script>
-<script type="text/javascript" src="../js/lazyload.min.js"></script>
-<script type="text/javascript" src="../js/fancybox.min.js"></script>
-<script type="text/javascript" src="../js/text-reflow.js"></script>
-<script type="text/javascript" src="../js/master.min.js"></script>
-<script type="text/javascript" src="../js/mobile-fixes.js"></script>
-    <script src="../js/site-nav.js"></script>
-<script type="text/javascript" src="../js/contact.js"></script>
-<script type="text/javascript" src="../js/shark-mesh.js"></script>
-<script type="text/javascript" src="../js/shark.js"></script>
-
-
-
-</body></html>
+    <figure class="case_figure">
+        <img src="../images/autolinkedin.svg" loading="lazy" alt="AutoLinkedIn">
+    </figure>
+    <p class="next">Next: <a href="agentic-traces.html">Agentic Reasoning Traces</a></p>
+</main>
+<footer class="site_footer" id="contact">
+    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
+    <a class="mail" href="mailto:jp.bazarot@gmail.com">jp.bazarot@gmail.com</a>
+    <div class="footer_links">
+        <a href="https://github.com/PersusUS">GitHub</a>
+        <a href="https://www.linkedin.com/in/jpbazarot/">LinkedIn</a>
+        <a href="https://www.x.com/JPBazarot">Twitter</a>
+        <a href="https://www.instagram.com/jpbazarot/">Instagram</a>
+        <span class="made">Seville, 2026</span>
+    </div>
+</footer>
+<script src="../js/shark-mesh.js" defer></script>
+<script src="../js/shark.js" defer></script>
+</body>
+</html>
