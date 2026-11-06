@@ -2,9 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>
-        MAGI · Jesús Pérez Bazarot
-    </title>
+    <title>MAGI · Jesús Pérez Bazarot</title>
 
     <meta name="description" content="Three LLM personas argue a question in parallel and one veto sinks the verdict: an Evangelion MAGI console where the consensus rule, not the vote, is the design.">
 
@@ -40,204 +38,61 @@
     <meta name="twitter:image" content="https://persus.netlify.app/images/og_card.jpg">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#111111">
-    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#a1c4fd">
     <meta name="robots" content="noodp">
-
-    <link rel="stylesheet" href="../css/master.min.css">
-    <link rel="stylesheet" href="../css/normalize.min.css">
-    <link rel="stylesheet" href="../css/fancybox.min.css">
-    <link rel="stylesheet" href="../css/shark.css">
-    <link rel="stylesheet" href="../css/contact.css">
-    <link rel="stylesheet" href="../css/case.css">
-    <link rel="stylesheet" href="../css/about.css">
-    <link rel="stylesheet" href="../css/mobile.css">
-    <link rel="stylesheet" href="../css/nav.css">
-
-    <noscript>
-        <style>
-            html { overflow-y: auto !important; }
-            [data-animation] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
-            .loader_wrapper { display: none !important; }
-        </style>
-    </noscript>
+    <link rel="stylesheet" href="../css/site.css">
 </head>
-
 <body>
-
-    <a class="accessibility skip-to-main" href="#wrapper">Skip to main content</a>
-
-    <script src="../js/header.js"></script>
-
-    <main id="wrapper" data-barba="wrapper">
-
-        <div data-barba="container">
-
-            <section class="default_row--container single_case_hero--row">
-                <div class="inner--container">
-                    <div class="grid">
-                        <div class="col-intro">
-                        <div class="case_back--container">
-                            <a class="eyebrow_link" href="../portfolio.html"><span class="arrow" aria-hidden="true">←</span>All projects</a>
-                        </div>
-                            <h1 data-animation="chars" data-delay="0" data-stagger="0.03">MAGI</h1>
-                            <p data-animation="fade-up" data-delay="0.2" class="size-20">MAGI is a console that answers a question three times at once. It is modelled on the supercomputers of the same name in <em>Neon Genesis Evangelion</em>, where Naoko Akagi split her own mind into three machines and let them disagree, so the three agents here are not three assistants. <strong>MELCHIOR</strong> is the scientist, <strong>BALTHASAR</strong> is the mother, <strong>CASPER</strong> is the woman: empirical truth, protection of life, and personal desire, each given the question at the same moment and each told, in the system prompt, that it may not hedge and may not break character.</p>
-                            <p data-animation="fade-up" data-delay="0.3" class="size-20">The interesting part is not the three answers. It is what the machine is allowed to do with them. There is no vote and no averaging. The verdict is resolved by severity: any subsystem error makes the whole result an error, then a single <em>no</em> makes it a refusal, then a single <em>conditional</em> makes it conditional, and only a clean sweep of three affirmatives returns <em>agreement</em>. One veto sinks it. That is the rule from the show and it is also the honest one: averaging three personas would produce a number that no agent actually believes.</p>
-                            <p data-animation="fade-up" data-delay="0.4" class="size-20">Getting a persona to a yes or a no takes two calls, not one, and they are deliberately separate. A classifier first decides whether the question is a yes/no question at all, from a purely linguistic standpoint: <em>should I buy new shoes?</em> is one, <em>what is the meaning of life?</em> is not. Only then does each agent answer in character; a second call hands that same agent its own answer back and asks it to compress it to a single word, or, if it cannot, to list the conditions under which the answer would be yes. Open questions skip the whole classification path and return as information. The reason to split it is that a persona told to be decisive will force a yes onto a question that has no yes, and the classifier is the only thing standing in the way.</p>
-                            <p data-animation="fade-up" data-delay="0.5" class="size-20">Every agent can run a different model. Each one resolves its own environment variable through OpenRouter, as do the classifier and the verdict step, so the scientist can be a reasoning model while the other two are cheap and fast. That flexibility is also the failure mode: free endpoints rate-limit and go down, so every completion falls back twice (the assigned model, then the configured default, then a known-good paid model) rather than surfacing a provider outage as a MAGI subsystem fault. Reasoning models needed their own handling too: <code>&lt;think&gt;</code> blocks are stripped, an empty content field falls back to the model's reasoning field, and lines that merely echo the prompt back are filtered out before anything reaches the screen.</p>
-                            <p data-animation="fade-up" data-delay="0.6" class="size-20">The interface is the point as much as the engine, and the discipline I set myself was that nothing on it may be a lie. The status panel looks like set dressing, and mostly is (CODE:473, FILE:MAGI_SYS, PRIORITY:AAA are constants), but the extension field is live state: 7312 when the classifier has ruled the question binary, 3023 when it has not, and <code>????</code> for exactly as long as the answer lags the question it belongs to. Staleness is tracked by question id, so a verdict can never be attributed to the wrong question. The sound is synthesised in the browser through the Web Audio API rather than shipped as files: a processing hum while the panels flicker, a different resolution tone per outcome.</p>
-                            <p data-animation="words" data-delay="0.7" data-stagger="0.03" class="size-20">Two things I would call fixed rather than finished. Voice input is hybrid (the browser's own recogniser, or Whisper through a small Flask route), and it refuses to try when it cannot work: an OpenRouter key is rejected outright for transcription, because that provider has no transcription endpoint and the key would only fail slowly somewhere else, and anything that still looks like a placeholder is never sent at all. And it runs on an Android tablet as a PWA through a Termux launcher that kills the previous instance, waits for the port to actually answer before opening the browser, and traps its own exit so the server never outlives the window.</p>
-                            <p data-animation="fade-up" data-delay="0.8" class="size-20">What it is not: three independent opinions. The agents share a provider, often a base model, and always the same question, so a unanimous <em>agreement</em> measures how three framings of one model behave, not whether something is true. It is a decision theatre with an honest resolution rule, which is a different and smaller claim than verification. The concept belongs to Hideaki Anno and Gainax; the consensus engine, the interface and the code are mine, MIT licensed.</p>
-                        </div>
-                        <div class="col-summary">
-                            <div class="entry" data-animation="fade-up" data-delay="0">
-                                <span>Services</span>
-                                <span class="size-20">Applied AI, Interface</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.2">
-                                <span>Stack</span>
-                                <span class="size-20">Python, Dash &amp; React, OpenRouter, Web Audio API, Whisper</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.3">
-                                <span>Status</span>
-                                <span class="size-20">Running locally · MIT on GitHub</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.4">
-                                <span>Year</span>
-                                <span class="size-20">2026</span>
-                            </div>
-                            <div class="entry" data-animation="fade-up" data-delay="0.5">
-                                <span>Code</span>
-                                <a class="repo_link" href="https://github.com/PersusUS/MAGI" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>MAGI</span><span class="arrow" aria-hidden="true">↗</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero_img--container">
-                    <div class="hero_img parallax reveal_effect">
-                        <div class="mask"></div>
-                        <img class="lazy" src="../images/magi.webp" alt="MAGI">
-                    </div>
-                </div>
-            </section>
-
-            <section class="default_row--container next-project single_project">
-                <div class="inner--container">
-                    <p>Other Project</p>
-                    <p>HybridMamba-11</p>
-                </div>
-                <div class="image--container">
-                    <img class="lazy" src="../images/hybridmamba.svg" alt="HybridMamba-11">
-                </div>
-                <a href="hybridmamba.html" class="project_link link"></a>
-            </section>
-
-            <!-- Original footer with CTA -->
-            <footer id="footer">
-                <section class="cta_footer--container">
-                    <div class="cta--wrapper">
-                        <div class="cta--container">
-                            <div class="video--container">
-                                <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
-                            </div>
-                            <div class="text--container">
-                                <p class="title" data-animation="fade-up" data-delay="0" data-stagger="0.03">Interested in working together?</p>
-                                <a class="lovely_button link" href="mailto:jp.bazarot@gmail.com?subject=Hello%20there!" target="_self">
-                                    <span class="text">Drop me an email!</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </footer>
-
-            <!-- New footer specifically for socials, copyright, and coordinates -->
-            <footer id="footer-bottom">
-                <div class="footer-bottom--container">
-                    <div class="footer-bottom--wrapper">
-                        <div class="footer-col">
-                            N 37°23′21″ W 5°59′04″
-                        </div>
-                        <div class="footer-col">
-                            <div class="social-links">
-                                <a href="https://www.instagram.com/jpbazarot/" class="link" target="_blank">Instagram</a> /
-                                <a href="https://www.x.com/JPBazarot" class="link" target="_blank">Twitter</a> /
-                                <a href="https://www.linkedin.com/in/jpbazarot/" class="link" target="_blank">Linkedin</a> /
-                                <a href="https://github.com/PersusUS" class="link" target="_blank">GitHub</a>
-                            </div>
-                        </div>
-                        <div class="footer-col">
-                            Designed and developed by me<br>
-                            ©2026 · All Rights Reserved
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <div class="cursor__pointer"><img src="../images/arrow_up.png" width="100" alt=""></div>
-
-            <div class="mobile_menu--wrapper">
-    <div class="overlay"></div>
-    <div class="mobile_menu--container">
-        <div class="inner">
-            <nav>
-                <ul class="mobile_menu">
-                    <li>
-                        <a href="../index.html" class="">Home</a>
-                    </li>
-                    <li>
-                        <a href="../portfolio.html" class="">Projects</a>
-                    </li>
-                    <li>
-                        <a href="../about.html" class="">About Me</a>
-                    </li>
-                    <li>
-                        <a href="../cv.pdf" target="_blank" rel="noopener" data-barba-prevent class="">CV (PDF)</a>
-                    </li>
-                    <li>
-                        <a href="#footer" class="">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-            <ul class="social_menu">
-                <li>
-                    <a href="https://www.instagram.com/jpbazarot/" target="_blank">Instagram</a>
-                </li>
-                <li>
-                    <a href="https://www.x.com/JPBazarot" target="_blank">Twitter</a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/jpbazarot/" target="_blank">Linkedin</a>
-                </li>
-                <li>
-                    <a href="https://github.com/PersusUS" target="_blank">GitHub</a>
-                </li>
-            </ul>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site_header">
+    <a class="site_name" href="../index.html">Jesús P. Bazarot</a>
+    <nav class="site_nav" aria-label="Main">
+        <a href="../portfolio.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+<main id="main">
+    <p class="case_back"><a href="../portfolio.html">All projects</a></p>
+    <h1 class="case_title">MAGI</h1>
+    <div class="case_body">
+        <div class="prose">
+            <p>MAGI is a console that answers a question three times at once. It is modelled on the supercomputers of the same name in <em>Neon Genesis Evangelion</em>, where Naoko Akagi split her own mind into three machines and let them disagree, so the three agents here are not three assistants. <strong>MELCHIOR</strong> is the scientist, <strong>BALTHASAR</strong> is the mother, <strong>CASPER</strong> is the woman: empirical truth, protection of life, and personal desire, each given the question at the same moment and each told, in the system prompt, that it may not hedge and may not break character.</p>
+            <p>There is no vote and no averaging. The verdict is resolved by severity: any subsystem error makes the whole result an error, then a single <em>no</em> makes it a refusal, then a single <em>conditional</em> makes it conditional, and only a clean sweep of three affirmatives returns <em>agreement</em>. One veto sinks it. That is the rule from the show, and it makes sense: averaging three personas would produce a number that no agent actually believes.</p>
+            <p>Getting a persona to a yes or a no takes two calls, not one, and they are deliberately separate. A classifier first decides whether the question is a yes/no question at all, from a purely linguistic standpoint: <em>should I buy new shoes?</em> is one, <em>what is the meaning of life?</em> is not. Only then does each agent answer in character; a second call hands that same agent its own answer back and asks it to compress it to a single word, or, if it cannot, to list the conditions under which the answer would be yes. Open questions skip the whole classification path and return as information. The reason to split it is that a persona told to be decisive will force a yes onto a question that has no yes, and the classifier is the only thing standing in the way.</p>
+            <p>Every agent can run a different model. Each one resolves its own environment variable through OpenRouter, as do the classifier and the verdict step, so the scientist can be a reasoning model while the other two are cheap and fast. That flexibility is also the failure mode: free endpoints rate-limit and go down, so every completion falls back twice (the assigned model, then the configured default, then a known-good paid model) rather than surfacing a provider outage as a MAGI subsystem fault. Reasoning models needed their own handling too: <code>&lt;think&gt;</code> blocks are stripped, an empty content field falls back to the model's reasoning field, and lines that merely echo the prompt back are filtered out before anything reaches the screen.</p>
+            <p>The interface matters as much as the engine, and my one rule was that nothing on it may be a lie. The status panel looks like set dressing, and mostly is (CODE:473, FILE:MAGI_SYS, PRIORITY:AAA are constants), but the extension field is live state: 7312 when the classifier has ruled the question binary, 3023 when it has not, and <code>????</code> for exactly as long as the answer lags the question it belongs to. Staleness is tracked by question id, so a verdict can never be attributed to the wrong question. The sound is synthesised in the browser through the Web Audio API rather than shipped as files: a processing hum while the panels flicker, a different resolution tone per outcome.</p>
+            <p>Two things I would call fixed rather than finished. Voice input is hybrid (the browser's own recogniser, or Whisper through a small Flask route), and it refuses to try when it cannot work: an OpenRouter key is rejected outright for transcription, because that provider has no transcription endpoint and the key would only fail slowly somewhere else, and anything that still looks like a placeholder is never sent at all. And it runs on an Android tablet as a PWA through a Termux launcher that kills the previous instance, waits for the port to actually answer before opening the browser, and traps its own exit so the server never outlives the window.</p>
+            <p>What it is not: three independent opinions. The agents share a provider, often a base model, and always the same question, so a unanimous <em>agreement</em> measures how three framings of one model behave, not whether something is true. It is a decision theatre with a clear resolution rule, which is a different and smaller claim than verification. The concept belongs to Hideaki Anno and Gainax; the consensus engine, the interface and the code are mine, MIT licensed.</p>
         </div>
+        <dl class="facts">
+            <dt>Stack</dt>
+            <dd>Python, Dash &amp; React, OpenRouter, Web Audio API, Whisper</dd>
+            <dt>Status</dt>
+            <dd>Running locally · MIT on GitHub</dd>
+            <dt>Year</dt>
+            <dd>2026</dd>
+            <dt>Code</dt>
+            <dd><a href="https://github.com/PersusUS/MAGI">MAGI</a></dd>
+        </dl>
     </div>
-</div>
-        </div>
-
-    </main>
-
-    <div class="noise-bg"></div>
-
-<script src="../js/barba.core.min.js"></script>
-<script src="../js/barba.css.min.js"></script>
-<script type="text/javascript" src="../js/lenis.min.js"></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/gsap.min.js"></script>
-<script type="text/javascript" src="../js/ScrollTrigger.min.js"></script>
-<script type="text/javascript" src="../js/SplitText.min.js"></script>
-<script type="text/javascript" src="../js/lazyload.min.js"></script>
-<script type="text/javascript" src="../js/fancybox.min.js"></script>
-<script type="text/javascript" src="../js/text-reflow.js"></script>
-<script type="text/javascript" src="../js/master.min.js"></script>
-<script type="text/javascript" src="../js/mobile-fixes.js"></script>
-    <script src="../js/site-nav.js"></script>
-<script type="text/javascript" src="../js/contact.js"></script>
-<script type="text/javascript" src="../js/shark-mesh.js"></script>
-<script type="text/javascript" src="../js/shark.js"></script>
-
-
-
-</body></html>
+    <figure class="case_figure">
+        <img src="../images/magi.webp" loading="lazy" alt="MAGI">
+    </figure>
+    <p class="next">Next: <a href="hybridmamba.html">HybridMamba-11</a></p>
+</main>
+<footer class="site_footer" id="contact">
+    <canvas id="shark_canvas" role="img" aria-label="A tiger shark swimming"></canvas>
+    <a class="mail" href="mailto:jp.bazarot@gmail.com">jp.bazarot@gmail.com</a>
+    <div class="footer_links">
+        <a href="https://github.com/PersusUS">GitHub</a>
+        <a href="https://www.linkedin.com/in/jpbazarot/">LinkedIn</a>
+        <a href="https://www.x.com/JPBazarot">Twitter</a>
+        <a href="https://www.instagram.com/jpbazarot/">Instagram</a>
+        <span class="made">Seville, 2026</span>
+    </div>
+</footer>
+<script src="../js/shark-mesh.js" defer></script>
+<script src="../js/shark.js" defer></script>
+</body>
+</html>

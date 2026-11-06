@@ -15,14 +15,9 @@
  *   data-shark-roll   radians of bank across the same pass (0.18)
  *   data-shark-fill   share of the visible width the body should take (0.62)
  *
- * The footer canvas keeps the defaults, so it renders exactly as before.
- *
  * Model: "Shark" by Quaternius (poly.pizza), CC0 1.0 — public domain, no
  * attribution required. The rig and animation clips were stripped when baking;
  * material base colours were baked to vertex colours.
- *
- * In the footer it replaces the old <video id="cta_video">, whose source
- * (/assets/videos/…) has never existed in this repository.
  */
 (function () {
     'use strict';
@@ -332,17 +327,9 @@
         seen.forEach(mount);
     }
 
-    function hookBarba() {
-        if (window.barba && window.barba.hooks) {
-            window.barba.hooks.after(init);
-            window.barba.hooks.beforeLeave(stop);
-        }
-    }
-
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () { init(); hookBarba(); });
+        document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
-        hookBarba();
     }
 })();
